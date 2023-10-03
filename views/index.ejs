@@ -1,0 +1,417 @@
+<%- include("partials/header"); -%>
+
+
+    <div id="hero-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="3000">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#hero-carousel" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#hero-carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#hero-carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+
+        <div class="carousel-inner">
+            <div class="carousel-item active c-item">
+                <img src="./images/c1min.webp" class="d-block w-100 c-img" alt="Slide 1" />
+                <div class="carousel-caption d-md-block">
+                    <h5>Incredible deals on prime commercial properties</h5>
+                    <!-- <p>Contact for more</p> -->
+                </div>
+            </div>
+            <div class="carousel-item c-item">
+                <img src="./images/c9min.webp" class="d-block w-100 c-img" alt="Slide 2" />
+                <div class="carousel-caption d-md-block">
+                    <h5>Assured return properties at a discounted price</h5>
+                    <!-- <p>Contact for more</p> -->
+                </div>
+            </div>
+            <div class="carousel-item c-item">
+                <img src="./images/c16min.webp" class="d-block w-100 c-img" alt="Slide 3" />
+                <div class="carousel-caption d-md-block">
+                    <h5>Get unbeatable deals on properties in Gurgaon!</h5>
+                    <!-- <p>Contact for more</p> -->
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#hero-carousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#hero-carousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+
+
+
+    <!-- =================================================================================================================================== -->
+
+
+
+
+
+    <a class="fbbutton hidden-button" href="https://www.facebook.com/PropriseHomes" target="_blank">
+        <img src="./images/fbnew.png" alt="Facebook">
+    </a>
+
+    <a id="" class="whatsapp-button hidden-button" href="https://wa.me/+919560966122" target="_blank">
+        <img src="./images/WhatsApp.svg.webp" alt="WhatsApp">
+
+    </a>
+
+
+
+    <section id="partners">
+        <div class="container">
+            <div class="container dev">
+                <h2 class="latest">Developers</h2>
+            </div>
+        </div>
+        <div class="partner-carousel">
+            <div class="container">
+                <div class="row">
+                    <div class="carousel-wrapper">
+                        <div class="carousel1">
+                            <div class="slide">
+                                <img class="part-img" src="images/dlf-india-logo.png" alt="" />
+                            </div>
+                            <div class="slide1">
+                                <img class="part-img" src="images/emaar-logo.png" alt="" />
+                            </div>
+                            <div class="slide1">
+                                <img class="part-img" src="images/Elan-logo.png" alt="" />
+                            </div>
+                            <div class="slide1">
+                                <img class="part-img" src="images/M3M-1.png" alt="" />
+                            </div>
+                            <div class="slide1">
+                                <img class="part-img" src="images/AIPL-1.png" alt="" />
+                            </div>
+                            <div class="slide1">
+                                <img class="part-img" src="images/Central-Park-1.png" alt="" />
+                            </div>
+                            <div class="slide1">
+                                <img class="part-img" src="images/Conscient-1.png" alt="" />
+                            </div>
+                            <div class="slide1">
+                                <img class="part-img" src="images/Godrej-Properties-1.png" alt="" />
+                            </div>
+                            <div class="slide1">
+                                <img class="part-img" src="images/Omaxe-1.png" alt="" />
+                            </div>
+                            <div class="slide1">
+                                <img class="part-img" src="images/M3M-1.png" alt="" />
+                            </div>
+                            <div class="slide1">
+                                <img class="part-img" src="images/Smartworld-2.png" alt="" />
+                            </div>
+                            <div class="slide1">
+                                <img class="part-img" src="images/SS-Group-1.png" alt="" />
+                            </div>
+                            <div class="slide1">
+                                <img class="part-img" src="images/Tata-Housing-1.png" alt="" />
+                            </div>
+                            <div class="slide1">
+                                <img class="part-img" src="images/Vatika-1.png" alt="" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--================= the section is starts form here =================== -->
+
+    <section id="proj">
+        <div class="container">
+            <div class="row">
+                <div class="col text-center">
+                    <div class="sec-head mx-auto">
+                        <h2 class="latest">Latest Projects</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="#load">
+                <div class="row row12">
+                    <% posts.forEach(function(post){ %>
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 project">
+                            <div class="main-div">
+                                <div class="main-data">
+                                    <div class="img-data">
+                                        <a class="clr-black" href="/posts/<%=post._id%>">
+                                            <img src="/uploads/<%= post.images[0] %>" alt="" />
+                                        </a>
+                                        <div class="label-badges">
+                                            <ul class="list-unstyled text-left">
+                                                <li class="list-inline-item">
+                                                    <a class="badge badge-status-30" href="#"> Explore </a>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <a class="badge badge-status-30" href="#"> For Sale </a>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <a class="badge badge-label-194" href="#">
+                                                        SmartWorld
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="listing-data">
+                                    <div class="heading-d">
+                                        <h3 class="text-capitalize">
+                                            <a class="clr-black head" href="/posts/<%=post._id%>">
+                                                <%=post.title%>
+                                            </a>
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <% }) %>
+                </div>
+            </div>
+            <div class="container load" style="align-items: center; justify-content: center;">
+                <button id="load-more" class="loadmore">Load More</button>
+            </div>
+
+
+        </div>
+    </section>
+
+    <section id="aboutdiv">
+        <div class="container ab-head">
+            <h2 class="a-head">About Maison Infra</h2>
+        </div>
+        <div class="container ab-para">
+            <p class="a-para">
+                MAISON INFRA is an independent real estate advisor presence across
+                Delhi-NCR. We possess huge on-field experience and knowledge of the
+                real estate sector and aspire to be your first point of connection if
+                you want to buy a property in India. Led by a group of dynamic and
+                visionary investors, Maison Infra aims to utilize its vast knowledge of
+                the real estate sector to help those looking to buy or Sell Property.
+            </p>
+        </div>
+        <div class="container counter">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 col-lg-3 margin-bottom-30 counter-inner">
+                        <span>
+                            <img class="img-fluid" src="images/1-1.png" alt="" />
+                        </span>
+                        <div class="min-count">
+                            <b>
+                                <span class="ag-counter">1000</span>
+                                <span class="ag-counte">+</span>
+                            </b>
+                            <p>Properties</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-3 margin-bottom-30 counter-inner">
+                        <span>
+                            <img class="img-fluid" src="images/2-1.png" alt="" />
+                        </span>
+                        <div class="min-count">
+                            <b>
+                                <span class="ag-counter">15</span>
+                                <span class="ag-counte">+</span>
+                            </b>
+                            <p>Years of Exellent Service</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-3 margin-bottom-30 counter-inner">
+                        <span>
+                            <img class="img-fluid" src="images/3-1.png" alt="" />
+                        </span>
+                        <div class="min-count">
+                            <b>
+                                <span class="ag-counter">150</span>
+                                <span class="ag-counte">+</span>
+                            </b>
+                            <p>Expert Team</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-3 margin-bottom-30 counter-inner">
+                        <span>
+                            <img class="img-fluid" src="images/4-1.png" alt="" />
+                        </span>
+                        <div class="min-count">
+                            <b>
+                                <span class="ag-counter">10000</span>
+                                <span class="ag-counte">+</span>
+                            </b>
+                            <p>Happy Customers</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pro-type">
+        <div class="container">
+            <div class="container">
+                <div class="container p-head">
+                    <h2 class="pro-head">Property Types</h2>
+                </div>
+            </div>
+            <div class="container p-div">
+                <div class="property-container">
+                    <div class="property">
+                        <a href="commercial.html">
+                            <img src="images/commertialmainpag.jpg" alt="Property 1" />
+                        </a>
+                        <a href="commercial.html">
+                            <h3>Commercial Property</h3>
+                        </a>
+                    </div>
+                    <div class="property">
+                        <a href="residential.html"><img src="images/resimainpage.webp" alt="Property 2" /></a>
+                        <a href="residential.html">
+                            <h3>Residential Property</h3>
+                        </a>
+                    </div>
+                    <!-- Add more property items as needed -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--================= the why us container is starts from here ============== -->
+
+    <section id="why">
+        <div class="container why-head">
+            <div class="container why-left">
+                <h3>Why Us</h3>
+
+                <p class="why-p why-left">
+                    Maison is a company that specializes in the acquisition,
+                    management and sale of high-end urban real estate properties. We
+                    believe in creating trust with our clients and being transparent
+                    with our dealings. This assures that each client has complete
+                    confidence in our abilities, and we look forward to exceeding their
+                    expectations.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!--========== the testimonials section is starts from is here ======= -->
+    <section id="testimonials">
+        <div class="container">
+            <div class="row">
+                <div class="col text-center">
+                    <div class="sec-heading mx-auto">
+                        <p class="testi-p">CLIENTS REVIEWS</p>
+                        <h2 class="testi-h2">
+                            Satisfied Customers Are The Real Wealth Completing 10000+ Happy
+                            Customers
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-container swiper">
+                <div class="slide-content">
+                    <div class="card-wrapper swiper-wrapper">
+                        <div class="card swiper-slide">
+                            <div class="image-content">
+                                <span class="overlay"></span>
+
+                                <div class="card-image">
+                                    <img src="images/testi1.jpeg" alt="" class="card-img" />
+                                </div>
+                            </div>
+
+                            <div class="card-content">
+                                <h2 class="name">Ashish Pandey</h2>
+                                <p class="description">
+                                    I was extremely impressed with the level of customer service provided by Maison
+                                    Infratech. From the
+                                    moment I contacted them, their agents were attentive, friendly, and always available
+                                    to
+                                    answer my
+                                    questions. They guided me in home-buying process with patience and professionalism,
+                                    making it a stress-free experience. I highly recommend Maison to anyone looking for
+                                    a
+                                    real estate firm
+                                    that truly cares about their clients.
+                                </p>
+
+                                <!-- <button class="button">View More</button> -->
+                            </div>
+                        </div>
+                        <div class="card swiper-slide">
+                            <div class="image-content">
+                                <span class="overlay"></span>
+
+                                <div class="card-image">
+                                    <img src="images/testi2.jpeg" alt="" class="card-img" />
+                                </div>
+                            </div>
+
+                            <div class="card-content">
+                                <h2 class="name">Dr. Rakesh Chawla</h2>
+                                <p class="description">
+                                    I cannot thank the agents at Maison Infratech enough for their expertise and
+                                    dedication.
+                                    They knew the
+                                    local market inside out and provided me with valuable insights that helped me make
+                                    informed decisions.
+                                    Their attention to detail and thorough understanding of real estate transactions
+                                    were
+                                    impressive.
+                                    Thanks to their guidance, I found my dream home within weeks. Mr.Pankaj has a team
+                                    of
+                                    exceptional
+                                    agents you can trust.
+                                </p>
+
+                                <!-- <button class="button">View More</button> -->
+                            </div>
+                        </div>
+                        <div class="card swiper-slide">
+                            <div class="image-content">
+                                <span class="overlay"></span>
+
+                                <div class="card-image">
+                                    <img src="images/testi3.jpeg" alt="" class="card-img" />
+                                </div>
+                            </div>
+
+                            <div class="card-content">
+                                <h2 class="name">Abhisek Chikara</h2>
+                                <p class="description">
+                                    Successful and Profitable Transactions: Hats off to Pankaj Ji for their outstanding
+                                    work! I listed my
+                                    property with them, and they managed to sell it within a few weeks at a price higher
+                                    than I expected.
+                                    Their negotiation skills are top-notch, and they made sure I got the best deal
+                                    possible.
+                                    I couldn't be
+                                    happier with the outcome. If you're looking for a real estate firm that delivers
+                                    results, look no
+                                    further than Maison Infratech.
+                                </p>
+
+                                <!-- <button class="button">View More</button> -->
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="swiper-button-next swiper-navBtn"></div>
+                <div class="swiper-button-prev swiper-navBtn"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
+
+    <script src="js/loadMoreProjects.js"></script>
+
+    <%- include("partials/footer"); -%>

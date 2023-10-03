@@ -1,0 +1,373 @@
+/*============ the footer section is starts from here ============ */
+.footer-dark {
+    text-align: center;
+    background: #0c1722 none repeat scroll 0 0;
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    z-index: 1;
+    font-family: Montserrat, sans-serif;
+}
+
+.footer-top {
+    padding: 60px 0 50px;
+    color: #e3e3e3;
+}
+.footer-dark .list li a  {
+    text-decoration: none;
+}
+.footer-dark .list li a:hover  {
+    text-decoration: underline;
+}
+
+.about-us-info {
+    margin-top: 30px;
+    text-align: left;
+}
+
+.footer-img img {
+    width: 191px;
+}
+
+.flag {
+    max-height: 50px;
+    max-width: 50px;
+    /* padding: 10px; */
+    margin: 5px;
+}
+
+
+.footer-p {
+    text-align: justify;
+    color: #eee;
+    margin-top: 2px;
+    margin-bottom: 10px;
+}
+
+.social-icon {
+    position: relative;
+    overflow: hidden;
+    margin: 5px 0;
+}
+
+.social {
+    list-style: none;
+    margin-bottom: 10px;
+}
+
+.social-icon ul li {
+    display: inline;
+    margin-right: 5px;
+}
+
+ul.social li a {
+    width: 32px;
+    height: 32px;
+    background: #3c3c3c;
+    display: inline-block;
+    text-align: center;
+    line-height: 32px;
+}
+
+.social-icon ul li i {
+    font-size: 14px;
+    color: #eee;
+}
+
+.builders {
+    color: #fff;
+    font-size: 25px;
+    margin-bottom: 25px;
+    text-transform: capitalize;
+}
+
+.footer-dark .list {
+    list-style: square !important;
+    margin-left: 1rem;
+}
+
+.list li {
+    padding-left: 15px;
+    margin: 0 0 10px;
+    position: relative;
+}
+
+.footer-dark .list li a {
+    color: #eee;
+}
+
+
+.projects {
+    color: #fff;
+    font-size: 25px;
+    margin-bottom: 25px;
+    text-transform: capitalize;
+}
+
+.contact {
+    color: #fff;
+    font-size: 25px;
+    margin-bottom: 25px;
+    text-transform: capitalize;
+}
+
+.foform {
+    color: white;
+    text-align: left;
+    display: flex;
+    margin: 6px 0 0;
+    padding: 16px 0;
+}
+
+
+.formfi {
+    font-size: 14px;
+    padding: 2px;
+    margin: 0;
+    width: 305px;
+}
+
+.textarea {
+    width: 250px;
+}
+
+.formbtn {
+    color: #fff;
+    background-color: #C98F30;
+    border: 1px solid #C98F30;
+    width: 100%;
+    padding: 5px;
+}
+
+.footer-copy {
+    padding: 25px 0;
+    background: #0c1722 none repeat scroll 0 0;
+    text-align: center;
+    border-top: 1px solid #3d454e;
+}
+
+.footer-text p {
+    margin: 0;
+    font-size: 16px;
+    color: #eee;
+}
+
+
+ol,
+ul {
+    padding-left: 0rem !important;
+}
+
+
+.quick-box {
+    width: 100%;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 0 10px 7px rgba(0,0,0,.03);
+    padding: 60px;
+    margin: 0;
+}
+.quick-box {
+   
+    display: block;
+    float: right;
+    position: relative;
+    z-index: 9;
+    box-shadow: 0 8px 28px rgba(0,0,0,.19);
+    margin: 0% 14% 0;
+    background: #fff;
+    padding: 20px 25px;
+}
+.quick-form {
+    height: auto!important;
+}
+.inq-form-ttl {
+    display: block;
+    font-size: 32px;
+    line-height: 28px;
+    font-family: var(--font-family-bold);
+    margin-bottom: 50px;
+    color: #000;
+    font-weight: 500;
+}
+.quick-form .input-ani {
+    height: auto;
+    margin-bottom: 40px;
+}
+.quick-form .input-ani {
+    width: 100%;
+    position: relative;
+    display: inline-block;
+    height: 38px;
+}
+
+.quick-form .input-lbl {
+    color: #333;
+    width: 100%;
+    display: inline-block;
+    font-family: "Baloo Bhaina 2", cursive;;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.quick-form .input-ani .ani-border .line {
+    height: 0.5px;
+    width: 99%;
+    background: #a8a8a8;
+    display: block;
+    transition: .3s width ease-in-out;
+    top: 0;
+    clear: both;
+    position: inherit!important;
+}
+
+.form-row {
+    width: 100%;
+    display: block;
+    position: relative;
+}
+
+
+
+
+.quick-form.input-ani.ani-border.line {
+    background: #a8a8a8;
+}
+
+#quickInq_vPhoneNumberErr.line.err-msg{
+    background:#a8a8a8 ;
+    height: 0.5px;
+    width: 99%;
+   
+    display: block;
+    transition: .3s width ease-in-out;
+    top: 0;
+    clear: both;
+    position: inherit!important;
+
+}
+.quick-form .input-ani.input-ani-testarea {
+    height: 80px;
+}
+
+
+.quick-form .input-ani textarea {
+    border: none;
+    border-bottom: 0 solid #e0e0e0;
+    background-color: inherit;
+    display: block;
+    width: 82%;
+    margin: 0;
+    font-size: 15px;
+    color: #000;
+    line-height: normal;
+    padding: 5px 0;
+    font-family: var(--font-family-regular);
+    font-weight: 500;
+    height: 45px;
+}
+.quick-form-btn {
+    position: absolute;
+    bottom: 45px;
+    right: -15px;
+}
+.quick-form .submit-btn {
+    width: 58px !important; 
+    height: 58px !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+.quick-form .submit-btn {
+    -webkit-transition: all .4s !important;
+    -o-transition: all .4s !important;
+    -moz-transition: all .4s !important;
+    transition: all .4s !important;
+    margin: 15px auto 0 !important;
+    background: #0067ff url("../images/send-arrow.png") no-repeat center !important;
+    display: block !important;
+    position: relative !important;
+    z-index: 1 !important;
+}
+.quick-form .submit-btn:hover {
+    background-color: black !important;
+    
+}
+button,
+button:hover,
+input,
+textarea {
+    outline: 0 !important;
+    border: none;
+    background: 0 0;
+    cursor: pointer
+}
+.quick-form .submit-btn, .quick-form .submit-btn::before {
+    color: #fff;
+    height: 58px !important;
+    line-height: 40px;
+}
+
+.myTextArea{
+    overflow: hidden;
+}
+
+@media (max-width: 574px) {
+    .quick-box{
+        width: 289px; 
+        float: left;
+  margin-left: 50%; 
+  transform: translateX(-50%);
+
+    }
+}
+@media (max-width: 574px) {
+    .formfi{
+        width: 233px !important;
+
+    }
+}
+@media (max-width: 1224px) {
+    .formfi{
+        width: 305px;
+
+    }
+}
+@media (max-width: 763px) {
+    .formfi{
+        width: 464px;
+
+    }
+}
+
+
+.myform{
+    padding-top: 10px;
+}
+.foont {
+    margin-bottom: 6px;
+}
+
+
+.error-message {
+    color: red;
+    visibility: hidden;
+    font-size: 12px;
+    margin-bottom: 0rem !important;
+  }
+  .error-message1 {
+    color: red;
+    visibility: hidden;
+    font-size: 10px;
+  }
+
+.form-row.phonenocl{
+    padding-top: 0px !important;
+}
+.buildpadding{
+    padding-left: 26px;
+}

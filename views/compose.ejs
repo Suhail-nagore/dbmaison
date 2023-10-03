@@ -1,0 +1,19 @@
+<%- include("partials/header"); -%>
+    <h1>Compose</h1>
+    <form class="container" action="/compose" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label>Title</label>
+            <input class="form-control" type="text" name="postTitle" placeholder="Title" required />
+            <label>Post Author</label>
+            <input class="form-control" type="text" name="author" placeholder="Author Name" required />
+            <label>Post</label>
+            <textarea class="form-control" name="postBody" rows="5" cols="30"
+                placeholder="Write your blog post here...." required></textarea>
+
+            <!-- Allow multiple file uploads -->
+            <label>Images</label>
+            <input type="file" name="image" accept="image/*" multiple>
+        </div>
+        <button class="btn btn-primary" type="submit" name="button">Publish</button>
+    </form>
+    <%- include("partials/footer"); -%>
