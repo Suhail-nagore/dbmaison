@@ -1,0 +1,950 @@
+<%- include("partials/header"); -%>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/property.css">
+
+
+    <div class="listing-detial-stater">
+        <div class="container d-lg-flex justify-content-between py-2 py-lg-3">
+            <div class="order-lg-2 mb-3 mb-lg-0 pt-lg-2"></div>
+            <div class="order-lg-1 pr-lg-4 text-center text-lg-left">
+                <h1 class="text-light">
+                    <%=title%>
+                </h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="listing-info-content">
+        <div class="container">
+            <div class="main-dis-area">
+                <div class="row justify-content-center"> <!-- Center the content horizontally -->
+                    <div class="col-lg-8 pt-2 pt-lg-4 pb-4 mb-lg-3">
+                        <div class="pt-2 pr-lg-0 padding-left-30">
+                            <div class="myflex flexslider mb-0">
+                                <div class="slider-container">
+                                    <div class="slider">
+                                        <!-- <div class="slider-images">
+                                            <img src="../images/central1-min.webp" alt="Image 1"
+                                                class="slider-image active">
+                                            <img src="../images/central2min.webp" alt="Image 2" class="slider-image">
+                                            <img src="../images/central3min.webp" alt="Image 3" class="slider-image">
+                                            <img src="../images/central4min.webp" alt="Image 4" class="slider-image">
+                                        </div> -->
+
+
+
+                                        <div class="slider-images">
+                                            <% images.forEach(function(image, index) { %>
+                                                <img src="/uploads/<%= image %>" alt="Image <%= index + 1 %>"
+                                                    class="slider-image <%= index === 0 ? 'active' : '' %>">
+                                                <% }); %>
+                                        </div>
+
+
+
+
+                                        <div class="slider-controls">
+                                            <button class="prev-button">&ltcc;</button>
+                                            <button class="next-button">&gtcc;</button>
+                                        </div>
+                                    </div>
+                                    <div class="preview-container">
+                                        <!-- <div class="preview-images">
+                                            <img src="../images/central1-min.webp" alt="Image 1"
+                                                class="preview-image active">
+                                            <img src="../images/central2min.webp" alt="Image 2" class="preview-image">
+                                            <img src="../images/central3min.webp" alt="Image 3" class="preview-image">
+                                            <img src="../images/central4min.webp" alt="Image 4" class="preview-image">
+                                        </div> -->
+
+
+
+                                        <div class="preview-images">
+                                            <% images.forEach(function(image, index) { %>
+                                                <img src="/uploads/<%= image %>" alt="Image <%= index + 1 %>"
+                                                    class="preview-image <%= index === 0 ? 'active' : '' %>">
+                                                <% }); %>
+                                        </div>
+
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-12">
+                        <div class="custom-sidebar-padding h-100 ml-auto border-left">
+                            <div class="gform_heading">
+                                <h2 class="gform_title">
+                                    Enquiry Form
+                                </h2>
+                                <form action="../propertyprocess_form.php" method="post">
+                                    <input type="text" name="name" id="" class="name f1" placeholder="Name" required>
+
+
+                                    <input type="text" name="email" id="" class="email f1" placeholder="Email" required>
+                                    <input type="text" name="contact-number" class="pno f1" placeholder="Phone No."
+                                        required>
+
+                                    <textarea name="message" id="" cols="30" rows="6" class="textA" required></textarea>
+
+                                    <button type="submit" class="submitf1">Submit</button><br>
+                                    <button type="submit" class="submitf2">Whatsapp</button>
+                                    </label>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="special-features">
+                    <div class="slide-property-first">
+                        <div class="row"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="listing-ext-content property-6">
+
+                <div class="row">
+                    <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
+                        <div class="make-me-white">
+                            <div class="widget-seprator">
+                                <div class="widget-seprator-heading">
+                                    <h3 class="sec-title"><i class="fas fa-rss"></i> About the Project</h3>
+                                </div>
+                                <div class="post-excerpt post-desc">
+                                    <div data-elementor-type="wp-post" data-elementor-id="3496"
+                                        class="elementor elementor-3496" data-elementor-settings="[]">
+                                        <div class="elementor-section-wrap">
+                                            <section data-particle_enable="false" data-particle-mobile-disabled="false"
+                                                class="elementor-section elementor-top-section elementor-element elementor-element-629aacb9 elementor-section-boxed elementor-section-height-default elementor-section-height-default"
+                                                data-id="629aacb9" data-element_type="section">
+                                                <div class="elementor-container elementor-column-gap-default">
+                                                    <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-19602b7c"
+                                                        data-id="19602b7c" data-element_type="column">
+                                                        <div class="elementor-widget-wrap elementor-element-populated">
+                                                            <div class="elementor-element elementor-element-6c9d6c9c elementor-widget elementor-widget-text-editor"
+                                                                data-id="6c9d6c9c" data-element_type="widget"
+                                                                data-widget_type="text-editor.default">
+                                                                <div class="elementor-widget-container">
+
+                                                                    <p><span><span>
+                                                                                <%=content%>
+                                                                            </span></span></p> <br>
+                                                                    <h3><span
+                                                                            style="font-family: var( --e-global-typography-text-font-family ), Sans-serif;">Specification
+                                                                            of the project below:-</span></h3>
+
+                                                                    <p style="text-align: justify;"><span>1️.
+                                                                            <%=spec1%>
+                                                                        </span></p>
+                                                                    <p style="text-align: justify;"><span>2️.
+                                                                            <%=spec2%>
+                                                                        </span></p>
+                                                                    <p style="text-align: justify;"><span>3️.
+                                                                            <%=spec3%>
+                                                                        </span></p>
+                                                                    <p style="text-align: justify;"><span>4️.
+                                                                            <%=spec4%>
+                                                                        </span></p>
+                                                                    <p style="text-align: justify;"><span>5. <%=spec5%>
+                                                                        </span></p>
+                                                                    <p style="text-align: justify;"><span>6️. <%=spec6%>
+                                                                        </span></p>
+                                                                    <br>
+                                                                    <h3 style="text-align: justify;">Luxury
+                                                                        Specification:-</h3>
+                                                                    <p style="text-align: justify;"><span>
+                                                                            <%=Lspec%>
+                                                                        </span></p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </section>
+                                            <section data-particle_enable="false" data-particle-mobile-disabled="false"
+                                                class="elementor-section elementor-top-section elementor-element elementor-element-f8557a8 elementor-section-boxed elementor-section-height-default elementor-section-height-default"
+                                                data-id="f8557a8" data-element_type="section">
+                                                <div class="elementor-container elementor-column-gap-default">
+                                                    <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-f6abd07"
+                                                        data-id="f6abd07" data-element_type="column">
+                                                        <div class="elementor-widget-wrap elementor-element-populated">
+                                                            <div class="elementor-element elementor-element-3ca4f66 elementor-aspect-ratio-169 elementor-widget elementor-widget-video"
+                                                                data-id="3ca4f66" data-element_type="widget"
+                                                                data-settings="{&quot;youtube_url&quot;:&quot;https:\/\/www.youtube.com\/watch?v=MEnVtH3j1AI&quot;,&quot;loop&quot;:&quot;yes&quot;,&quot;video_type&quot;:&quot;youtube&quot;,&quot;controls&quot;:&quot;yes&quot;,&quot;aspect_ratio&quot;:&quot;169&quot;}"
+                                                                data-widget_type="video.default">
+                                                                <div class="elementor-widget-container">
+                                                                    <div
+                                                                        class="elementor-wrapper elementor-fit-aspect-ratio elementor-open-inline">
+                                                                        <iframe class="elementor-video" frameborder="0"
+                                                                            allowfullscreen="1"
+                                                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                                                            title="Dwarka Expressway New Projects Details Luxury Flats In Gurgaon 8888-782-782"
+                                                                            width="640" height="360"
+                                                                            src="https://www.youtube.com/embed/<%=youtube%>?controls=1&amp;rel=0&amp;playsinline=0&amp;modestbranding=0&amp;autoplay=0&amp;enablejsapi=1&amp;origin=https%3A%2F%2Fwww.urbanplus.co.in&amp;widgetid=1"
+                                                                            id="widget2"
+                                                                            data-gtm-yt-inspected-6="true"></iframe>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </section>
+                                            <section data-particle_enable="false" data-particle-mobile-disabled="false"
+                                                class="elementor-section elementor-top-section elementor-element elementor-element-d331863 elementor-section-boxed elementor-section-height-default elementor-section-height-default"
+                                                data-id="d331863" data-element_type="section">
+                                                <div class="elementor-container elementor-column-gap-default">
+                                                    <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-320bc3b"
+                                                        data-id="320bc3b" data-element_type="column">
+                                                        <div class="elementor-widget-wrap elementor-element-populated">
+                                                            <div class="elementor-element elementor-element-3b4dceb elementor-widget-divider--view-line elementor-widget elementor-widget-divider"
+                                                                data-id="3b4dceb" data-element_type="widget"
+                                                                data-widget_type="divider.default">
+                                                                <div class="elementor-widget-container">
+                                                                    <div class="elementor-divider">
+                                                                        <span class="elementor-divider-separator">
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="elementor-element elementor-element-36274d6 elementor-widget elementor-widget-google_maps"
+                                                                data-id="36274d6" data-element_type="widget"
+                                                                data-widget_type="google_maps.default">
+                                                                <div class="elementor-widget-container">
+                                                                    <div class="elementor-custom-embed">
+                                                                        <iframe frameborder="0" scrolling="no"
+                                                                            marginheight="0" marginwidth="0"
+                                                                            src="https://maps.google.com/maps?q=<%=maplati%>,<%=maplongi%>&amp;t=m&amp;z=12&amp;output=embed&amp;iwloc=near"
+                                                                            title="Elan the presidential, sector 106, dwarka expressway, Gurugram"
+                                                                            aria-label="Elan the presidential, sector 106, dwarka expressway, Gurugram"
+                                                                            data-gtm-yt-inspected-6="true"></iframe>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </section>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="socials-link">
+                                    <ul class="list-unstyled f-size-14">
+                                        <li class="list-inline-item f-size-14 "><a class="clr-fb"
+                                                href="https://www.facebook.com/PropriseHomes" target="_blank"><i
+                                                    class="fab fa-facebook-f"></i>Facebook </a></li>
+                                        <!-- <li class="list-inline-item f-size-14"><a class="clr-twitter"
+                                                    href="https://twitter.com/share?url=https://www.urbanplus.co.in/property/elan-thepresidential-dwarkaexpressway-sector106-gurugram/&amp;text=Elan+The+Presidential&amp;hashtags=Urbanplus Child"
+                                                    target="_blank"><i class="fab fa-twitter"></i> Twitter </a></li> -->
+                                        <li class="list-inline-item f-size-14"><a class="clr-linkin"
+                                                href="https://www.linkedin.com/company/14372659/admin/"
+                                                target="_blank"><i class="fab fa-linkedin-in"></i> LinkedIn </a>
+                                        </li>
+                                        <!-- <li class="list-inline-item f-size-14"><a class="clr-pinterest"
+                                                    href="https://pinterest.com/pin/create/button/?url=https://www.urbanplus.co.in/property/elan-thepresidential-dwarkaexpressway-sector106-gurugram/&amp;media=&amp;description=Elan+The+Presidential"
+                                                    target="_blank"><i class="fab fa-pinterest-p"></i>Pinterest </a> -->
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="widget-seprator short-detial">
+                                <div class="widget-seprator-heading">
+                                    <h3 class="sec-title"><i class="fas fa-align-left"></i>Details</h3>
+                                    <!--<span class="last-updated right-side"><strong>:</strong><span>  </span></span>-->
+                                </div>
+                                <div class="listing-specs">
+                                    <div class="row">
+                                        <div class="col-xl-6 col-lg-6 col-sm-6 col-md-6 col-12">
+                                            <!--<div class="detial-type"><strong>:</strong> </div>-->
+                                            <div class="detial-type"><strong></strong><a href="/<%=type%>">
+                                                    <%=type%>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6 col-lg-6 col-sm-6 col-md-6 col-12">
+                                            <!--<div class="detial-type"><strong>Residential:</strong><a href=""></a></div>-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="widget-seprator listing-features clearfix">
+                                <div class="widget-seprator-heading">
+                                    <h3 class="sec-title"><i class="fas fa-list"></i> Features</h3>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <ul class="list-unstyled">
+                                            <!-- First half of the features -->
+                                            <li class="list-inline-item">
+                                                <span>
+                                                    <%=F1%>
+                                                </span>
+                                            </li>
+
+                                            <li class="list-inline-item">
+                                                <span>
+                                                    <%=F2%>
+                                                </span>
+                                            </li>
+
+                                            <li class="list-inline-item">
+                                                <span>
+                                                    <%=F3%>
+                                                </span>
+                                            </li>
+
+                                            <li class="list-inline-item">
+                                                <span>
+                                                    <%=F4%>
+                                                </span>
+                                            </li>
+
+                                            <li class="list-inline-item">
+                                                <span>
+                                                    <%=F5%>
+                                                </span>
+                                            </li>
+
+                                            <li class="list-inline-item">
+                                                <span>
+                                                    <%=F6%>
+                                                </span>
+                                            </li>
+
+                                            <li class="list-inline-item">
+                                                <span>
+                                                    <%=F7%>
+                                                </span>
+                                            </li>
+
+                                            <li class="list-inline-item">
+                                                <span>
+                                                    <%=F8%>
+                                                </span>
+                                            </li>
+
+                                            <li class="list-inline-item">
+                                                <span>
+                                                    <%=F9%>
+                                                </span>
+                                            </li>
+
+                                            <li class="list-inline-item">
+                                                <span>
+                                                    <%=F10%>
+                                                </span>
+                                            </li>
+
+
+
+
+                                            <!-- Add the remaining features for the first half -->
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <ul class="list-unstyled">
+                                            <!-- Second half of the features -->
+                                            <li class="list-inline-item">
+                                                <span>
+                                                    <%=F11%>
+                                                </span>
+                                            </li>
+
+                                            <li class="list-inline-item">
+                                                <span>
+                                                    <%=F12%>
+                                                </span>
+                                            </li>
+
+                                            <li class="list-inline-item">
+                                                <span>
+                                                    <%=F13%>
+                                                </span>
+                                            </li>
+
+                                            <li class="list-inline-item">
+                                                <span>
+                                                    <%=F14%>
+                                                </span>
+                                            </li>
+
+                                            <li class="list-inline-item">
+                                                <span>
+                                                    <%=F15%>
+                                                </span>
+                                            </li>
+
+
+                                            <!-- Add the remaining features for the second half -->
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="widget-seprator clearfix">
+
+                            </div>
+                            <!--  -->
+                            <div class="widget-seprator similar-listings">
+                                <div class="widget-seprator-heading">
+                                    <h3 class="sec-title"><i class="fas fa-list-ol"></i> Similar Projects</h3>
+                                </div>
+                                <div class="my-similar-listings">
+                                    <div class="main-div margin-bottom-30">
+                                        <div class="row no-gutters">
+                                            <div class="col-sm-12 col-md-5 col-lg-5 col-12">
+                                                <div class="main-data ">
+                                                    <div class="img-data">
+                                                        <div class="my-prop-img p-relative">
+                                                            <a href="../property/elanthemark.html"><img
+                                                                    src="../images/elanmark1min.webp" alt=""
+                                                                    class="img-fluid"></a>
+                                                            <div class="img-overlay"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="h2-lies2 my-bookmarks">
+                                                        <ul class="list-unstyled my-3 mx-3 text-right">
+                                                            <li class="list-inline-item"> <button data-compare-id="3666"
+                                                                    class="btn d-flex justify-content-center align-items-center compare-prop"
+                                                                    data-toggle="tooltip" data-placement="top"
+                                                                    data-original-title="Compare"><i
+                                                                        class="fas fa-random"></i></button> </li>
+                                                            <li class="list-inline-item"> <button data-fav-id="3666"
+                                                                    class="btn d-flex justify-content-center align-items-center fav-prop"
+                                                                    data-toggle="tooltip" data-placement="top"
+                                                                    data-original-title="Favourite"><i
+                                                                        class="far fa-heart"></i></button> </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="d-btn">
+                                                        <ul class="list-unstyled mb-3 ml-3 text-left">
+                                                            <li class="list-inline-item">
+                                                                <a class="badge badge-status-45" href="#">New
+                                                                    launch</a>
+                                                            </li>
+                                                            <li class="list-inline-item">
+                                                                <a class="badge badge-label-165" href="#">DLF</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 col-md-7 col-lg-7 col-12">
+                                                <div class="listing-data d-flex  h-100">
+
+                                                    <div class="heaing-d align-self-center">
+                                                        <div class="prop-cat"><a href="#">Residential</a>
+                                                        </div>
+                                                        <h3 class="text-capitalize mb-2">
+                                                            <a href="../property/elanthemark.html"
+                                                                class="clr-black">Elan
+                                                                The Mark</a>
+                                                        </h3>
+
+
+                                                        <div class="home-amenties-features">
+
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="main-div margin-bottom-30">
+                                        <div class="row no-gutters">
+                                            <div class="col-sm-12 col-md-5 col-lg-5 col-12">
+                                                <div class="main-data ">
+                                                    <div class="img-data">
+                                                        <div class="my-prop-img p-relative">
+                                                            <a href="../property/starworlddxpone.html"><img
+                                                                    src="../images/SW-113-1min.webp" alt=""
+                                                                    class="img-fluid"></a>
+                                                            <div class="img-overlay"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="h2-lies2 my-bookmarks">
+                                                        <ul class="list-unstyled my-3 mx-3 text-right">
+                                                            <li class="list-inline-item"> <button data-compare-id="3649"
+                                                                    class="btn d-flex justify-content-center align-items-center compare-prop"
+                                                                    data-toggle="tooltip" data-placement="top"
+                                                                    data-original-title="Compare"><i
+                                                                        class="fas fa-random"></i></button> </li>
+                                                            <li class="list-inline-item"> <button data-fav-id="3649"
+                                                                    class="btn d-flex justify-content-center align-items-center fav-prop"
+                                                                    data-toggle="tooltip" data-placement="top"
+                                                                    data-original-title="Favourite"><i
+                                                                        class="far fa-heart"></i></button> </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="d-btn">
+                                                        <ul class="list-unstyled mb-3 ml-3 text-left">
+                                                            <li class="list-inline-item">
+                                                                <a class="badge badge-status-30" href="#">For
+                                                                    Sale</a>
+                                                            </li>
+                                                            <li class="list-inline-item">
+                                                                <a class="badge badge-label-194" href="#">SmartWorld</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 col-md-7 col-lg-7 col-12">
+                                                <div class="listing-data d-flex  h-100">
+
+                                                    <div class="heaing-d align-self-center">
+                                                        <div class="prop-cat"><a href="#">Residential</a>
+                                                        </div>
+                                                        <h3 class="text-capitalize mb-2">
+                                                            <a href="../property/starworlddxpone.html"
+                                                                class="clr-black">Smartworld One DXP</a>
+                                                        </h3>
+
+
+                                                        <div class="home-amenties-features">
+
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="main-div margin-bottom-30">
+                                                <div class="row no-gutters">
+                                                    <div class="col-sm-12 col-md-5 col-lg-5 col-12">
+                                                        <div class="main-data ">
+                                                            <div class="img-data">
+                                                                <div class="my-prop-img p-relative">
+                                                                    <a
+                                                                        href="https://www.urbanplus.co.in/property/dlf-the-arbour/"><img
+                                                                            src="https://www.urbanplus.co.in/wp-content/uploads/2023/05/THE-ARBOUR-Presentation_Page_02_Image_0001-275x234.jpg"
+                                                                            alt="" class="img-fluid"></a>
+                                                                    <div class="img-overlay"></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="h2-lies2 my-bookmarks">
+                                                                <ul class="list-unstyled my-3 mx-3 text-right">
+                                                                    <li class="list-inline-item"> <button
+                                                                            data-compare-id="3637"
+                                                                            class="btn d-flex justify-content-center align-items-center compare-prop"
+                                                                            data-toggle="tooltip" data-placement="top"
+                                                                            data-original-title="Compare"><i
+                                                                                class="fas fa-random"></i></button> </li>
+                                                                    <li class="list-inline-item"> <button data-fav-id="3637"
+                                                                            class="btn d-flex justify-content-center align-items-center fav-prop"
+                                                                            data-toggle="tooltip" data-placement="top"
+                                                                            data-original-title="Favourite"><i
+                                                                                class="far fa-heart"></i></button> </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="d-btn">
+                                                                <ul class="list-unstyled mb-3 ml-3 text-left">
+                                                                    <li class="list-inline-item">
+                                                                        <a class="badge badge-status-30"
+                                                                            href="https://www.urbanplus.co.in/property_status/for-sale/">For
+                                                                            Sale</a>
+                                                                    </li>
+                                                                    <li class="list-inline-item">
+                                                                        <a class="badge badge-label-165"
+                                                                            href="https://www.urbanplus.co.in/property_label/dlf/">DLF</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-7 col-lg-7 col-12">
+                                                        <div class="listing-data d-flex  h-100">
+    
+                                                            <div class="heaing-d align-self-center">
+                                                                <div class="prop-cat"><a
+                                                                        href="https://www.urbanplus.co.in/property_type/residential/">Residential</a>
+                                                                </div>
+                                                                <h3 class="text-capitalize mb-2">
+                                                                    <a href="https://www.urbanplus.co.in/property/dlf-the-arbour/"
+                                                                        class="clr-black">DLF The Arbour</a>
+                                                                </h3>
+    
+    
+                                                                <div class="home-amenties-features">
+    
+    
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div> -->
+                                    <div class="main-div margin-bottom-30">
+                                        <div class="row no-gutters">
+                                            <div class="col-sm-12 col-md-5 col-lg-5 col-12">
+                                                <div class="main-data ">
+                                                    <div class="img-data">
+                                                        <div class="my-prop-img p-relative">
+                                                            <a href="../property/m3mgolfhill.html"><img
+                                                                    src="https://www.urbanplus.co.in/wp-content/uploads/2023/05/M3M-Golf-Hills-A3-Info-Pack-Final-1_Page_06_Image_0002-275x234.jpg"
+                                                                    alt="" class="img-fluid"></a>
+                                                            <div class="img-overlay"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="h2-lies2 my-bookmarks">
+                                                        <ul class="list-unstyled my-3 mx-3 text-right">
+                                                            <li class="list-inline-item"> <button data-compare-id="3626"
+                                                                    class="btn d-flex justify-content-center align-items-center compare-prop"
+                                                                    data-toggle="tooltip" data-placement="top"
+                                                                    data-original-title="Compare"><i
+                                                                        class="fas fa-random"></i></button> </li>
+                                                            <li class="list-inline-item"> <button data-fav-id="3626"
+                                                                    class="btn d-flex justify-content-center align-items-center fav-prop"
+                                                                    data-toggle="tooltip" data-placement="top"
+                                                                    data-original-title="Favourite"><i
+                                                                        class="far fa-heart"></i></button> </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="d-btn">
+                                                        <ul class="list-unstyled mb-3 ml-3 text-left">
+                                                            <li class="list-inline-item">
+                                                                <a class="badge badge-status-30" href="#">For
+                                                                    Sale</a>
+                                                            </li>
+                                                            <li class="list-inline-item">
+                                                                <a class="badge badge-label-164" href="#">M3M</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 col-md-7 col-lg-7 col-12">
+                                                <div class="listing-data d-flex  h-100">
+
+                                                    <div class="heaing-d align-self-center">
+                                                        <div class="prop-cat"><a href="#">Residential</a>
+                                                        </div>
+                                                        <h3 class="text-capitalize mb-2">
+                                                            <a href="../property/m3mgolfhill.html" class="clr-black">M3M
+                                                                Golf Hills</a>
+                                                        </h3>
+
+
+                                                        <div class="home-amenties-features">
+
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="main-div margin-bottom-30">
+                                        <div class="row no-gutters">
+                                            <div class="col-sm-12 col-md-5 col-lg-5 col-12">
+                                                <div class="main-data ">
+                                                    <div class="img-data">
+                                                        <div class="my-prop-img p-relative">
+                                                            <a href="../property/m3mcrown.html"><img
+                                                                    src="../images/m3mcodemin.webp" alt=""
+                                                                    class="img-fluid"></a>
+                                                            <div class="img-overlay"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="h2-lies2 my-bookmarks">
+                                                        <ul class="list-unstyled my-3 mx-3 text-right">
+                                                            <li class="list-inline-item"> <button data-compare-id="3614"
+                                                                    class="btn d-flex justify-content-center align-items-center compare-prop"
+                                                                    data-toggle="tooltip" data-placement="top"
+                                                                    data-original-title="Compare"><i
+                                                                        class="fas fa-random"></i></button> </li>
+                                                            <li class="list-inline-item"> <button data-fav-id="3614"
+                                                                    class="btn d-flex justify-content-center align-items-center fav-prop"
+                                                                    data-toggle="tooltip" data-placement="top"
+                                                                    data-original-title="Favourite"><i
+                                                                        class="far fa-heart"></i></button> </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="d-btn">
+                                                        <ul class="list-unstyled mb-3 ml-3 text-left">
+                                                            <li class="list-inline-item">
+                                                                <a class="badge badge-status-30" href="#">For
+                                                                    Sale</a>
+                                                            </li>
+                                                            <li class="list-inline-item">
+                                                                <a class="badge badge-label-164" href="#">M3M</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 col-md-7 col-lg-7 col-12">
+                                                <div class="listing-data d-flex  h-100">
+
+                                                    <div class="heaing-d align-self-center">
+                                                        <div class="prop-cat"><a href="#">Residential</a>
+                                                        </div>
+                                                        <h3 class="text-capitalize mb-2">
+                                                            <a href="../property/m3mcrown.html" class="clr-black">M3M
+                                                                Crown</a>
+                                                        </h3>
+
+
+                                                        <div class="home-amenties-features">
+
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="main-div margin-bottom-30">
+                                                <div class="row no-gutters">
+                                                    <div class="col-sm-12 col-md-5 col-lg-5 col-12">
+                                                        <div class="main-data ">
+                                                            <div class="img-data">
+                                                                <div class="my-prop-img p-relative">
+                                                                    <a
+                                                                        href="https://www.urbanplus.co.in/property/whiteland-blissville/"><img
+                                                                            src="https://www.urbanplus.co.in/wp-content/uploads/2022/08/Blissville-Low-Rise_Page_11_Image_0001-275x234.jpg"
+                                                                            alt="" class="img-fluid"></a>
+                                                                    <div class="img-overlay"></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="h2-lies2 my-bookmarks">
+                                                                <ul class="list-unstyled my-3 mx-3 text-right">
+                                                                    <li class="list-inline-item"> <button
+                                                                            data-compare-id="3290"
+                                                                            class="btn d-flex justify-content-center align-items-center compare-prop"
+                                                                            data-toggle="tooltip" data-placement="top"
+                                                                            data-original-title="Compare"><i
+                                                                                class="fas fa-random"></i></button> </li>
+                                                                    <li class="list-inline-item"> <button data-fav-id="3290"
+                                                                            class="btn d-flex justify-content-center align-items-center fav-prop"
+                                                                            data-toggle="tooltip" data-placement="top"
+                                                                            data-original-title="Favourite"><i
+                                                                                class="far fa-heart"></i></button> </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="d-btn">
+                                                                <ul class="list-unstyled mb-3 ml-3 text-left">
+                                                                    <li class="list-inline-item">
+                                                                        <a class="badge badge-status-30"
+                                                                            href="https://www.urbanplus.co.in/property_status/for-sale/">For
+                                                                            Sale</a>
+                                                                    </li>
+                                                                    <li class="list-inline-item">
+                                                                        <a class="badge badge-label-180"
+                                                                            href="https://www.urbanplus.co.in/property_label/whiteland/">Whiteland</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-7 col-lg-7 col-12">
+                                                        <div class="listing-data d-flex  h-100">
+    
+                                                            <div class="heaing-d align-self-center">
+                                                                <div class="prop-cat"><a
+                                                                        href="https://www.urbanplus.co.in/property_type/residential/">Residential</a>
+                                                                </div>
+                                                                <h3 class="text-capitalize mb-2">
+                                                                    <a href="https://www.urbanplus.co.in/property/whiteland-blissville/"
+                                                                        class="clr-black">Whiteland Blissville</a>
+                                                                </h3>
+    
+    
+                                                                <div class="home-amenties-features">
+    
+    
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 ">
+                        <div class="single-sidebar">
+                            <div class="sidebar-widget-seprator">
+                                <div class="sidebar-widget-header">
+                                    <h4>Featured Projects</h4>
+                                </div>
+                                <div class="sidebar-widget-body">
+                                    <div class="widget-inner-container">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sidebar-widget-seprator">
+                                <div class="sidebar-widget-header">
+                                    <h4>Recent Projects</h4>
+                                </div>
+                                <div class="sidebar-widget-body">
+                                    <ul class="widget-inner-container recently-added">
+                                        <li>
+                                            <div class="recently-added-img"><a href="#">
+                                                    <img class="img-fluid"
+                                                        src="https://www.urbanplus.co.in/wp-content/uploads/2023/05/amenities-100x66.jpg"
+                                                        alt="">
+                                                </a>
+                                            </div>
+                                            <div class="recently-added-desc">
+                                                <h4><a href="#">Sartworld
+                                                        Orchard Street</a></h4>
+
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="recently-added-img"><a href="#">
+                                                    <img class="img-fluid"
+                                                        src="https://www.urbanplus.co.in/wp-content/uploads/2023/05/The-Grove-CP-Meet-presentation_091943_Page_28_Image_0002-100x66.jpg"
+                                                        alt="">
+                                                </a>
+                                            </div>
+                                            <div class="recently-added-desc">
+                                                <h4><a href="#">DLF
+                                                        The Grove</a></h4>
+
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="recently-added-img"><a href="#">
+                                                    <img class="img-fluid"
+                                                        src="https://www.urbanplus.co.in/wp-content/uploads/2023/05/One-DXP-Sales-Deck_Page_51_Image_0002-100x66.jpg"
+                                                        alt="">
+                                                </a>
+                                            </div>
+                                            <div class="recently-added-desc">
+                                                <h4><a href="#">Smartworld
+                                                        One DXP</a></h4>
+
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="sidebar-widget-seprator mortgage-calculator">
+                                <div class="sidebar-widget-header">
+                                    <h4>Mortgage Calculator</h4>
+                                </div>
+                                <div class="sidebar-widget-body">
+                                    <div class="widget-inner-container">
+                                        <div class="theme-row">
+                                            <label>Initial Value <i class="far fa-question-circle" data-toggle="popover"
+                                                    data-placement="top"
+                                                    data-content="Estimated property value or loan amount"
+                                                    data-original-title="" title=""></i></label>
+                                            <div class="custom-input-group input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">₹</span>
+                                                </div>
+                                                <input type="number" id="input_value" class="form-control" value="">
+                                            </div>
+                                        </div>
+                                        <div class="theme-row">
+                                            <label>Down Payment <i class="far fa-question-circle" data-toggle="popover"
+                                                    data-placement="top" data-content="Before the first payment period"
+                                                    data-original-title="" title=""></i></label>
+                                            <div class="custom-input-group input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">₹</span>
+                                                </div>
+                                                <input type="number" id="input_down_payment" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="theme-row">
+                                            <label>Interest Rate <i class="far fa-question-circle" data-toggle="popover"
+                                                    data-placement="top"
+                                                    data-content="The average expected interest in % percentage"
+                                                    data-original-title="" title=""></i></label>
+                                            <div class="custom-input-group  input-group">
+                                                <!-- <select id="interest_option"
+                                                        class="theme-selects-group form-control select2-hidden-accessible"
+                                                        data-select2-id="interest_option" tabindex="-1" aria-hidden="true">
+                                                        <option value="Yearly" data-select2-id="8">Yearly</option>
+                                                        <option value="Monthly">Monthly</option>
+                                                    </select><span
+                                                        class="select2 select2-container select2-container--classic"
+                                                        dir="ltr" data-select2-id="7" style="width: 50%;"><span
+                                                            class="selection"><span
+                                                                class="select2-selection select2-selection--single"
+                                                                role="combobox" aria-haspopup="true" aria-expanded="false"
+                                                                tabindex="0" aria-disabled="false"
+                                                                aria-labelledby="select2-interest_option-container"><span
+                                                                    class="select2-selection__rendered"
+                                                                    id="select2-interest_option-container" role="textbox"
+                                                                    aria-readonly="true" title="Yearly">Yearly</span><span
+                                                                    class="select2-selection__arrow" role="presentation"><b
+                                                                        role="presentation"></b></span></span></span><span
+                                                            class="dropdown-wrapper" aria-hidden="true"></span></span> -->
+                                                <input type="number" class="form-control" id="input_interest"
+                                                    placeholder="Enter Percentage(Years)" min="2.00" step="0.01">
+                                            </div>
+                                        </div>
+                                        <div class="theme-row">
+                                            <label>Loan or Mortgage term <i class="far fa-question-circle"
+                                                    data-toggle="popover" data-placement="top"
+                                                    data-content="Repayment payment in years" data-original-title=""
+                                                    title=""></i></label>
+                                            <div class="custom-input-group input-group">
+                                                <!-- <select id="term_option"
+                                                        class="theme-selects-group form-control select2-hidden-accessible"
+                                                        data-select2-id="term_option" tabindex="-1" aria-hidden="true">
+                                                        <option value="Years" data-select2-id="10">Years</option>
+                                                        <option value="Months">Months</option>
+                                                    </select><span
+                                                        class="select2 select2-container select2-container--classic"
+                                                        dir="ltr" data-select2-id="9" style="width: 50%;"><span
+                                                            class="selection"><span
+                                                                class="select2-selection select2-selection--single"
+                                                                role="combobox" aria-haspopup="true" aria-expanded="false"
+                                                                tabindex="0" aria-disabled="false"
+                                                                aria-labelledby="select2-term_option-container"><span
+                                                                    class="select2-selection__rendered"
+                                                                    id="select2-term_option-container" role="textbox"
+                                                                    aria-readonly="true" title="Years">Years</span><span
+                                                                    class="select2-selection__arrow" role="presentation"><b
+                                                                        role="presentation"></b></span></span></span><span
+                                                            class="dropdown-wrapper" aria-hidden="true"></span></span> -->
+                                                <input type="number" class="form-control" id="input_duration"
+                                                    placeholder="Enter Duration(In Years)" step="1">
+                                            </div>
+                                        </div>
+                                        <button id="calculate" type="button" class="btn btn-theme">Generate
+                                            Report</button>
+
+                                    </div>
+
+                                    <div class="listing-specs none">
+                                        <p>The remaining dept is: <strong>₹&nbsp;<span
+                                                    id="p-remain-dept"></span></strong>
+                                        </p>
+                                        <p>The monthly rate is: <strong>₹&nbsp;<span id="p-m-rate"></span></strong>
+                                        </p>
+                                        <p>There are: <strong><span id="p-pay-period"></span></strong> Payment
+                                            Periods</p>
+                                        <p>The Monthly Payment: <strong>₹&nbsp;<span
+                                                    id="p-monthly-total"></span></strong>
+                                        </p>
+                                        <p>Total Payment: <strong>₹&nbsp;<span id="p-total-pay"></span></strong></p>
+                                        <p>Total Interest Payment:<strong>₹&nbsp;<span
+                                                    id="p-total-intrest"></span></strong>
+                                        </p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+        <%- include("partials/footer"); -%>

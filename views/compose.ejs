@@ -1,19 +1,162 @@
 <%- include("partials/header"); -%>
-    <h1>Compose</h1>
+    <link rel="stylesheet" href="/css/compose.css">
+    <h1 style="align-items: center; text-align: center;">Compose</h1>
     <form class="container" action="/compose" method="post" enctype="multipart/form-data">
         <div class="form-group">
-            <label>Title</label>
-            <input class="form-control" type="text" name="postTitle" placeholder="Title" required />
-            <label>Post Author</label>
-            <input class="form-control" type="text" name="author" placeholder="Author Name" required />
-            <label>Post</label>
-            <textarea class="form-control" name="postBody" rows="5" cols="30"
-                placeholder="Write your blog post here...." required></textarea>
+            <h2 style="align-items: center; text-align: center;">General Details</h2>
+            <label class="label">Title</label>
+            <input class="form-control" type="text" name="title" placeholder="Title" required />
 
-            <!-- Allow multiple file uploads -->
-            <label>Images</label>
-            <input type="file" name="image" accept="image/*" multiple>
+            <label class="label">Sector</label>
+            <input class="form-control" type="text" name="author" placeholder="Sector" required />
+
+            <label class="label">About the Project</label>
+            <textarea class="form-control" name="content" rows="5" cols="30"
+                placeholder="Describe your project here...." required></textarea>
+            <br>
+            <br>
+
+
+            <h2 style="align-items: center; text-align: center;">Top 6 Specifications</h2>
+            <!-- Specifications -->
+            <label class="label">Specification 1</label>
+            <input class="form-control" type="text" name="spec1" placeholder="Specification 1" />
+
+            <label class="label">Specification 2</label>
+            <input class="form-control" type="text" name="spec2" placeholder="Specification 2" />
+
+            <label class="label">Specification 3</label>
+            <input class="form-control" type="text" name="spec3" placeholder="Specification 3" />
+
+            <label class="label">Specification 4</label>
+            <input class="form-control" type="text" name="spec4" placeholder="Specification 4" />
+
+            <label class="label">Specification 5</label>
+            <input class="form-control" type="text" name="spec5" placeholder="Specification 5" />
+
+            <label class="label">Specification 6</label>
+            <input class="form-control" type="text" name="spec6" placeholder="Specification 6" />
+
+            <!-- Add more specification fields as needed -->
+
+
+
+            <br>
+            <br>
+            <br>
+
+
+
+            <label class="label">Luxury Specifications</label>
+            <input class="form-control" type="text" name="Lspec" placeholder="Specification 2" />
+
+
+
+
+
+
+            <h2 style="align-items: center; text-align: center;">Top 15 Features</h2>
+            <!-- Features -->
+            <label class="label">Feature 1</label>
+            <input class="form-control" type="text" name="F1" placeholder="Feature 1" />
+
+            <label class="label">Feature 2</label>
+            <input class="form-control" type="text" name="F2" placeholder="Feature 2" />
+
+            <label class="label">Feature 3</label>
+            <input class="form-control" type="text" name="F3" placeholder="Feature 3" />
+
+            <label class="label">Feature 4</label>
+            <input class="form-control" type="text" name="F4" placeholder="Feature 4" />
+
+            <label class="label">Feature 5</label>
+            <input class="form-control" type="text" name="F5" placeholder="Feature 5" />
+
+            <label class="label">Feature 6</label>
+            <input class="form-control" type="text" name="F6" placeholder="Feature 6" />
+
+            <label class="label">Feature 7</label>
+            <input class="form-control" type="text" name="F7" placeholder="Feature 7" />
+
+            <label class="label">Feature 8</label>
+            <input class="form-control" type="text" name="F8" placeholder="Feature 8" />
+
+            <label class="label">Feature 9</label>
+            <input class="form-control" type="text" name="F9" placeholder="Feature 9" />
+
+            <label class="label">Feature 10</label>
+            <input class="form-control" type="text" name="F10" placeholder="Feature 10" />
+
+            <label class="label">Feature 11</label>
+            <input class="form-control" type="text" name="F11" placeholder="Feature 11" />
+
+            <label class="label">Feature 12</label>
+            <input class="form-control" type="text" name="F12" placeholder="Feature 12" />
+
+            <label class="label">Feature 13</label>
+            <input class="form-control" type="text" name="F13" placeholder="Feature 13" />
+
+            <label class="label">Feature 14</label>
+            <input class="form-control" type="text" name="F14" placeholder="Feature 14" />
+
+            <label class="label">Feature 15</label>
+            <input class="form-control" type="text" name="F15" placeholder="Feature 15" />
+
+            <!-- Add more feature fields as needed -->
+
+            <br>
+            <br>
+            <br>
+
+            <h2 style="align-items: center; text-align: center;">Youtube Video link</h2>
+            <!-- YouTube Link -->
+            <label class="label">YouTube Link</label>
+            <input class="form-control" type="text" name="youtube" placeholder="YouTube Link" />
+
+
+            <br>
+            <br>
+            <br>
+
+            <h2 style="align-items: center; text-align: center;">Map Data </h2>
+            <!-- Map Coordinates -->
+
+            <label class="label">Latitude</label>
+            <input class="form-control" type="text" name="mapV" placeholder="Latitude" />
+
+
+            <label class="label">Longitude</label>
+            <input class="form-control" type="text" name="mapH" placeholder="Longitude" />
+
+
+
+
+            <br>
+            <br>
+            <br>
+            <h2 style="align-items: center; text-align: center;">Type of Project</h2>
+            <!-- Type -->
+            <label class="label">Type</label>
+            <select class="form-control" name="type" required>
+                <option value="">Select Type</option>
+                <option value="Residential">Residential</option>
+                <option value="Commercial">Commercial</option>
+            </select>
+
+
+            <br>
+            <br>
+            <br>
+            <h2 style="align-items: center; text-align: center;">Images of project</h2>
+            <!-- Images (Multiple File Upload) -->
+            <label class="label">Images</label>
+            <input type="file" name="image" accept="image/*" multiple />
+
         </div>
         <button class="btn btn-primary" type="submit" name="button">Publish</button>
     </form>
-    <%- include("partials/footer"); -%>
+
+    <form class="container" action="/logout" method="post" style="margin-top: 2rem;">
+        <button class="btn btn-danger" type="submit" name="logout">Logout</button>
+        <p>Please close this window after log out for Security Reasons</p>
+    </form>
