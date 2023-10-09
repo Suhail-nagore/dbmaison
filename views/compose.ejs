@@ -1,6 +1,6 @@
 <%- include("partials/header"); -%>
     <link rel="stylesheet" href="/css/compose.css">
-    <h1 style="align-items: center; text-align: center;">Compose</h1>
+    <h1 style="align-items: center; text-align: center;">Compose Project</h1>
     <form class="container" action="/compose" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <h2 style="align-items: center; text-align: center;">General Details</h2>
@@ -17,25 +17,19 @@
             <br>
 
 
-            <h2 style="align-items: center; text-align: center;">Top 6 Specifications</h2>
-            <!-- Specifications -->
-            <label class="label">Specification 1</label>
-            <input class="form-control" type="text" name="spec1" placeholder="Specification 1" />
+            <h2 style="align-items: center; text-align: center;">Specifications</h2>
+            <div id="specifications-container">
+                <!-- Initial specification input -->
+                <div class="specification-input">
+                    <label class="label">Specification 1</label>
+                    <input class="form-control" type="text" name="specifications[]" placeholder="Specification 1" />
+                    <button type="button" class="remove-specification btn btn-danger"
+                        style="margin: 5px;">Remove</button>
+                </div>
+            </div>
+            <button type="button" id="add-specification" class="btn btn-success" style="margin: 5px;">Add
+                Specification</button>
 
-            <label class="label">Specification 2</label>
-            <input class="form-control" type="text" name="spec2" placeholder="Specification 2" />
-
-            <label class="label">Specification 3</label>
-            <input class="form-control" type="text" name="spec3" placeholder="Specification 3" />
-
-            <label class="label">Specification 4</label>
-            <input class="form-control" type="text" name="spec4" placeholder="Specification 4" />
-
-            <label class="label">Specification 5</label>
-            <input class="form-control" type="text" name="spec5" placeholder="Specification 5" />
-
-            <label class="label">Specification 6</label>
-            <input class="form-control" type="text" name="spec6" placeholder="Specification 6" />
 
             <!-- Add more specification fields as needed -->
 
@@ -48,59 +42,23 @@
 
 
             <label class="label">Luxury Specifications</label>
-            <input class="form-control" type="text" name="Lspec" placeholder="Specification 2" />
+            <input class="form-control" type="text" name="Lspec" placeholder="Luxery Specifications" />
+
+            <br><br><br><br>
 
 
 
 
-
-
-            <h2 style="align-items: center; text-align: center;">Top 15 Features</h2>
-            <!-- Features -->
-            <label class="label">Feature 1</label>
-            <input class="form-control" type="text" name="F1" placeholder="Feature 1" />
-
-            <label class="label">Feature 2</label>
-            <input class="form-control" type="text" name="F2" placeholder="Feature 2" />
-
-            <label class="label">Feature 3</label>
-            <input class="form-control" type="text" name="F3" placeholder="Feature 3" />
-
-            <label class="label">Feature 4</label>
-            <input class="form-control" type="text" name="F4" placeholder="Feature 4" />
-
-            <label class="label">Feature 5</label>
-            <input class="form-control" type="text" name="F5" placeholder="Feature 5" />
-
-            <label class="label">Feature 6</label>
-            <input class="form-control" type="text" name="F6" placeholder="Feature 6" />
-
-            <label class="label">Feature 7</label>
-            <input class="form-control" type="text" name="F7" placeholder="Feature 7" />
-
-            <label class="label">Feature 8</label>
-            <input class="form-control" type="text" name="F8" placeholder="Feature 8" />
-
-            <label class="label">Feature 9</label>
-            <input class="form-control" type="text" name="F9" placeholder="Feature 9" />
-
-            <label class="label">Feature 10</label>
-            <input class="form-control" type="text" name="F10" placeholder="Feature 10" />
-
-            <label class="label">Feature 11</label>
-            <input class="form-control" type="text" name="F11" placeholder="Feature 11" />
-
-            <label class="label">Feature 12</label>
-            <input class="form-control" type="text" name="F12" placeholder="Feature 12" />
-
-            <label class="label">Feature 13</label>
-            <input class="form-control" type="text" name="F13" placeholder="Feature 13" />
-
-            <label class="label">Feature 14</label>
-            <input class="form-control" type="text" name="F14" placeholder="Feature 14" />
-
-            <label class="label">Feature 15</label>
-            <input class="form-control" type="text" name="F15" placeholder="Feature 15" />
+            <h2 style="align-items: center; text-align: center;">Features</h2>
+            <div id="feature-container">
+                <!-- Initial specification input -->
+                <div class="feature-input">
+                    <label class="label">Feature 1</label>
+                    <input class="form-control" type="text" name="features[]" placeholder="Feature 1" />
+                    <button type="button" class="remove-feature btn btn-danger" style="margin: 5px;">Remove</button>
+                </div>
+            </div>
+            <button type="button" id="add-feature" class="btn btn-success" style="margin: 5px;">Add Features</button>
 
             <!-- Add more feature fields as needed -->
 
@@ -160,3 +118,87 @@
         <button class="btn btn-danger" type="submit" name="logout">Logout</button>
         <p>Please close this window after log out for Security Reasons</p>
     </form>
+
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const specificationsContainer = document.getElementById("specifications-container");
+            const addSpecificationButton = document.getElementById("add-specification");
+
+            // Function to add a new specification input field
+            function addSpecificationInput() {
+                const newSpecificationInput = document.createElement("div");
+                newSpecificationInput.className = "specification-input";
+                newSpecificationInput.innerHTML = `
+            <label class="label">Specification ${specificationsContainer.children.length + 1}</label>
+            <input class="form-control" type="text" name="specifications[]" placeholder="Specification ${specificationsContainer.children.length + 1}" />
+            <button type="button" class="remove-specification btn btn-danger"
+                        style="margin: 5px;">Remove</button>
+            `;
+                specificationsContainer.appendChild(newSpecificationInput);
+            }
+
+            // Function to remove a specification input field
+            function removeSpecificationInput(event) {
+                const specificationInput = event.target.closest(".specification-input");
+                if (specificationInput) {
+                    specificationsContainer.removeChild(specificationInput);
+                    // Update the labels and placeholders of remaining input fields
+                    const specificationInputs = specificationsContainer.querySelectorAll(".specification-input");
+                    specificationInputs.forEach((input, index) => {
+                        const label = input.querySelector("label");
+                        const inputField = input.querySelector("input");
+                        label.textContent = `Specification ${index + 1}`;
+                        inputField.placeholder = `Specification ${index + 1}`;
+                    });
+                }
+            }
+
+            // Event listeners
+            addSpecificationButton.addEventListener("click", addSpecificationInput);
+            specificationsContainer.addEventListener("click", (event) => {
+                if (event.target.classList.contains("remove-specification")) {
+                    removeSpecificationInput(event);
+                }
+            });
+        });
+    </script>
+
+    <script>
+        // Function to add a new feature input
+        function addFeature() {
+            const featureContainer = document.getElementById("feature-container");
+            const featureInput = document.createElement("div");
+            featureInput.classList.add("feature-input");
+
+            const featureNumber = featureContainer.getElementsByClassName("feature-input").length + 1;
+
+            featureInput.innerHTML = `
+                <label class="label">Feature ${featureNumber}</label>
+                <input class="form-control" type="text" name="features[]" placeholder="Feature ${featureNumber}" />
+                <button type="button" class="remove-specification btn btn-danger"
+                        style="margin: 5px;">Remove</button>
+            `;
+
+            featureContainer.appendChild(featureInput);
+        }
+
+        // Function to remove a feature input
+        function removeFeature(event) {
+            const featureInput = event.target.closest(".feature-input");
+            if (featureInput) {
+                featureInput.remove();
+            }
+        }
+
+        // Add event listener to the "Add Feature" button
+        document.getElementById("add-feature").addEventListener("click", addFeature);
+
+        // Add event listener to dynamically added "Remove Feature" buttons
+        document.addEventListener("click", function (event) {
+            if (event.target && event.target.classList.contains("remove-feature")) {
+                removeFeature(event);
+            }
+        });
+    </script>

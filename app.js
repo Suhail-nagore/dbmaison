@@ -74,40 +74,21 @@ const Admin = new mongoose.model("Admin", adminSchema);
 // ============================= project post schema =========================
 
 
-const postSchema = new mongoose.Schema( {
+const postSchema = new mongoose.Schema({
   title: String,
   content: String,
   author: String,
-  spec1: String,
-  spec2: String,
-  spec3: String,
-  spec4: String,
-  spec5: String,
-  spec6: String,
+  specifications: [String], // Store specifications as an array of strings
   Lspec: String,
   youtube: String,
   mapH: String,
   mapV: String,
   type: String,
-  F1: String,
-  F2: String,
-  F3: String,
-  F4: String,
-  F5: String,
-  F6: String,
-  F7: String,
-  F8: String,
-  F9: String,
-  F10: String,
-  F11: String,
-  F12: String,
-  F13: String,
-  F14: String,
-  F15: String,
+  features: [String],
   images: [String],
   createdAt: {
     type: Date,
-    default: Date.now, // Sets the default value to the current date and time
+    default: Date.now,
   },
 });
 
@@ -124,7 +105,7 @@ const Post = mongoose.model("Post", postSchema , "post");
 
 
 
-// =============================================home route============================================
+// ============================================= home route ============================================
 app.get("/", function (req, res) {
   // Fetch and render posts from MongoDB, sorted by creation date (newest first)
   Post.find({}).sort({ createdAt: -1 }) // Use the "-1" to sort in descending order
@@ -308,28 +289,9 @@ app.post("/compose", upload.array("image", 10), function (req, res) {
     title,
     author,
     content,
-    spec1,
-    spec2,
-    spec3,
-    spec4,
-    spec5,
-    spec6,
+    specifications, // Use the "specifications" field as an array
     Lspec,
-    F1,
-    F2,
-    F3,
-    F4,
-    F5,
-    F6,
-    F7,
-    F8,
-    F9,
-    F10,
-    F11,
-    F12,
-    F13,
-    F14,
-    F15,
+    features,
     youtube,
     mapV, // Latitude
     mapH, // Longitude
@@ -344,28 +306,9 @@ app.post("/compose", upload.array("image", 10), function (req, res) {
     title,
     author,
     content,
-    spec1,
-    spec2,
-    spec3,
-    spec4,
-    spec5,
-    spec6,
+    specifications, // Store specifications as an array
     Lspec,
-    F1,
-    F2,
-    F3,
-    F4,
-    F5,
-    F6,
-    F7,
-    F8,
-    F9,
-    F10,
-    F11,
-    F12,
-    F13,
-    F14,
-    F15,
+    features,
     youtube,
     mapV, // Latitude
     mapH, // Longitude
@@ -398,6 +341,7 @@ app.post("/compose", upload.array("image", 10), function (req, res) {
 
 
 
+
 // ...projects page route=====================================================================================
 
 app.get("/posts/:postId", async function (req, res) {
@@ -411,32 +355,13 @@ app.get("/posts/:postId", async function (req, res) {
         date: post.createdAt.toDateString(),
         content: post.content,
         images: post.images, // Pass the images array to the template
-        spec1: post.spec1,
-        spec2: post.spec2,
-        spec3: post.spec3,
-        spec4: post.spec4,
-        spec5: post.spec5,
-        spec6: post.spec6,
+        specifications: post.specifications,
         Lspec: post.Lspec,
         youtube: post.youtube,
         maplati: post.mapV,
         maplongi: post.mapH,
         type: post.type,
-        F1: post.F1,
-        F2: post.F2,
-        F3: post.F3,
-        F4: post.F4,
-        F5: post.F5,
-        F6: post.F6,
-        F7: post.F7,
-        F8: post.F8,
-        F9: post.F9,
-        F10: post.F10,
-        F11: post.F11,
-        F12: post.F12,
-        F13: post.F13,
-        F14: post.F14,
-        F15: post.F15,
+        features: post.features,
 
       });
     } else {

@@ -133,32 +133,27 @@
                                                                     <p><span><span>
                                                                                 <%=content%>
                                                                             </span></span></p> <br>
-                                                                    <h3><span
-                                                                            style="font-family: var( --e-global-typography-text-font-family ), Sans-serif;">Specification
-                                                                            of the project below:-</span></h3>
 
-                                                                    <p style="text-align: justify;"><span>1️.
-                                                                            <%=spec1%>
-                                                                        </span></p>
-                                                                    <p style="text-align: justify;"><span>2️.
-                                                                            <%=spec2%>
-                                                                        </span></p>
-                                                                    <p style="text-align: justify;"><span>3️.
-                                                                            <%=spec3%>
-                                                                        </span></p>
-                                                                    <p style="text-align: justify;"><span>4️.
-                                                                            <%=spec4%>
-                                                                        </span></p>
-                                                                    <p style="text-align: justify;"><span>5. <%=spec5%>
-                                                                        </span></p>
-                                                                    <p style="text-align: justify;"><span>6️. <%=spec6%>
-                                                                        </span></p>
-                                                                    <br>
-                                                                    <h3 style="text-align: justify;">Luxury
-                                                                        Specification:-</h3>
-                                                                    <p style="text-align: justify;"><span>
-                                                                            <%=Lspec%>
-                                                                        </span></p>
+                                                                    <h3><span
+                                                                            style="font-family: var(--e-global-typography-text-font-family), Sans-serif;">Specification
+                                                                            of the project
+                                                                            below:-</span></h3>
+
+                                                                    <% for (let i=0; i < specifications.length; i++) {
+                                                                        %>
+                                                                        <p style="text-align: justify;"><span>
+                                                                                <%= (i + 1) %>️. <%= specifications[i]
+                                                                                        %>
+                                                                            </span></p>
+                                                                        <% } %>
+
+
+                                                                            <br>
+                                                                            <h3 style="text-align: justify;">Luxury
+                                                                                Specification:-</h3>
+                                                                            <p style="text-align: justify;"><span>
+                                                                                    <%=Lspec%>
+                                                                                </span></p>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -279,107 +274,26 @@
                                     <div class="col-md-6">
                                         <ul class="list-unstyled">
                                             <!-- First half of the features -->
-                                            <li class="list-inline-item">
-                                                <span>
-                                                    <%=F1%>
-                                                </span>
-                                            </li>
-
-                                            <li class="list-inline-item">
-                                                <span>
-                                                    <%=F2%>
-                                                </span>
-                                            </li>
-
-                                            <li class="list-inline-item">
-                                                <span>
-                                                    <%=F3%>
-                                                </span>
-                                            </li>
-
-                                            <li class="list-inline-item">
-                                                <span>
-                                                    <%=F4%>
-                                                </span>
-                                            </li>
-
-                                            <li class="list-inline-item">
-                                                <span>
-                                                    <%=F5%>
-                                                </span>
-                                            </li>
-
-                                            <li class="list-inline-item">
-                                                <span>
-                                                    <%=F6%>
-                                                </span>
-                                            </li>
-
-                                            <li class="list-inline-item">
-                                                <span>
-                                                    <%=F7%>
-                                                </span>
-                                            </li>
-
-                                            <li class="list-inline-item">
-                                                <span>
-                                                    <%=F8%>
-                                                </span>
-                                            </li>
-
-                                            <li class="list-inline-item">
-                                                <span>
-                                                    <%=F9%>
-                                                </span>
-                                            </li>
-
-                                            <li class="list-inline-item">
-                                                <span>
-                                                    <%=F10%>
-                                                </span>
-                                            </li>
-
-
-
-
-                                            <!-- Add the remaining features for the first half -->
+                                            <% const halfLength=Math.ceil(features.length / 2); %>
+                                                <% for (let i=0; i < halfLength; i++) { %>
+                                                    <li class="list-inline-item">
+                                                        <span>
+                                                            <%= features[i] %>
+                                                        </span>
+                                                    </li>
+                                                    <% } %>
                                         </ul>
                                     </div>
                                     <div class="col-md-6">
                                         <ul class="list-unstyled">
                                             <!-- Second half of the features -->
-                                            <li class="list-inline-item">
-                                                <span>
-                                                    <%=F11%>
-                                                </span>
-                                            </li>
-
-                                            <li class="list-inline-item">
-                                                <span>
-                                                    <%=F12%>
-                                                </span>
-                                            </li>
-
-                                            <li class="list-inline-item">
-                                                <span>
-                                                    <%=F13%>
-                                                </span>
-                                            </li>
-
-                                            <li class="list-inline-item">
-                                                <span>
-                                                    <%=F14%>
-                                                </span>
-                                            </li>
-
-                                            <li class="list-inline-item">
-                                                <span>
-                                                    <%=F15%>
-                                                </span>
-                                            </li>
-
-
-                                            <!-- Add the remaining features for the second half -->
+                                            <% for (let i=halfLength; i < features.length; i++) { %>
+                                                <li class="list-inline-item">
+                                                    <span>
+                                                        <%= features[i] %>
+                                                    </span>
+                                                </li>
+                                                <% } %>
                                         </ul>
                                     </div>
                                 </div>
