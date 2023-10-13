@@ -1,0 +1,29 @@
+<%- include("partials/header"); -%>
+    <div class="container">
+        <h1 style="text-align: center;">Admin Dashboard</h1>
+        <!-- <form class="container" style="max-width: 25rem; justify-content: center; align-items: center;" action="/login"
+            method="post">
+            <div class="form-group" style="padding: 1rem;">
+                <label>Username</label>
+                <input class="form-control" type="text" name="username" placeholder="Username" required />
+                <label>Password</label>
+                <input class="form-control" type="password" name="password" placeholder="Password" required />
+
+            </div>
+            <button style="margin-left: 1rem;" class="btn btn-primary" type="submit" name="button">Login</button>
+        </form> -->
+        <button type="button" id="add-feature" class="btn btn-success" style="margin: 5px;"><a
+                style="text-decoration: none; color: white;" href="/compose">Add New
+                Project</a></button>
+        <button type="button" id="add-feature" class="btn btn-primary" style="margin: 5px;"><a
+                style="text-decoration: none; color: white;" href="/edit-projects">Edit
+                Projects</a></button>
+        <button type="button" id="add-feature" class="btn btn-danger" style="margin: 5px;"><a
+                style="text-decoration: none; color: white;" href="/delete-projects">Delete
+                a Project</a></button>
+    </div>
+
+    <form class="container" action="/logout" method="post" style="margin-top: 2rem;">
+        <button class="btn btn-danger" type="submit" name="logout">Logout</button>
+        <p>Please close this window after log out for Security Reasons</p>
+    </form>

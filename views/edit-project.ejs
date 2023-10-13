@@ -1,76 +1,72 @@
 <%- include("partials/header"); -%>
     <link rel="stylesheet" href="/css/compose.css">
-    <h1 style="align-items: center; text-align: center;">Compose Project</h1>
-    <form class="container" action="/compose" method="post" enctype="multipart/form-data" style="margin-bottom: 50px;">
+
+    <h1 style="align-items: center; text-align: center;">Edit Project <%=project.title%>
+    </h1>
+    <form class="container" action="/update/<%= project._id %>" method="post" enctype="multipart/form-data"
+        style="margin-bottom: 50px;">
         <div class="form-group">
             <h2 style="align-items: center; text-align: center;">General Details</h2>
             <label class="label">Title</label>
-            <input class="form-control" type="text" name="title" placeholder="Title" required />
+            <input class="form-control" type="text" name="title" value="<%= project.title %>" required />
 
             <label class="label">Sector</label>
-            <input class="form-control" type="text" name="author" placeholder="Sector" required />
+            <input class="form-control" type="text" name="author" value="<%= project.author %>" required />
 
             <label class="label">About the Project</label>
-            <textarea class="form-control" name="content" rows="5" cols="30"
-                placeholder="Describe your project here...." required></textarea>
+            <textarea class="form-control" name="content" rows="5" cols="30" required><%= project.content %></textarea>
             <br>
             <br>
-
 
             <h2 style="align-items: center; text-align: center;">Specifications</h2>
             <div id="specifications-container">
-                <!-- Initial specification input -->
-                <div class="specification-input">
-                    <label class="label">Specification 1</label>
-                    <input class="form-control" type="text" name="specifications[]" placeholder="Specification 1" />
-                    <button type="button" class="remove-specification btn btn-danger"
-                        style="margin: 5px;">Remove</button>
-                </div>
+                <!-- Loop through the specifications array -->
+                <% for (let i=0; i < project.specifications.length; i++) { %>
+                    <div class="specification-input">
+                        <label class="label">Specification <%= i + 1 %></label>
+                        <input class="form-control" type="text" name="specifications[]"
+                            value="<%= project.specifications[i] %>" />
+                        <button type="button" class="remove-specification btn btn-danger"
+                            style="margin: 5px;">Remove</button>
+                    </div>
+                    <% } %>
             </div>
             <button type="button" id="add-specification" class="btn btn-success" style="margin: 5px;">Add
                 Specification</button>
-
-
-            <!-- Add more specification fields as needed -->
-
-
-
             <br>
             <br>
             <br>
-
-
 
             <label class="label">Luxury Specifications</label>
-            <input class="form-control" type="text" name="Lspec" placeholder="Luxery Specifications" />
+            <input class="form-control" type="text" name="Lspec" value="<%= project.Lspec %>"
+                placeholder="Luxury Specifications" />
 
-            <br><br><br><br>
-
-
-
+            <br>
+            <br>
+            <br>
 
             <h2 style="align-items: center; text-align: center;">Features</h2>
             <div id="feature-container">
-                <!-- Initial specification input -->
-                <div class="feature-input">
-                    <label class="label">Feature 1</label>
-                    <input class="form-control" type="text" name="features[]" placeholder="Feature 1" />
-                    <button type="button" class="remove-feature btn btn-danger" style="margin: 5px;">Remove</button>
-                </div>
+                <!-- Loop through the features array -->
+                <% for (let i=0; i < project.features.length; i++) { %>
+                    <div class="feature-input">
+                        <label class="label">Feature <%= i + 1 %></label>
+                        <input class="form-control" type="text" name="features[]" value="<%= project.features[i] %>" />
+                        <button type="button" class="remove-feature btn btn-danger" style="margin: 5px;">Remove</button>
+                    </div>
+                    <% } %>
             </div>
             <button type="button" id="add-feature" class="btn btn-success" style="margin: 5px;">Add Features</button>
 
-            <!-- Add more feature fields as needed -->
-
             <br>
             <br>
             <br>
 
-            <h2 style="align-items: center; text-align: center;">Youtube Video link</h2>
+            <h2 style="align-items: center; text-align: center;">YouTube Video link</h2>
             <!-- YouTube Link -->
             <label class="label">YouTube video key</label>
-            <input class="form-control" type="text" name="youtube" placeholder="YouTube Link" />
-
+            <input class="form-control" type="text" name="youtube" value="<%= project.youtube %>"
+                placeholder="YouTube Link" />
 
             <br>
             <br>
@@ -78,44 +74,41 @@
 
             <h2 style="align-items: center; text-align: center;">Map Data </h2>
             <!-- Map Coordinates -->
-
             <label class="label">Latitude</label>
-            <input class="form-control" type="text" name="mapV" placeholder="Latitude" />
-
-
+            <input class="form-control" type="text" name="mapV" value="<%= project.mapV %>" placeholder="Latitude" />
             <label class="label">Longitude</label>
-            <input class="form-control" type="text" name="mapH" placeholder="Longitude" />
-
-
-
+            <input class="form-control" type="text" name="mapH" value="<%= project.mapH %>" placeholder="Longitude" />
 
             <br>
             <br>
             <br>
+
             <h2 style="align-items: center; text-align: center;">Type of Project</h2>
             <!-- Type -->
             <label class="label">Type</label>
             <select class="form-control" name="type" required>
                 <option value="">Select Type</option>
-                <option value="Residential">Residential</option>
-                <option value="Commercial">Commercial</option>
+                <option value="Residential" <%=project.type==="Residential" ? "selected" : "" %>>Residential</option>
+                <option value="Commercial" <%=project.type==="Commercial" ? "selected" : "" %>>Commercial</option>
             </select>
 
+            <br>
+            <br>
+            <br>
 
-            <br>
-            <br>
-            <br>
             <h2 style="align-items: center; text-align: center;">Images of project</h2>
             <!-- Images (Multiple File Upload) -->
             <label class="label">Images</label>
             <input type="file" name="image" accept="image/*" multiple />
 
+            <!-- Add a hidden input field to store the existing image filenames -->
+            <% for (let i=0; i < project.images.length; i++) { %>
+                <input type="hidden" name="existingImages[]" value="<%= project.images[i] %>" />
+                <% } %>
         </div>
-        <button class="btn btn-primary" type="submit" name="button">Publish</button>
+        <button class="btn btn-primary" type="submit" name="button">Update</button>
     </form>
-
-
-
+    <!-- Add your JavaScript code for handling dynamic input fields, if needed -->
     <script>
 
         document.addEventListener("DOMContentLoaded", function () {
@@ -127,11 +120,11 @@
                 const newSpecificationInput = document.createElement("div");
                 newSpecificationInput.className = "specification-input";
                 newSpecificationInput.innerHTML = `
-            <label class="label">Specification ${specificationsContainer.children.length + 1}</label>
-            <input class="form-control" type="text" name="specifications[]" placeholder="Specification ${specificationsContainer.children.length + 1}" />
-            <button type="button" class="remove-specification btn btn-danger"
-                        style="margin: 5px;">Remove</button>
-            `;
+                    <label class="label">Specification ${specificationsContainer.children.length + 1}</label>
+                    <input class="form-control" type="text" name="specifications[]" placeholder="Specification ${specificationsContainer.children.length + 1}" />
+                    <button type="button" class="remove-specification btn btn-danger"
+                                style="margin: 5px;">Remove</button>
+                    `;
                 specificationsContainer.appendChild(newSpecificationInput);
             }
 
@@ -171,11 +164,11 @@
             const featureNumber = featureContainer.getElementsByClassName("feature-input").length + 1;
 
             featureInput.innerHTML = `
-                <label class="label">Feature ${featureNumber}</label>
-                <input class="form-control" type="text" name="features[]" placeholder="Feature ${featureNumber}" />
-                <button type="button" class="remove-specification btn btn-danger"
-                        style="margin: 5px;">Remove</button>
-            `;
+                        <label class="label">Feature ${featureNumber}</label>
+                        <input class="form-control" type="text" name="features[]" placeholder="Feature ${featureNumber}" />
+                        <button type="button" class="remove-specification btn btn-danger"
+                                style="margin: 5px;">Remove</button>
+                    `;
 
             featureContainer.appendChild(featureInput);
         }

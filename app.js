@@ -163,7 +163,7 @@ app.get("/login", function (req, res) {
   res.header("Pragma", "no-cache");
   res.header("Expires", "0");
   if (req.session.isAuthenticated) {
-    res.redirect("/compose"); // Redirect authenticated users to another page.
+    res.redirect("/dasboard"); // Redirect authenticated users to another page.
   } else {
     res.render("login");
   }
@@ -213,7 +213,7 @@ app.post("/login", function (req, res) {
     if (foundUser && foundUser.password === password) {
       // Set the user as authenticated
       req.session.isAuthenticated = true;
-      res.render("compose");
+      res.render("dasboard");
     } else {
       res.render("login", { error: "Incorrect email or password" });
     }
@@ -374,6 +374,137 @@ app.get("/posts/:postId", async function (req, res) {
     res.status(500).render("error", { message: "Internal Server Error" });
   }
 });
+
+// 13-10-2023 new code ===================================================
+
+
+
+// Add this route to your Express app
+app.get("/edit-projects", requireAuth, function (req, res) {
+  Post.find({}).sort({ createdAt: -1 })
+    .then((posts) => {
+      res.render("edit-projects", {
+        posts: posts,
+      });
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Internal Server Error");
+    });
+});
+
+
+
+
+app.get("/edit/:projectId", requireAuth, function (req, res) {
+  const projectId = req.params.projectId;
+  // Fetch the project by its ID
+  Post.findOne({ _id: projectId })
+    .then((project) => {
+      if (project) {
+        res.render("edit-project", { project: project });
+      } else {
+        res.status(404).render("error", { message: "Project not found" });
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).render("error", { message: "Internal Server Error" });
+    });
+});
+
+app.post("/update/:projectId", requireAuth, upload.array("image", 10), function (req, res) {
+    const projectId = req.params.projectId;
+    const updatedData = req.body;
+
+    // Check if new images were uploaded
+    if (req.files.length > 0) {
+        updatedData.images = req.files.map((file) => file.filename);
+    } else {
+        // No new images uploaded, keep the existing ones
+        const existingImages = req.body.existingImages;
+        if (existingImages && Array.isArray(existingImages)) {
+            updatedData.images = existingImages;
+        }
+    }
+
+    // Handle the specifications array correctly
+    updatedData.specifications = req.body.specifications.filter(spec => spec.trim() !== ''); // Filter out empty specifications
+
+    // Find and update the project by its ID
+    Post.findOneAndUpdate({ _id: projectId }, updatedData, { new: true })
+        .then((updatedProject) => {
+            if (updatedProject) {
+                res.redirect("/projects"); // Redirect to the projects page after updating
+            } else {
+                res.status(404).send("error", { message: "Project not found" });
+            }
+        })
+        .catch((err) => {
+            console.error(err);
+            res.status(500).render("error", { message: "Internal Server Error" });
+        });
+});
+
+
+
+
+
+
+
+
+app.get("/dasboard", requireAuth, function (req, res) {
+  res.render("dasboard");
+});
+
+
+app.get("/delete-projects", requireAuth, function (req, res) {
+   Post.find({}).sort({ createdAt: -1 })
+    .then((posts) => {
+      res.render("delete-projects", {
+        posts: posts,
+      });
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Internal Server Error");
+    });
+});
+
+
+app.post("/delete/:projectId", requireAuth, function (req, res) {
+    const projectId = req.params.projectId;
+
+    // Find and delete the project by its ID
+    Post.findByIdAndRemove(projectId)
+        .then((deletedProject) => {
+            if (deletedProject) {
+                // Delete the project's images from the server (similar to the edit route)
+                deletedProject.images.forEach((image) => {
+                    const imagePath = `public/uploads/${image}`;
+                    fs.unlink(imagePath, (err) => {
+                        if (err) {
+                            console.error(err);
+                        }
+                    });
+                });
+
+                // Redirect to the "delete-projects" page after deleting
+                res.redirect("/delete-projects");
+            } else {
+                res.status(404).send("error", { message: "Project not found" });
+            }
+        })
+        .catch((err) => {
+            console.error(err);
+            res.status(500).send("error", { message: "Internal Server Error" });
+        });
+});
+
+
+
+// dashboard route++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 
 
 // ...
