@@ -8,7 +8,7 @@ const mongoose = require("mongoose");
 const multer = require("multer");
 require("dotenv").config();
 const session = require("express-session");
-
+const fs = require("fs");
 
 const app = express();
 
@@ -18,12 +18,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 const sessionSecret = process.env.SESSION_SECRET;
-app.use(session({
-  secret: sessionSecret,
-  resave: false,
-  saveUninitialized: true
-}));
-
+app.use(
+  session({
+    secret: sessionSecret,
+    resave: false,
+    saveUninitialized: true,
+  })
+);
 
 function requireAuth(req, res, next) {
   if (req.session.isAuthenticated) {
@@ -34,8 +35,6 @@ function requireAuth(req, res, next) {
     res.redirect("/login");
   }
 }
-
-
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -50,29 +49,19 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-
-
-
-
-
-mongoose.connect(
-  process.env.MONGO_URI,
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  }
-);
-
-const adminSchema = new mongoose.Schema( {
-  email: String,
-  password: String
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 });
 
+const adminSchema = new mongoose.Schema({
+  email: String,
+  password: String,
+});
 
 const Admin = new mongoose.model("Admin", adminSchema);
 
 // ============================= project post schema =========================
-
 
 const postSchema = new mongoose.Schema({
   title: String,
@@ -92,27 +81,21 @@ const postSchema = new mongoose.Schema({
   },
 });
 
-const Post = mongoose.model("Post", postSchema , "post");
+const Post = mongoose.model("Post", postSchema, "post");
 
 // ============================Admin User Schema================================================
 
-
-
-
-
-
 // ================================= Api routes ==================================================================
-
-
 
 // ============================================= home route ============================================
 app.get("/", function (req, res) {
   // Fetch and render posts from MongoDB, sorted by creation date (newest first)
-  Post.find({}).sort({ createdAt: -1 }) // Use the "-1" to sort in descending order
+  Post.find({})
+    .sort({ createdAt: -1 }) // Use the "-1" to sort in descending order
     .then((posts) => {
       res.render("index", {
         posts: posts,
-        images: posts.images
+        images: posts.images,
       });
     })
     .catch((err) => {
@@ -122,41 +105,30 @@ app.get("/", function (req, res) {
     });
 });
 
-
-
 // =============================== Projects route =================================================
 
 app.get("/projects", function (req, res) {
-  Post.find({}).sort({ createdAt: -1 }).then((posts) => {
-    res.render("projects", {
-      posts: posts,
-      images: posts.images
+  Post.find({})
+    .sort({ createdAt: -1 })
+    .then((posts) => {
+      res.render("projects", {
+        posts: posts,
+        images: posts.images,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).send("internal server error");
     });
-  }).catch((err) => {
-    console.log(err);
-    res.status(500).send('internal server error');
-  });
 });
 
-
-
-
-
-
 // ====================================about route===========================================
-
-
-
 
 app.get("/about", function (req, res) {
   res.render("about");
 });
 
-
 // ===================================================Login route======================================
-
-
-
 
 app.get("/login", function (req, res) {
   res.header("Cache-Control", "no-cache, no-store, must-revalidate");
@@ -184,9 +156,6 @@ app.get("/compose", requireAuth, function (req, res) {
   res.render("compose");
 });
 
-
-
-
 // app.post("/login", function (req, res) {
 //   const username = req.body.username;
 //   const password = req.body.password;
@@ -203,27 +172,25 @@ app.get("/compose", requireAuth, function (req, res) {
 //   })
 // });
 
-
-
 app.post("/login", function (req, res) {
   const username = req.body.username;
   const password = req.body.password;
 
-  Admin.findOne({ email: username }).then((foundUser) => {
-    if (foundUser && foundUser.password === password) {
-      // Set the user as authenticated
-      req.session.isAuthenticated = true;
-      res.render("dasboard");
-    } else {
-      res.render("login", { error: "Incorrect email or password" });
-    }
-  }).catch((err) => {
-    console.log(err);
-    res.status(500).send("Internal server error");
-  });
+  Admin.findOne({ email: username })
+    .then((foundUser) => {
+      if (foundUser && foundUser.password === password) {
+        // Set the user as authenticated
+        req.session.isAuthenticated = true;
+        res.render("dasboard");
+      } else {
+        res.render("login", { error: "Incorrect email or password" });
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).send("Internal server error");
+    });
 });
-
-
 
 // Add this route to your server code
 app.post("/logout", function (req, res) {
@@ -239,15 +206,6 @@ app.post("/logout", function (req, res) {
     }
   });
 });
-
-
-
-
-
-
-
-
-
 
 // =========================================compose project route====================================================
 
@@ -275,8 +233,6 @@ app.post("/logout", function (req, res) {
 //       res.status(500).send("Internal Server Error");
 //     });
 // });
-
-
 
 app.post("/compose", upload.array("image", 10), function (req, res) {
   // Check if files were uploaded
@@ -329,19 +285,6 @@ app.post("/compose", upload.array("image", 10), function (req, res) {
     });
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 // ...projects page route=====================================================================================
 
 app.get("/posts/:postId", async function (req, res) {
@@ -362,7 +305,6 @@ app.get("/posts/:postId", async function (req, res) {
         maplongi: post.mapH,
         type: post.type,
         features: post.features,
-
       });
     } else {
       // Handle the case where the post was not found, e.g., by rendering an error page
@@ -377,11 +319,10 @@ app.get("/posts/:postId", async function (req, res) {
 
 // 13-10-2023 new code ===================================================
 
-
-
 // Add this route to your Express app
 app.get("/edit-projects", requireAuth, function (req, res) {
-  Post.find({}).sort({ createdAt: -1 })
+  Post.find({})
+    .sort({ createdAt: -1 })
     .then((posts) => {
       res.render("edit-projects", {
         posts: posts,
@@ -392,9 +333,6 @@ app.get("/edit-projects", requireAuth, function (req, res) {
       res.status(500).send("Internal Server Error");
     });
 });
-
-
-
 
 app.get("/edit/:projectId", requireAuth, function (req, res) {
   const projectId = req.params.projectId;
@@ -413,53 +351,53 @@ app.get("/edit/:projectId", requireAuth, function (req, res) {
     });
 });
 
-app.post("/update/:projectId", requireAuth, upload.array("image", 10), function (req, res) {
+app.post(
+  "/update/:projectId",
+  requireAuth,
+  upload.array("image", 10),
+  function (req, res) {
     const projectId = req.params.projectId;
     const updatedData = req.body;
 
     // Check if new images were uploaded
     if (req.files.length > 0) {
-        updatedData.images = req.files.map((file) => file.filename);
+      updatedData.images = req.files.map((file) => file.filename);
     } else {
-        // No new images uploaded, keep the existing ones
-        const existingImages = req.body.existingImages;
-        if (existingImages && Array.isArray(existingImages)) {
-            updatedData.images = existingImages;
-        }
+      // No new images uploaded, keep the existing ones
+      const existingImages = req.body.existingImages;
+      if (existingImages && Array.isArray(existingImages)) {
+        updatedData.images = existingImages;
+      }
     }
 
     // Handle the specifications array correctly
-    updatedData.specifications = req.body.specifications.filter(spec => spec.trim() !== ''); // Filter out empty specifications
+    updatedData.specifications = req.body.specifications.filter(
+      (spec) => spec.trim() !== ""
+    ); // Filter out empty specifications
 
     // Find and update the project by its ID
     Post.findOneAndUpdate({ _id: projectId }, updatedData, { new: true })
-        .then((updatedProject) => {
-            if (updatedProject) {
-                res.redirect("/projects"); // Redirect to the projects page after updating
-            } else {
-                res.status(404).send("error", { message: "Project not found" });
-            }
-        })
-        .catch((err) => {
-            console.error(err);
-            res.status(500).render("error", { message: "Internal Server Error" });
-        });
-});
-
-
-
-
-
-
-
+      .then((updatedProject) => {
+        if (updatedProject) {
+          res.redirect("/projects"); // Redirect to the projects page after updating
+        } else {
+          res.status(404).send("error", { message: "Project not found" });
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        res.status(500).render("error", { message: "Internal Server Error" });
+      });
+  }
+);
 
 app.get("/dasboard", requireAuth, function (req, res) {
   res.render("dasboard");
 });
 
-
 app.get("/delete-projects", requireAuth, function (req, res) {
-   Post.find({}).sort({ createdAt: -1 })
+  Post.find({})
+    .sort({ createdAt: -1 })
     .then((posts) => {
       res.render("delete-projects", {
         posts: posts,
@@ -471,41 +409,83 @@ app.get("/delete-projects", requireAuth, function (req, res) {
     });
 });
 
+// app.post("/delete/:projectId", requireAuth, function (req, res) {
+//   const projectId = req.params.projectId;
 
+//   // Find and delete the project by its ID
+//   Post.findByIdAndRemove(projectId)
+//     .then((deletedProject) => {
+//       if (deletedProject) {
+//         // Delete the project's images from the server (similar to the edit route)
+//         deletedProject.images.forEach((image) => {
+//           const imagePath = `public/uploads/${image}`;
+//           fs.unlink(imagePath, (err) => {
+//             if (err) {
+//               console.error(err);
+//             }
+//           });
+//         });
+
+//         // Redirect to the "delete-projects" page after deleting
+//         res.redirect("/delete-projects");
+//       } else {
+//         res.status(404).send("error", { message: "Project not found" });
+//       }
+//     })
+//     .catch((err) => {
+//       console.error(err);
+//       res.status(500).send("error", { message: "Internal Server Error" });
+//     });
+// });
+
+// Handle the delete project request
 app.post("/delete/:projectId", requireAuth, function (req, res) {
-    const projectId = req.params.projectId;
+  const projectId = req.params.projectId;
+  const { email, password } = req.body;
 
-    // Find and delete the project by its ID
-    Post.findByIdAndRemove(projectId)
-        .then((deletedProject) => {
+  // Find the admin user with the provided email in the database
+  Admin.findOne({ email: email })
+    .then((admin) => {
+      if (admin && password === admin.password) {
+        // Passwords match, proceed with deletion
+        Post.findByIdAndRemove(projectId)
+          .then((deletedProject) => {
             if (deletedProject) {
-                // Delete the project's images from the server (similar to the edit route)
-                deletedProject.images.forEach((image) => {
-                    const imagePath = `public/uploads/${image}`;
-                    fs.unlink(imagePath, (err) => {
-                        if (err) {
-                            console.error(err);
-                        }
-                    });
+              // Delete the project's images from the server (similar to the edit route)
+              deletedProject.images.forEach((image) => {
+                const imagePath = `public/uploads/${image}`;
+                fs.unlink(imagePath, (err) => {
+                  if (err) {
+                    console.error(err);
+                  }
                 });
-
-                // Redirect to the "delete-projects" page after deleting
-                res.redirect("/delete-projects");
+              });
+              // Redirect to the "delete-projects" page after deleting
+              res.redirect("/delete-projects");
             } else {
-                res.status(404).send("error", { message: "Project not found" });
+              res.status(404).send("error", { message: "Project not found" });
             }
-        })
-        .catch((err) => {
+          })
+          .catch((err) => {
             console.error(err);
             res.status(500).send("error", { message: "Internal Server Error" });
-        });
+          });
+      } else {
+        // Passwords do not match, show an error message
+        res
+          .status(400)
+          .render("error", {
+            message: "Incorrect email or password. Project not deleted.",
+          });
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("error", { message: "Internal Server Error" });
+    });
 });
 
-
-
 // dashboard route++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-
 
 // ...
 
