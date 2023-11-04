@@ -9,7 +9,6 @@ const multer = require("multer");
 require("dotenv").config();
 const session = require("express-session");
 const fs = require("fs");
-
 const app = express();
 
 app.set("view engine", "ejs");
@@ -60,34 +59,36 @@ const adminSchema = new mongoose.Schema({
 });
 
 const Admin = new mongoose.model("Admin", adminSchema);
-
+const Post = require("./models/posts.js");
 // ============================= project post schema =========================
 
-const postSchema = new mongoose.Schema({
-  title: String,
-  content: String,
-  author: String,
-  specifications: [String], // Store specifications as an array of strings
-  Lspec: String,
-  youtube: String,
-  mapH: String,
-  mapV: String,
-  type: String,
-  features: [String],
-  images: [String],
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-});
+// const postSchema = new mongoose.Schema({
+//   title: String,
+//   content: String,
+//   author: String,
+//   specifications: [String], // Store specifications as an array of strings
+//   Lspec: String,
+//   youtube: String,
+//   mapH: String,
+//   mapV: String,
+//   type: String,
+//   features: [String],
+//   images: [String],
+//   createdAt: {
+//     type: Date,
+//     default: Date.now,
+//   },
+// });
 
-const Post = mongoose.model("Post", postSchema, "post");
+// const Post = mongoose.model("Post", postSchema, "post");
 
 // ============================Admin User Schema================================================
 
 // ================================= Api routes ==================================================================
 
 // ============================================= home route ============================================
+
+
 app.get("/", function (req, res) {
   // Fetch and render posts from MongoDB, sorted by creation date (newest first)
   Post.find({})
@@ -121,6 +122,40 @@ app.get("/projects", function (req, res) {
       res.status(500).send("internal server error");
     });
 });
+
+
+// API endpoint for commercial projects
+app.get("/projects/commercial", function (req, res) {
+  Post.find({ type: "Commercial" })
+      .sort({ createdAt: -1 })
+      .then((posts) => {
+          res.render("projects", {
+            posts: posts,
+            images: posts.images,
+          });
+      })
+      .catch((err) => {
+          console.error(err);
+          res.status(500).send("Internal Server Error");
+      });
+});
+
+// API endpoint for residential projects
+app.get("/projects/residential", function (req, res) {
+  Post.find({ type: "Residential" })
+      .sort({ createdAt: -1 })
+      .then((posts) => {
+          res.render("projects", {
+            posts: posts,
+            images: posts.images,
+          });
+      })
+      .catch((err) => {
+          console.error(err);
+          res.status(500).send("Internal Server Error");
+      });
+});
+
 
 // ====================================about route===========================================
 
@@ -191,6 +226,53 @@ app.post("/login", function (req, res) {
       res.status(500).send("Internal server error");
     });
 });
+
+
+
+// app.get("/signup", function (req, res) {
+//   res.render("signup");
+// });
+
+// app.post("/signup", function (req, res) {
+//   const email = req.body.email;
+//   const password = req.body.password;
+
+//   // Check if the email is already registered
+//   Admin.findOne({ email: email })
+//       .then((foundUser) => {
+//           if (foundUser) {
+//               res.render("signup", { error: "Email is already registered." });
+//           } else {
+//               // Create a new admin user
+//               const newAdmin = new Admin({
+//                   email: email,
+//                   password: password,
+//               });
+
+//               newAdmin
+//                   .save()
+//                   .then(() => {
+//                       // Sign up successful, you can redirect to a login page or another appropriate page.
+//                       res.redirect("/login");
+//                   })
+//                   .catch((err) => {
+//                       console.error(err);
+//                       res.status(500).send("Internal Server Error");
+//                   });
+//           }
+//       })
+//       .catch((err) => {
+//           console.error(err);
+//           res.status(500).send("Internal Server Error");
+//       });
+// });
+
+
+
+
+
+
+
 
 // Add this route to your server code
 app.post("/logout", function (req, res) {
