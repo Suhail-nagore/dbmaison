@@ -173,7 +173,7 @@
             featureInput.innerHTML = `
                 <label class="label">Feature ${featureNumber}</label>
                 <input class="form-control" type="text" name="features[]" placeholder="Feature ${featureNumber}" />
-                <button type="button" class="remove-specification btn btn-danger"
+                <button type="button" class="remove-feature btn btn-danger"
                         style="margin: 5px;">Remove</button>
             `;
 
@@ -181,10 +181,19 @@
         }
 
         // Function to remove a feature input
-        function removeFeature(event) {
+        function removeFeatureInput(event) {
             const featureInput = event.target.closest(".feature-input");
             if (featureInput) {
                 featureInput.remove();
+
+                // Update the labels and placeholders of remaining feature input fields
+                const featureInputs = document.querySelectorAll(".feature-input");
+                featureInputs.forEach((input, index) => {
+                    const label = input.querySelector("label");
+                    const inputField = input.querySelector("input");
+                    label.textContent = `Feature ${index + 1}`;
+                    inputField.placeholder = `Feature ${index + 1}`;
+                });
             }
         }
 
@@ -194,7 +203,7 @@
         // Add event listener to dynamically added "Remove Feature" buttons
         document.addEventListener("click", function (event) {
             if (event.target && event.target.classList.contains("remove-feature")) {
-                removeFeature(event);
+                removeFeatureInput(event);
             }
         });
     </script>

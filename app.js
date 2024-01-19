@@ -8,8 +8,11 @@ const mongoose = require("mongoose");
 const multer = require("multer");
 require("dotenv").config();
 const session = require("express-session");
+const MongoStore = require('connect-mongo');
 const fs = require("fs");
 const app = express();
+const Post = require("./models/posts.js");
+const Form = require("./models/formdb.js");
 
 app.set("view engine", "ejs");
 
@@ -22,6 +25,7 @@ app.use(
     secret: sessionSecret,
     resave: false,
     saveUninitialized: true,
+    store: new MongoStore({ mongoUrl: process.env.MONGO_URI, }),
   })
 );
 
@@ -59,7 +63,6 @@ const adminSchema = new mongoose.Schema({
 });
 
 const Admin = new mongoose.model("Admin", adminSchema);
-const Post = require("./models/posts.js");
 // ============================= project post schema =========================
 
 // const postSchema = new mongoose.Schema({
@@ -566,6 +569,39 @@ app.post("/delete/:projectId", requireAuth, function (req, res) {
       res.status(500).send("error", { message: "Internal Server Error" });
     });
 });
+
+// ========================= form handling route======================================================
+
+app.post("/processform", function (req, res) {
+  // Access form data from the request body
+  const { name, email, contactnumber, message } = req.body;
+
+  // Create a new FormSubmission document with the form data
+  const formSubmission = new Form({
+    name,
+    email,
+    contactnumber,
+    message,
+  });
+
+  // Save the form submission to the database
+  formSubmission
+    .save()
+    .then(() => {
+      // Form data saved successfully
+      res.send("Form data saved successfully.");
+    })
+    .catch((error) => {
+      // Handle any errors, e.g., by sending an error response
+      console.error(error);
+      res.status(500).send("Internal Server Error");
+    });
+});
+
+
+
+
+
 
 // dashboard route++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
