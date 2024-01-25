@@ -376,13 +376,22 @@ app.get("/posts/:postId", async function (req, res) {
   try {
     const requestedPostId = req.params.postId;
     const post = await Post.findOne({ _id: requestedPostId });
+    
     if (post) {
+      // Fetch three random projects of the same type
+      const similarProjects = await Post.aggregate([
+        { $match: { type: post.type, _id: { $ne: post._id } } },
+        { $sample: { size: 3 } }
+      ]);
+
+      const recentProjects = await Post.find().sort({ createdAt: -1 }).limit(3);
+
       res.render("post", {
         title: post.title,
         author: post.author,
         date: post.createdAt.toDateString(),
         content: post.content,
-        images: post.images, // Pass the images array to the template
+        images: post.images,
         specifications: post.specifications,
         Lspec: post.Lspec,
         youtube: post.youtube,
@@ -390,17 +399,18 @@ app.get("/posts/:postId", async function (req, res) {
         maplongi: post.mapH,
         type: post.type,
         features: post.features,
+        similarProjects: similarProjects, // Pass the similar projects array to the template
+        recentProjects: recentProjects // Pass the recent projects array to the template
       });
     } else {
-      // Handle the case where the post was not found, e.g., by rendering an error page
       res.status(404).render("error", { message: "Post not found" });
     }
   } catch (err) {
     console.error(err);
-    // Handle any other errors appropriately, e.g., by rendering an error page
     res.status(500).render("error", { message: "Internal Server Error" });
   }
 });
+
 
 // 13-10-2023 new code ===================================================
 

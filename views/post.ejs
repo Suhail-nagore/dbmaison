@@ -307,71 +307,86 @@
                                     <h3 class="sec-title"><i class="fas fa-list-ol"></i> Similar Projects</h3>
                                 </div>
                                 <div class="my-similar-listings">
-                                    <!-- <div class="main-div margin-bottom-30">
-                                        <div class="row no-gutters">
-                                            <div class="col-sm-12 col-md-5 col-lg-5 col-12">
-                                                <div class="main-data ">
-                                                    <div class="img-data">
-                                                        <div class="my-prop-img p-relative">
-                                                            <a href="../property/elanthemark.html"><img
-                                                                    src="../images/elanmark1min.webp" alt=""
-                                                                    class="img-fluid"></a>
-                                                            <div class="img-overlay"></div>
+                                    <% for (const project of similarProjects) { %>
+                                        <div class="main-div margin-bottom-30">
+                                            <a href="/posts/<%=project._id%>">
+                                                <div class="row no-gutters">
+                                                    <div class="col-sm-12 col-md-5 col-lg-5 col-12">
+
+                                                        <div class="main-data ">
+                                                            <div class="img-data">
+                                                                <div class="my-prop-img p-relative">
+                                                                    <a href="/posts/<%=project._id%>"><img
+                                                                            src="/uploads/<%= project.images[0] %>"
+                                                                            alt="" class="img-fluid"></a>
+                                                                    <div class="img-overlay"></div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="h2-lies2 my-bookmarks">
+                                                                <ul class="list-unstyled my-3 mx-3 text-right">
+                                                                    <li class="list-inline-item"> <button
+                                                                            data-compare-id="3666"
+                                                                            class="btn d-flex justify-content-center align-items-center compare-prop"
+                                                                            data-toggle="tooltip" data-placement="top"
+                                                                            data-original-title="Compare"><i
+                                                                                class="fas fa-random"></i></button>
+                                                                    </li>
+                                                                    <li class="list-inline-item"> <button
+                                                                            data-fav-id="3666"
+                                                                            class="btn d-flex justify-content-center align-items-center fav-prop"
+                                                                            data-toggle="tooltip" data-placement="top"
+                                                                            data-original-title="Favourite"><i
+                                                                                class="far fa-heart"></i></button> </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="d-btn">
+                                                                <ul class="list-unstyled mb-3 ml-3 text-left">
+                                                                    <li class="list-inline-item">
+                                                                        <a class="badge badge-status-45" href="#">New
+                                                                            launch</a>
+                                                                    </li>
+                                                                    <li class="list-inline-item">
+                                                                        <a class="badge badge-label-165"
+                                                                            href="#">DLF</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
                                                         </div>
+
                                                     </div>
-                                                    <div class="h2-lies2 my-bookmarks">
-                                                        <ul class="list-unstyled my-3 mx-3 text-right">
-                                                            <li class="list-inline-item"> <button data-compare-id="3666"
-                                                                    class="btn d-flex justify-content-center align-items-center compare-prop"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    data-original-title="Compare"><i
-                                                                        class="fas fa-random"></i></button> </li>
-                                                            <li class="list-inline-item"> <button data-fav-id="3666"
-                                                                    class="btn d-flex justify-content-center align-items-center fav-prop"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    data-original-title="Favourite"><i
-                                                                        class="far fa-heart"></i></button> </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="d-btn">
-                                                        <ul class="list-unstyled mb-3 ml-3 text-left">
-                                                            <li class="list-inline-item">
-                                                                <a class="badge badge-status-45" href="#">New
-                                                                    launch</a>
-                                                            </li>
-                                                            <li class="list-inline-item">
-                                                                <a class="badge badge-label-165" href="#">DLF</a>
-                                                            </li>
-                                                        </ul>
+                                                    <div class="col-sm-12 col-md-7 col-lg-7 col-12">
+                                                        <div class="listing-data d-flex  h-100">
+
+                                                            <div class="heaing-d align-self-center">
+                                                                <div class="prop-cat"><a
+                                                                        href="/projects/<%= project.type %>">
+                                                                        <%= project.type %>
+                                                                    </a>
+                                                                </div>
+                                                                <h3 class="text-capitalize mb-2">
+                                                                    <a href="/posts/<%=project._id%>" class="clr-black">
+                                                                        <%= project.title %>
+                                                                    </a>
+                                                                </h3>
+
+
+                                                                <div class="home-amenties-features">
+
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-sm-12 col-md-7 col-lg-7 col-12">
-                                                <div class="listing-data d-flex  h-100">
-
-                                                    <div class="heaing-d align-self-center">
-                                                        <div class="prop-cat"><a href="#">Residential</a>
-                                                        </div>
-                                                        <h3 class="text-capitalize mb-2">
-                                                            <a href="../property/elanthemark.html"
-                                                                class="clr-black">Elan
-                                                                The Mark</a>
-                                                        </h3>
-
-
-                                                        <div class="home-amenties-features">
-
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            </a>
                                         </div>
-                                    </div> -->
-                                    
-                                    
-                                    
-                                    
+
+                                        <% } %>
+
+
+
+
                                 </div>
                             </div>
                         </div>
@@ -391,49 +406,25 @@
                                 <div class="sidebar-widget-header">
                                     <h4>Recent Projects</h4>
                                 </div>
-                                <!-- <div class="sidebar-widget-body">
+                                <div class="sidebar-widget-body">
                                     <ul class="widget-inner-container recently-added">
-                                        <li>
-                                            <div class="recently-added-img"><a href="#">
-                                                    <img class="img-fluid"
-                                                        src="https://www.urbanplus.co.in/wp-content/uploads/2023/05/amenities-100x66.jpg"
-                                                        alt="">
-                                                </a>
-                                            </div>
-                                            <div class="recently-added-desc">
-                                                <h4><a href="#">Sartworld
-                                                        Orchard Street</a></h4>
+                                        <% for (const project of recentProjects) { %>
+                                            <li>
+                                                <div class="recently-added-img"><a href="/posts/<%=project._id%>">
+                                                        <img class="img-fluid" src="/uploads/<%= project.images[0] %>"
+                                                            alt="">
+                                                    </a>
+                                                </div>
+                                                <div class="recently-added-desc">
+                                                    <h4><a href="/posts/<%=project._id%>">
+                                                            <%= project.title %>
+                                                        </a></h4>
 
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="recently-added-img"><a href="#">
-                                                    <img class="img-fluid"
-                                                        src="https://www.urbanplus.co.in/wp-content/uploads/2023/05/The-Grove-CP-Meet-presentation_091943_Page_28_Image_0002-100x66.jpg"
-                                                        alt="">
-                                                </a>
-                                            </div>
-                                            <div class="recently-added-desc">
-                                                <h4><a href="#">DLF
-                                                        The Grove</a></h4>
-
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="recently-added-img"><a href="#">
-                                                    <img class="img-fluid"
-                                                        src="https://www.urbanplus.co.in/wp-content/uploads/2023/05/One-DXP-Sales-Deck_Page_51_Image_0002-100x66.jpg"
-                                                        alt="">
-                                                </a>
-                                            </div>
-                                            <div class="recently-added-desc">
-                                                <h4><a href="#">Smartworld
-                                                        One DXP</a></h4>
-
-                                            </div>
-                                        </li>
+                                                </div>
+                                            </li>
+                                            <% } %>
                                     </ul>
-                                </div> -->
+                                </div>
                             </div>
                             <div class="sidebar-widget-seprator mortgage-calculator">
                                 <div class="sidebar-widget-header">
