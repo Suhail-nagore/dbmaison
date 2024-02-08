@@ -1,15 +1,42 @@
 <%- include("partials/header"); -%>
 
-    <div class="container">
-        <h1 style="text-align: center;">Edit Projects</h1>
+<div class="container">
+    <h1 style="text-align: center;">Edit Projects</h1>
 
-        <ul class="list-group">
-            <% posts.forEach(function(post) { %>
-                <li class="list-group-item d-flex justify-content-between align-items-center" style="font-size: 20px;">
-                    <%= post.title %>
-                        <a href="/edit/<%= post._id %>" class="btn btn-primary">Edit</a>
-                </li>
-                <% }); %>
-        </ul>
+    <ul class="list-group">
+        <% posts.forEach(function(post) { %>
+            <li class="list-group-item d-flex justify-content-between align-items-center" style="font-size: 20px;">
+                <%= post.title %>
+                <div>
+                    <a href="/edit/<%= post._id %>" class="btn btn-primary">Edit</a>
+                    <button class="btn btn-success make-top-btn" data-post-id="<%= post._id %>">Make Top</button>
+                </div>
+            </li>
+        <% }); %>
+    </ul>
+</div>
 
-    </div>
+<script>
+    // Add event listener to "Make Top" buttons
+    const makeTopButtons = document.querySelectorAll(".make-top-btn");
+    makeTopButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            const postId = button.dataset.postId;
+            // Make AJAX request to the API endpoint
+            fetch(`/makeTop/${postId}`, {
+                method: "POST"
+            })
+            .then(response => response.text())
+            .then(data => {
+                // Handle success response
+                console.log(data);
+                // Reload the page or update UI as needed
+                window.location.reload(); // Example: Reload the page
+            })
+            .catch(error => {
+                // Handle error
+                console.error('Error:', error);
+            });
+        });
+    });
+</script>

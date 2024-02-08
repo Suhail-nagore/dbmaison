@@ -95,7 +95,7 @@ const Admin = new mongoose.model("Admin", adminSchema);
 app.get("/", function (req, res) {
   // Fetch and render posts from MongoDB, sorted by creation date (newest first)
   Post.find({})
-    .sort({ createdAt: -1 }) // Use the "-1" to sort in descending order
+    .sort({ signature: -1 }) // Use the "-1" to sort in descending order
     .then((posts) => {
       res.render("index", {
         posts: posts,
@@ -111,9 +111,10 @@ app.get("/", function (req, res) {
 
 // =============================== Projects route =================================================
 
+// API endpoint for all projects
 app.get("/projects", function (req, res) {
   Post.find({})
-    .sort({ createdAt: -1 })
+    .sort({ signature: -1 }) // Sort by signature value in descending order
     .then((posts) => {
       res.render("projects", {
         posts: posts,
@@ -122,41 +123,40 @@ app.get("/projects", function (req, res) {
     })
     .catch((err) => {
       console.log(err);
-      res.status(500).send("internal server error");
+      res.status(500).send("Internal Server Error");
     });
 });
-
 
 // API endpoint for commercial projects
 app.get("/projects/commercial", function (req, res) {
   Post.find({ type: "Commercial" })
-      .sort({ createdAt: -1 })
-      .then((posts) => {
-          res.render("projects", {
-            posts: posts,
-            images: posts.images,
-          });
-      })
-      .catch((err) => {
-          console.error(err);
-          res.status(500).send("Internal Server Error");
+    .sort({ signature: -1 }) // Sort by signature value in descending order
+    .then((posts) => {
+      res.render("projects", {
+        posts: posts,
+        images: posts.images,
       });
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Internal Server Error");
+    });
 });
 
 // API endpoint for residential projects
 app.get("/projects/residential", function (req, res) {
   Post.find({ type: "Residential" })
-      .sort({ createdAt: -1 })
-      .then((posts) => {
-          res.render("projects", {
-            posts: posts,
-            images: posts.images,
-          });
-      })
-      .catch((err) => {
-          console.error(err);
-          res.status(500).send("Internal Server Error");
+    .sort({ signature: -1 }) // Sort by signature value in descending order
+    .then((posts) => {
+      res.render("projects", {
+        posts: posts,
+        images: posts.images,
       });
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Internal Server Error");
+    });
 });
 
 
@@ -342,24 +342,37 @@ app.post("/compose", upload.array("image", 10), function (req, res) {
   // Store filenames of uploaded images
   const imageFilenames = req.files.map((file) => file.filename);
 
-  // Create a new Post document using the data
-  const post = new Post({
-    title,
-    author,
-    content,
-    specifications, // Store specifications as an array
-    Lspec,
-    features,
-    youtube,
-    mapV, // Latitude
-    mapH, // Longitude
-    type,
-    images: imageFilenames, // Store filenames in the images array
-  });
+  // Find the highest value of signature in the database
+  Post.findOne({}, {}, { sort: { 'signature': -1 } })
+    .exec()
+    .then((highestPost) => {
+      let highestSignature = 0;
+      if (highestPost) {
+        highestSignature = highestPost.signature || 0;
+      }
 
-  // Save the new post document to the database
-  post
-    .save()
+      // Increment the highest signature by 1
+      const newSignature = highestSignature + 1;
+
+      // Create a new Post document using the data and the new signature
+      const post = new Post({
+        title,
+        author,
+        content,
+        specifications, // Store specifications as an array
+        Lspec,
+        features,
+        youtube,
+        mapV, // Latitude
+        mapH, // Longitude
+        type,
+        signature: newSignature, // Assign the new signature
+        images: imageFilenames, // Store filenames in the images array
+      });
+
+      // Save the new post document to the database
+      return post.save();
+    })
     .then(() => {
       res.redirect("/");
     })
@@ -369,6 +382,7 @@ app.post("/compose", upload.array("image", 10), function (req, res) {
       res.status(500).send("Internal Server Error");
     });
 });
+
 
 // ...projects page route=====================================================================================
 
@@ -417,7 +431,7 @@ app.get("/posts/:postId", async function (req, res) {
 // Add this route to your Express app
 app.get("/edit-projects", requireAuth, function (req, res) {
   Post.find({})
-    .sort({ createdAt: -1 })
+    .sort({ signature: -1 })
     .then((posts) => {
       res.render("edit-projects", {
         posts: posts,
@@ -428,6 +442,22 @@ app.get("/edit-projects", requireAuth, function (req, res) {
       res.status(500).send("Internal Server Error");
     });
 });
+
+
+// Route to increment signature value of a post
+app.post("/makeTop/:postId", (req, res) => {
+  const postId = req.params.postId;
+  // Find the post by ID and update its signature value
+  Post.findByIdAndUpdate(postId, { $inc: { signature: 1 } })
+      .then(() => {
+          res.status(200).send("Post signature incremented successfully");
+      })
+      .catch((err) => {
+          console.error(err);
+          res.status(500).send("Internal Server Error");
+      });
+});
+
 
 app.get("/edit/:projectId", requireAuth, function (req, res) {
   const projectId = req.params.projectId;
