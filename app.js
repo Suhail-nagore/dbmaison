@@ -522,7 +522,7 @@ app.get("/dasboard", requireAuth, function (req, res) {
 
 app.get("/delete-projects", requireAuth, function (req, res) {
   Post.find({})
-    .sort({ createdAt: -1 })
+    .sort({ signature: -1 })
     .then((posts) => {
       res.render("delete-projects", {
         posts: posts,
