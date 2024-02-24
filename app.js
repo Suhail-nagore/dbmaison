@@ -629,7 +629,7 @@ app.post("/processform", function (req, res) {
     .save()
     .then(() => {
       // Form data saved successfully
-      res.send("Form data saved successfully.");
+      res.render("success");
     })
     .catch((error) => {
       // Handle any errors, e.g., by sending an error response
@@ -637,6 +637,11 @@ app.post("/processform", function (req, res) {
       res.status(500).send("Internal Server Error");
     });
 });
+
+
+app.get("/success", (req, res)=>{
+  res.render("success");
+})
 
 
 
