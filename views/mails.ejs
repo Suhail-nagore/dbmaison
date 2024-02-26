@@ -4,7 +4,9 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-G8tREmoVv7S9S71e+SNvZoRgu+Al0YzHO9P+akfHjp2PQaVI5hbvAe6J84oQx+VwRi+1v8XJ+rTj+6MX+yP3Sg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha512-G8tREmoVv7S9S71e+SNvZoRgu+Al0YzHO9P+akfHjp2PQaVI5hbvAe6J84oQx+VwRi+1v8XJ+rTj+6MX+yP3Sg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
     <div class="container">
@@ -27,7 +29,6 @@
                         <a href="/mails/<%= mail._id %>" class="btn btn-primary mr2">Check</a>
                         <button type="button" class="btn btn-danger" data-toggle="modal"
                             data-target="#deleteModal<%= mail._id %>">Delete</button>
-
                     </div>
 
                     <!-- Delete Modal -->
@@ -45,14 +46,17 @@
                                     <form action="/remove/<%= mail._id %>" method="POST">
                                         <div class="form-group">
                                             <label for="email">Email:</label>
-                                            <input type="email" class="form-control" id="email" name="email" required>
+                                            <input type="email" class="form-control" id="email<%= mail._id %>"
+                                                name="email" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="password">Password:</label>
                                             <div class="input-group">
-                                                <input type="password" class="form-control" id="password" name="password" required>
+                                                <input type="password" class="form-control" id="password<%= mail._id %>"
+                                                    name="password" required>
                                                 <div class="input-group-append">
-                                                    <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                                                    <button class="btn btn-outline-secondary toggle-password"
+                                                        type="button" data-target="#password<%= mail._id %>">
                                                         <i class="fa fa-eye" aria-hidden="true"></i>
                                                     </button>
                                                 </div>
@@ -68,14 +72,15 @@
                 <% }); %>
         </ul>
 
-
-
     </div>
-<script>
-    document.getElementById('togglePassword').addEventListener('click', function () {
-        const passwordInput = document.getElementById('password');
-        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-        passwordInput.setAttribute('type', type);
-        this.querySelector('i').classList.toggle('fa-eye-slash');
-    });
-</script>
+    <script>
+        document.querySelectorAll('.toggle-password').forEach(function (button) {
+            button.addEventListener('click', function () {
+                const targetId = this.getAttribute('data-target');
+                const passwordInput = document.querySelector(targetId);
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                this.querySelector('i').classList.toggle('fa-eye-slash');
+            });
+        });
+    </script>
