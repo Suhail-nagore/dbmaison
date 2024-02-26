@@ -11,6 +11,7 @@ const session = require("express-session");
 const MongoStore = require('connect-mongo');
 const fs = require("fs");
 const app = express();
+const methodOverride = require("method-override");
 const Post = require("./models/posts.js");
 const Form = require("./models/formdb.js");
 
@@ -620,9 +621,10 @@ app.post("/processform", function (req, res) {
   const formSubmission = new Form({
     name,
     email,
-    contactnumber,
+    Number:contactnumber,
     message,
   });
+  
 
   // Save the form submission to the database
   formSubmission
@@ -638,10 +640,78 @@ app.post("/processform", function (req, res) {
     });
 });
 
+app.get("/mails", requireAuth, function (req, res) {
+  Form.find({})
+    .sort({ timestamp: -1 })
+    .then((mails) => {
+      res.render("mails", {
+        mails:mails,
+      });
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Internal Server Error");
+    });
+});
 
-app.get("/success", (req, res)=>{
-  res.render("success");
-})
+
+// Define a route to display full form submission details
+app.get("/mails/:id", requireAuth, function(req, res) {
+  const formId = req.params.id;
+  Form.findById(formId)
+      .then((form) => {
+          if (!form) {
+              return res
+              .status(400)
+              .render("error", {
+                message: "Something went Wrong please try again later",
+              });
+          }
+          res.render("mails-details", { form: form });
+      })
+      .catch((err) => {
+          console.error(err);
+          res.status(500).send("Internal Server Error");
+      });
+});
+
+// DELETE route handler for deleting a specific form submission
+app.post("/remove/:mailId", requireAuth, function (req, res) {
+  const mailId = req.params.mailId;
+  const { email, password } = req.body;
+
+  // Find the admin user with the provided email in the database
+  Admin.findOne({ email: email })
+    .then((admin) => {
+      if (admin && password === admin.password) {
+        // Passwords match, proceed with deletion
+        Form.findByIdAndRemove(mailId)
+          .then((deletedMail) => {
+            if (deletedMail) {
+              // Redirect to the "mails" page after deleting
+              res.redirect("/mails");
+            } else {
+              res.status(404).send({ message: "Mail not found" });
+            }
+          })
+          .catch((err) => {
+            console.error(err);
+            res.status(500).send({ message: "Internal Server Error" });
+          });
+      } else {
+        // Passwords do not match, show an error message
+        res.status(400).render("error", {
+          message: "Incorrect email or password. Mail not deleted.",
+        });
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send({ message: "Internal Server Error" });
+    });
+});
+
+
 
 
 

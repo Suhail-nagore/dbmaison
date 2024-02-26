@@ -4,6 +4,8 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-G8tREmoVv7S9S71e+SNvZoRgu+Al0YzHO9P+akfHjp2PQaVI5hbvAe6J84oQx+VwRi+1v8XJ+rTj+6MX+yP3Sg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 
 
     <div class="container">
@@ -36,8 +38,14 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="password">Password:</label>
-                                                <input type="password" class="form-control" id="password"
-                                                    name="password" required>
+                                                <div class="input-group">
+                                                    <input type="password" class="form-control" id="password" name="password" required>
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                                                            <i class="fa fa-eye" aria-hidden="true"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <button type="submit" class="btn btn-danger">Confirm Deletion</button>
                                         </form>
@@ -49,3 +57,12 @@
                 <% }); %>
         </ul>
     </div>
+
+    <script>
+        document.getElementById('togglePassword').addEventListener('click', function () {
+            const passwordInput = document.getElementById('password');
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            this.querySelector('i').classList.toggle('fa-eye-slash');
+        });
+    </script>

@@ -1,0 +1,15 @@
+<%- include("partials/header"); -%>
+<div class="container">
+    <h1 style="text-align: center;">Form Submission Details</h1>
+
+    <div>
+        <div><strong>Name:</strong> <%= form.name %></div>
+        <div><strong>Email:</strong> <%= form.email %></div>
+        <div><strong>Number:</strong> <%= form.Number %></div>
+        <div><strong>Message:</strong> <%= form.message %></div>
+        <div><strong>Date:</strong> <%= form.timestamp.toDateString() %></div>
+        <div><strong>Time:</strong> <%= form.timestamp.toLocaleTimeString() %></div>
+        <a href="/mails" class="btn btn-primary mr2">Go Back</a>
+    </div>
+    
+</div>
