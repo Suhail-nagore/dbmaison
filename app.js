@@ -14,6 +14,7 @@ const app = express();
 const methodOverride = require("method-override");
 const Post = require("./models/posts.js");
 const Form = require("./models/formdb.js");
+const About = require("./models/about.js");
 
 app.set("view engine", "ejs");
 
@@ -164,8 +165,80 @@ app.get("/projects/residential", function (req, res) {
 // ====================================about route===========================================
 
 app.get("/about", function (req, res) {
-  res.render("about");
+  About.find({})
+    .then(aboutData => {
+      const images = aboutData.map(data => data.image); // Extract image URLs
+      res.render("about", { images: images });
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).send("Internal Server Error");
+    });
 });
+
+
+
+
+
+app.get("/upload-about-images", function(req, res) {
+  // Fetch all uploaded images from the About model
+  About.find({}).exec()
+    .then(images => {
+      res.render("upload-about-images", { images: images });
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).send("Internal Server Error");
+    });
+});
+
+
+
+app.post("/upload-about-image", upload.single("image"), function (req, res) {
+  // Check if file was uploaded
+  if (!req.file) {
+    return res.status(400).send("Please upload an image.");
+  }
+
+  // Extract filename of the uploaded image
+  const imageFilename = req.file.filename;
+
+  // Create a new About document with the image filename
+  const aboutData = new About({
+    image: imageFilename,
+  });
+
+  // Save the About document
+  aboutData.save()
+    .then(() => {
+      res.redirect("/upload-about-images"); // Redirect to the upload about image page after successful upload
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).send("Internal Server Error");
+    });
+});
+
+
+
+
+
+app.post("/delete-about-image/:imageId", function(req, res) {
+  const imageId = req.params.imageId;
+  // Delete the image from the About model
+  About.findByIdAndRemove(imageId)
+    .then(deletedImage => {
+      // Redirect back to the upload page after deletion
+      res.redirect("/upload-about-images");
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).send("Internal Server Error");
+    });
+});
+
+
+
 
 // ===================================================Login route======================================
 

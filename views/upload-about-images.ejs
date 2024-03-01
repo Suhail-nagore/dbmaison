@@ -1,0 +1,23 @@
+<%- include("partials/header"); -%>
+<div class="container">
+    <h1 style="text-align: center;">Upload About Image</h1>
+    <form class="form" action="/upload-about-image" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="image">Choose Image:</label>
+            <input type="file" class="form-control-file" id="image" name="image" accept="image/*" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Upload Image</button>
+    </form>
+    <hr>
+    <h2>Uploaded Images</h2>
+    <ul class="list-group">
+        <% images.forEach(function(image) { %>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <img src="/uploads/<%= image.image %>" alt="Uploaded Image" style="max-width: 200px; max-height: 200px;">
+            <form action="/delete-about-image/<%= image._id %>" method="post">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </li>
+        <% }); %>
+    </ul>
+</div>
