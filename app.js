@@ -65,38 +65,13 @@ const adminSchema = new mongoose.Schema({
 });
 
 const Admin = new mongoose.model("Admin", adminSchema);
-// ============================= project post schema =========================
-
-// const postSchema = new mongoose.Schema({
-//   title: String,
-//   content: String,
-//   author: String,
-//   specifications: [String], // Store specifications as an array of strings
-//   Lspec: String,
-//   youtube: String,
-//   mapH: String,
-//   mapV: String,
-//   type: String,
-//   features: [String],
-//   images: [String],
-//   createdAt: {
-//     type: Date,
-//     default: Date.now,
-//   },
-// });
-
-// const Post = mongoose.model("Post", postSchema, "post");
-
-// ============================Admin User Schema================================================
-
-// ================================= Api routes ==================================================================
 
 // ============================================= home route ============================================
 
 
 app.get("/", function (req, res) {
   // Fetch and render posts from MongoDB, sorted by creation date (newest first)
-  Post.find({})
+  Post.find({ state: true})
     .sort({ signature: -1 }) // Use the "-1" to sort in descending order
     .then((posts) => {
       res.render("index", {
@@ -115,7 +90,7 @@ app.get("/", function (req, res) {
 
 // API endpoint for all projects
 app.get("/projects", function (req, res) {
-  Post.find({})
+  Post.find({state: true})
     .sort({ signature: -1 }) // Sort by signature value in descending order
     .then((posts) => {
       res.render("projects", {
@@ -131,7 +106,7 @@ app.get("/projects", function (req, res) {
 
 // API endpoint for commercial projects
 app.get("/projects/commercial", function (req, res) {
-  Post.find({ type: "Commercial" })
+  Post.find({ type: "Commercial", state: true, })
     .sort({ signature: -1 }) // Sort by signature value in descending order
     .then((posts) => {
       res.render("projects", {
@@ -147,7 +122,7 @@ app.get("/projects/commercial", function (req, res) {
 
 // API endpoint for residential projects
 app.get("/projects/residential", function (req, res) {
-  Post.find({ type: "Residential" })
+  Post.find({ type: "Residential", state:true, })
     .sort({ signature: -1 }) // Sort by signature value in descending order
     .then((posts) => {
       res.render("projects", {
@@ -368,30 +343,6 @@ app.post("/logout", function (req, res) {
 
 // =========================================compose project route====================================================
 
-// app.post("/compose", upload.array("image", 10), function (req, res) {
-//   // Check if files were uploaded
-//   if (!req.files) {
-//     return res.status(400).send("Please upload three images.");
-//   }
-
-//   const post = new Post({
-//     title: req.body.postTitle,
-//     author: req.body.author,
-//     content: req.body.postBody,
-//     images: req.files.map((file) => file.filename), // Store filenames in the images array
-//   });
-
-//   post
-//     .save()
-//     .then(() => {
-//       res.redirect("/");
-//     })
-//     .catch((err) => {
-//       console.error(err);
-//       // Handle the error appropriately, e.g., by sending an error response
-//       res.status(500).send("Internal Server Error");
-//     });
-// });
 
 app.post("/compose", upload.array("image", 10), function (req, res) {
   // Check if files were uploaded
@@ -468,11 +419,11 @@ app.get("/posts/:postId", async function (req, res) {
     if (post) {
       // Fetch three random projects of the same type
       const similarProjects = await Post.aggregate([
-        { $match: { type: post.type, _id: { $ne: post._id } } },
+        { $match: { type: post.type, _id: { $ne: post._id }, state:true } },
         { $sample: { size: 3 } }
       ]);
 
-      const recentProjects = await Post.find().sort({ createdAt: -1 }).limit(3);
+      const recentProjects = await Post.find({state:true}).sort({ createdAt: -1 }).limit(3);
 
       res.render("post", {
         title: post.title,
@@ -531,6 +482,39 @@ app.post("/makeTop/:postId", (req, res) => {
           res.status(500).send("Internal Server Error");
       });
 });
+
+app.post('/listProject/:postId', async (req, res) => {
+  const postId = req.params.postId;
+  try {
+      // Find the project by ID and update its state to true (listed)
+      const project = await Post.findByIdAndUpdate(postId, { state: true });
+      if (!project) {
+          return res.status(404).send('Project not found');
+      }
+      res.send('Project listed successfully');
+  } catch (error) {
+      console.error('Error listing project:', error);
+      res.status(500).send('Internal Server Error');
+  }
+});
+
+
+app.post('/delistProject/:postId', async (req, res) => {
+  const postId = req.params.postId;
+  try {
+      // Find the project by ID and update its state to false (delisted)
+      const project = await Post.findByIdAndUpdate(postId, { state: false });
+      if (!project) {
+          return res.status(404).send('Project not found');
+      }
+      res.send('Project delisted successfully');
+  } catch (error) {
+      console.error('Error delisting project:', error);
+      res.status(500).send('Internal Server Error');
+  }
+});
+
+
 
 
 app.get("/edit/:projectId", requireAuth, function (req, res) {
@@ -608,34 +592,6 @@ app.get("/delete-projects", requireAuth, function (req, res) {
     });
 });
 
-// app.post("/delete/:projectId", requireAuth, function (req, res) {
-//   const projectId = req.params.projectId;
-
-//   // Find and delete the project by its ID
-//   Post.findByIdAndRemove(projectId)
-//     .then((deletedProject) => {
-//       if (deletedProject) {
-//         // Delete the project's images from the server (similar to the edit route)
-//         deletedProject.images.forEach((image) => {
-//           const imagePath = `public/uploads/${image}`;
-//           fs.unlink(imagePath, (err) => {
-//             if (err) {
-//               console.error(err);
-//             }
-//           });
-//         });
-
-//         // Redirect to the "delete-projects" page after deleting
-//         res.redirect("/delete-projects");
-//       } else {
-//         res.status(404).send("error", { message: "Project not found" });
-//       }
-//     })
-//     .catch((err) => {
-//       console.error(err);
-//       res.status(500).send("error", { message: "Internal Server Error" });
-//     });
-// });
 
 // Handle the delete project request
 app.post("/delete/:projectId", requireAuth, function (req, res) {

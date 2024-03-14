@@ -9,7 +9,14 @@
                 <%= post.title %>
                 <div>
                     <a href="/edit/<%= post._id %>" class="btn btn-primary">Edit</a>
-                    <button class="btn btn-success make-top-btn" data-post-id="<%= post._id %>">Make Top</button>
+                    <% if (post.state === true) { %>
+                        <!-- Show Delist Project button if project is listed -->
+                        <button class="btn btn-danger delist-project-btn" data-post-id="<%= post._id %>">Delist Project</button>
+                    <% } else { %>
+                        <!-- Show List Project button if project is delisted -->
+                        <button class="btn btn-success list-project-btn" data-post-id="<%= post._id %>">List Project</button>
+                    <% } %>
+                    <button class="btn btn-secondary make-top-btn" data-post-id="<%= post._id %>">Make Top</button>
                 </div>
             </li>
         <% }); %>
@@ -24,6 +31,52 @@
             const postId = button.dataset.postId;
             // Make AJAX request to the API endpoint
             fetch(`/makeTop/${postId}`, {
+                method: "POST"
+            })
+            .then(response => response.text())
+            .then(data => {
+                // Handle success response
+                console.log(data);
+                // Reload the page or update UI as needed
+                window.location.reload(); // Example: Reload the page
+            })
+            .catch(error => {
+                // Handle error
+                console.error('Error:', error);
+            });
+        });
+    });
+
+    // Add event listener to "List Project" buttons
+    const listProjectButtons = document.querySelectorAll(".list-project-btn");
+    listProjectButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            const postId = button.dataset.postId;
+            // Make AJAX request to list the project
+            fetch(`/listProject/${postId}`, {
+                method: "POST"
+            })
+            .then(response => response.text())
+            .then(data => {
+                // Handle success response
+                console.log(data);
+                // Reload the page or update UI as needed
+                window.location.reload(); // Example: Reload the page
+            })
+            .catch(error => {
+                // Handle error
+                console.error('Error:', error);
+            });
+        });
+    });
+
+    // Add event listener to "Delist Project" buttons
+    const delistProjectButtons = document.querySelectorAll(".delist-project-btn");
+    delistProjectButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            const postId = button.dataset.postId;
+            // Make AJAX request to delist the project
+            fetch(`/delistProject/${postId}`, {
                 method: "POST"
             })
             .then(response => response.text())

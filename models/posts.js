@@ -12,6 +12,10 @@ const postSchema = new mongoose.Schema({
     features: [String],
     images: [String],
     signature:Number,
+    state: {
+      type: Boolean,
+      default: true,
+    },
     createdAt: {
       type: Date,
       default: Date.now,
