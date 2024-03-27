@@ -8,7 +8,7 @@ lerna-debug.log*
 .pnpm-debug.log*
 
 #upload folder ignores here
-public/upload/
+public/uploads/
 
 
 
