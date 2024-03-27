@@ -1,0 +1,122 @@
+<%- include("partials/header"); -%>
+
+<div class="container">
+    <h1 style="text-align: center;">Testimonials</h1>
+    <!-- Button to add new testimonial -->
+    <button type="button" class="btn btn-primary" style="margin-bottom: 10px;">
+        <a href="/addtestimonial" style="text-decoration: none; color: white;">Add New Testimonial</a>
+    </button>
+
+    <!-- List of existing testimonials -->
+    <% testimonials.forEach(testimonial => { %>
+        <div class="card" style="margin-bottom: 20px;">
+            <div class="card-body">
+                <!-- Testimonial image -->
+                <img src="/uploads/<%= testimonial.image %>" class="img-fluid" style="max-height: 200px; margin-bottom: 10px;">
+                <!-- Testimonial name -->
+                <h5 class="card-title"><%= testimonial.name %></h5>
+                <!-- Buttons for editing, deleting, listing, and delisting -->
+                <div class="btn-group" role="group">
+                    <a href="/edit-testimonial/<%= testimonial._id %>" class="btn btn-primary">Edit</a>
+                    <button type="button" class="btn btn-danger delete-btn" data-id="<%= testimonial._id %>">Delete</button>
+                    <% if (testimonial.state) { %>
+                        <!-- Delist button if testimonial is listed -->
+                        <button type="button" class="btn btn-warning delist-btn" data-id="<%= testimonial._id %>">Delist</button>
+                    <% } else { %>
+                        <!-- List button if testimonial is delisted -->
+                        <button type="button" class="btn btn-success list-btn" data-id="<%= testimonial._id %>">List</button>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    <% }); %>
+</div>
+
+<script>
+
+    // Function to handle AJAX request for deleting testimonial
+    function deleteTestimonial(id) {
+        fetch(`/delete-testimonial/${id}`, {
+            method: 'DELETE'
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            // Handle success response
+            console.log('Testimonial deleted successfully');
+            window.location.reload();
+        })
+        .catch(error => {
+            // Handle error
+            console.error('Error:', error);
+        });
+    }
+
+    // Function to handle AJAX request for listing or delisting testimonial
+    // Function to handle AJAX request for listing or delisting testimonial
+function listOrDelistTestimonial(id, action) {
+    let endpoint;
+    if (action === 'list') {
+        endpoint = `/list-testimonial/${id}`;
+    } else if (action === 'delist') {
+        endpoint = `/delist-testimonial/${id}`;
+    }
+
+    fetch(endpoint, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        // Handle success response
+        console.log(`Testimonial ${action === 'list' ? 'listed' : 'delisted'} successfully`);
+        window.location.reload();
+    })
+    .catch(error => {
+        // Handle error
+        console.error('Error:', error);
+    });
+}
+
+
+    // Add event listeners for edit, delete, list, and delist buttons
+    document.addEventListener('DOMContentLoaded', () => {
+        const editButtons = document.querySelectorAll('.edit-btn');
+        const deleteButtons = document.querySelectorAll('.delete-btn');
+        const listButtons = document.querySelectorAll('.list-btn');
+        const delistButtons = document.querySelectorAll('.delist-btn');
+
+        editButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const id = button.dataset.id;
+                editTestimonial(id);
+            });
+        });
+
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const id = button.dataset.id;
+                deleteTestimonial(id);
+            });
+        });
+
+        listButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const id = button.dataset.id;
+                listOrDelistTestimonial(id, 'list');
+            });
+        });
+
+        delistButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const id = button.dataset.id;
+                listOrDelistTestimonial(id, 'delist');
+            });
+        });
+    });
+</script>

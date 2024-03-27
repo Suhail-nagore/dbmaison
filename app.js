@@ -15,7 +15,7 @@ const methodOverride = require("method-override");
 const Post = require("./models/posts.js");
 const Form = require("./models/formdb.js");
 const About = require("./models/about.js");
-
+const Testi = require("./models/testimonials.js")
 app.set("view engine", "ejs");
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -740,6 +740,136 @@ app.post("/remove/:mailId", requireAuth, function (req, res) {
     });
 });
 
+
+
+
+app.get('/testimonials', async (req, res) => {
+  try {
+      // Fetch all testimonials from the database
+      const testimonials = await Testi.find();
+
+      // Render the testimonials page with the fetched testimonials data
+      res.render('testilist', { testimonials });
+  } catch (error) {
+      console.error(error);
+      res.status(500).send('Internal Server Error');
+  }
+});
+
+
+app.get("/addtestimonial", (req, res)=>{
+  res.render("addtesti")
+})
+
+
+
+
+
+
+
+app.post('/add-testimonial', upload.single('image'), async (req, res) => {
+  try {
+      // Check if file was uploaded
+      if (!req.file) {
+          return res.status(500).render("error", { message: "Please uplaod the image" });
+      }
+
+      // Extract filename of the uploaded image
+      const imageUrl = req.file.filename; // Assuming the image path is stored in req.file.path
+
+      // Extract other fields from the request body
+      const { name, designation, company, message } = req.body;
+
+      // Create a new testimonial with image URL
+      const testimonial = await Testi.create({
+          name,
+          Designation: designation,
+          image: imageUrl,
+          company,
+          message
+      });
+
+      res.status(201).redirect("/testimonials")
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ success: false, error: 'Server error' });
+  }
+});
+
+// GET endpoint to render the edit testimonial form with existing data
+app.get('/edit-testimonial/:id', (req, res) => {
+  const { id } = req.params;
+
+  // Find the testimonial by ID
+  Testi.findById(id)
+      .then((testimonial) => {
+          // Render the edit testimonial form with existing data
+          res.render('edittesti', { testimonial });
+      })
+      .catch((err) => {
+          console.error(err);
+          res.status(500).send('Internal Server Error');
+      });
+});
+
+
+
+// PUT endpoint to edit a testimonial
+app.post('/edit-testimonial/:id', (req, res) => {
+  const { id } = req.params;
+  const { name, designation, company, message, state } = req.body;
+
+  Testi.findByIdAndUpdate(id, { name, designation, company, message, state }, { new: true })
+      .then((testimonials) => {
+          res.status(200).redirect("/testimonials");
+      })
+      .catch((err) => {
+          console.error(err);
+          res.status(500).send('Internal Server Error');
+      });
+});
+
+// DELETE endpoint to delete a testimonial
+app.delete('/delete-testimonial/:id', (req, res) => {
+  const { id } = req.params;
+
+  Testi.findByIdAndDelete(id)
+      .then(() => {
+          res.send('Testimonial deleted successfully');
+      })
+      .catch((err) => {
+          console.error(err);
+          res.status(500).send('Internal Server Error');
+      });
+});
+// PUT endpoint to list or delist a testimonial
+// Endpoint for listing a testimonial
+app.put('/list-testimonial/:id', (req, res) => {
+  const { id } = req.params;
+
+  Testi.findByIdAndUpdate(id, { state: 1 }, { new: true })
+      .then((updatedTestimonial) => {
+          res.json(updatedTestimonial);
+      })
+      .catch((err) => {
+          console.error(err);
+          res.status(500).send('Internal Server Error');
+      });
+});
+
+// Endpoint for delisting a testimonial
+app.put('/delist-testimonial/:id', (req, res) => {
+  const { id } = req.params;
+
+  Testi.findByIdAndUpdate(id, { state: 0 }, { new: true })
+      .then((updatedTestimonial) => {
+          res.json(updatedTestimonial);
+      })
+      .catch((err) => {
+          console.error(err);
+          res.status(500).send('Internal Server Error');
+      });
+});
 
 
 

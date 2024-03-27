@@ -1,0 +1,44 @@
+<%- include("partials/header"); -%>
+
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+<div class="container">
+    <h1 class="mt-5 mb-4 text-center">Add New Testimonial</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <form action="/add-testimonial" method="POST" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="designation" class="form-label">Designation</label>
+                    <input type="text" class="form-control" id="designation" name="designation" required>
+                </div>
+                <div class="mb-3">
+                    <label for="image" class="form-label">Image</label>
+                    <input type="file" class="form-control" id="image" name="image" required accept="image/*">
+                </div>
+                <div class="mb-3">
+                    <label for="company" class="form-label">Company</label>
+                    <input type="text" class="form-control" id="company" name="company" required>
+                </div>
+                <div class="mb-3">
+                    <label for="message" class="form-label">Message</label>
+                    <textarea class="form-control" id="message" name="message" rows="3" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="state" class="form-label">State</label>
+                    <select class="form-select" id="state" name="state">
+                        <option value="true">Listed</option>
+                        <option value="false">Delisted</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0s4t3pVxlz9rxx2T0u7E4BwBS/16UZD4ISq9IpFgh" crossorigin="anonymous"></script>

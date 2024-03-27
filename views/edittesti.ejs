@@ -1,0 +1,82 @@
+<%- include("partials/header"); -%>
+
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+<div class="container">
+    <h1 class="mt-5 mb-4 text-center">Edit Testimonial</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <form action="/edit-testimonial/<%= testimonial._id %>" method="POST" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" value="<%= testimonial.name %>" required>
+                </div>
+                <div class="mb-3">
+                    <label for="designation" class="form-label">Designation</label>
+                    <input type="text" class="form-control" id="designation" name="designation" value="<%= testimonial.Designation %>" required>
+                </div>
+                <div class="mb-3">
+                    <label for="image" class="form-label">Image</label>
+                    <input type="file" class="form-control" id="image" name="image" accept="image/*">
+                </div>
+                <div class="mb-3">
+                    <label for="company" class="form-label">Company</label>
+                    <input type="text" class="form-control" id="company" name="company" value="<%= testimonial.company %>" required>
+                </div>
+                <div class="mb-3">
+                    <label for="message" class="form-label">Message</label>
+                    <textarea class="form-control" id="message" name="message" rows="3" required><%= testimonial.message %></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="state" class="form-label">State</label>
+                    <select class="form-select" id="state" name="state">
+                        <% if (testimonial.state) { %>
+                            <option value="true" selected>Listed</option>
+                            <option value="false">Delisted</option>
+                        <% } else { %>
+                            <option value="true">Listed</option>
+                            <option value="false" selected>Delisted</option>
+                        <% } %>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    //  function editTestimonial(id) {
+    //     fetch(`/edit-testimonial/${id}`, {
+    //         method: 'PUT',
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify({/* Add data for editing if needed */})
+    //     })
+    //     .then(response => {
+    //         if (!response.ok) {
+    //             throw new Error('Network response was not ok');
+    //         }
+    //         // Handle success response
+    //         console.log('Testimonial edited successfully');
+    //     })
+    //     .catch(error => {
+    //         // Handle error
+    //         console.error('Error:', error);
+    //     });
+    // }
+
+
+    // document.addEventListener('DOMContentLoaded', () => {
+    //     const editButtons = document.querySelectorAll('.edit-btn');
+
+    //     editButtons.forEach(button => {
+    //         button.addEventListener('click', () => {
+    //             const id = button.dataset.id;
+    //             editTestimonial(id);
+    //         });
+    //     });
+    // })
+</script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0s4t3pVxlz9rxx2T0u7E4BwBS/16UZD4ISq9IpFgh" crossorigin="anonymous"></script>

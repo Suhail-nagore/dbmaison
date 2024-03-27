@@ -36,7 +36,8 @@
                                         <div class="slider-images">
                                             <% images.forEach(function(image, index) { %>
                                                 <img src="/uploads/<%= image %>" alt="Image <%= index + 1 %>"
-                                                    class="slider-image <%= index === 0 ? 'active' : '' %>">
+                                                    class="slider-image <%= index === 0 ? 'active' : '' %>"
+                                                    style="max-height: 600px;">
                                                 <% }); %>
                                         </div>
 
@@ -130,7 +131,7 @@
                                                                 data-widget_type="text-editor.default">
                                                                 <div class="elementor-widget-container">
 
-                                                                    <p><span><span>
+                                                                    <p style="text-align: justify;"><span><span>
                                                                                 <%=content%>
                                                                             </span></span></p> <br>
 
@@ -268,7 +269,7 @@
                             </div>
                             <div class="widget-seprator listing-features clearfix">
                                 <div class="widget-seprator-heading">
-                                    <h3 class="sec-title"><i class="fas fa-list"></i> Features</h3>
+                                    <h3 class="sec-title"><i class="fas fa-list"></i> Amenities</h3>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
