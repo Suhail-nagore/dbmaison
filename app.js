@@ -69,21 +69,28 @@ const Admin = new mongoose.model("Admin", adminSchema);
 // ============================================= home route ============================================
 
 
-app.get("/", function (req, res) {
-  // Fetch and render posts from MongoDB, sorted by creation date (newest first)
-  Post.find({ state: true})
-    .sort({ signature: -1 }) // Use the "-1" to sort in descending order
-    .then((posts) => {
-      res.render("index", {
-        posts: posts,
-        images: posts.images,
-      });
-    })
-    .catch((err) => {
-      console.error(err);
-      // Handle the error appropriately, e.g., by sending an error response
-      res.status(500).send("Internal Server Error");
+app.get("/", async function (req, res) {
+  try {
+    // Fetch posts from the Post collection
+    const posts = await Post.find({ state: true }).sort({ signature: -1 });
+
+    // Fetch all documents from the About collection
+    const aboutData = await About.find({});
+
+    // Extract image URLs from each document in aboutData
+    const aboutImages = aboutData.map((data) => data.image);
+
+    // Render the index template and pass both posts and aboutImages
+    res.render("index", { 
+      posts: posts,
+      images: posts.images,
+      aboutImages: aboutImages // Add aboutImages to the rendered data
     });
+  } catch (err) {
+    console.error(err);
+    // Handle the error appropriately, e.g., by sending an error response
+    res.status(500).send("Internal Server Error");
+  }
 });
 
 // =============================== Projects route =================================================

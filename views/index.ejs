@@ -1,4 +1,35 @@
 <%- include("partials/header"); -%>
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <style>
+        /* Set fixed dimensions for slider container */
+        .swiper-container {
+            width: 100%;
+            height: 400px;
+            /* Set desired height */
+            overflow-x: hidden;
+        }
+
+        /* Set fixed dimensions for each slide */
+        .swiper-slide {
+            width: 100%;
+            /* Fill slider width */
+            height: 100%;
+            /* Fill slider height */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Ensure images fit inside slides without cropping */
+        .swiper-slide img {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            /* Ensure image width fits inside slide */
+            height: auto;
+            /* Ensure image height fits inside slide */
+        }
+    </style>
 
 
     <div id="hero-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="3000">
@@ -143,21 +174,6 @@
                                         <a class="clr-black" href="/posts/<%=post._id%>">
                                             <img src="/uploads/<%= post.images[0] %>" alt="" />
                                         </a>
-                                        <div class="label-badges">
-                                            <ul class="list-unstyled text-left">
-                                                <li class="list-inline-item">
-                                                    <a class="badge badge-status-30" href="#"> Explore </a>
-                                                </li>
-                                                <li class="list-inline-item">
-                                                    <a class="badge badge-status-30" href="#"> For Sale </a>
-                                                </li>
-                                                <li class="list-inline-item">
-                                                    <a class="badge badge-label-194" href="#">
-                                                        SmartWorld
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
                                     </div>
                                 </div>
                                 <div class="listing-data">
@@ -251,6 +267,23 @@
             </div>
         </div>
     </section>
+    <div class="container" style="margin-top: 1rem;">
+        <% if (aboutImages && aboutImages.length> 0) { %>
+            <!-- <h2>About Images</h2> -->
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <% aboutImages.forEach((image, index)=> { %>
+                        <div class="swiper-slide">
+                            <img src="/uploads/<%= image %>" alt="About Image <%= index + 1 %>" class="img-fluid">
+                        </div>
+                        <% }) %>
+                            <div class="swiper-pagination"></div>
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-button-next"></div>
+                </div>
+            </div>
+            <% } %>
+    </div>
 
     <section id="pro-type">
         <div class="container">
@@ -413,5 +446,31 @@
 
 
     <script src="js/loadMoreProjects.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Initialize Swiper
+            var swiper = new Swiper('.swiper-container', {
+                // Optional parameters
+                loop: true,
+                slidesPerView: 1,
+                spaceBetween: 30,
+                centeredSlides: true, // Center slides
+                autoplay: {
+                    delay: 3000, // Autoplay delay in milliseconds
+                    disableOnInteraction: false, // Enable autoplay after user interaction
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+            });
+        });
+    </script>
 
     <%- include("partials/footer"); -%>
