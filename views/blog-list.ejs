@@ -1,0 +1,63 @@
+<%- include("partials/header"); -%>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog List</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5+zvK+2x4fF1wkG4ZbLegM5R/2DkP5SkkFV/DOOH"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="my-4">Blog List</h1>
+        <!-- Add New Blog Button -->
+        <a href="/add-blog" class="btn btn-primary mb-4">Add New Blog</a>
+        <a href="/dashboard" class="btn btn-danger mb-4">Return to Dashboard</a>
+
+        <!-- Blog List -->
+        <% if (blogs && blogs.length > 0) { %>
+        <ul class="list-group">
+            <% blogs.forEach(blog => { %>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                    <img src="/uploads/<%= blog.image %>" alt="<%= blog.title %>" class="me-3"
+                        style="max-width: 200px; max-height: 200px; min-width: 200px; min-height: 100px;">
+                    <div>
+                        <h5><%= blog.title %></h5>
+                        <p><%= blog.createdAt.toDateString() %></p>
+                    </div>
+                </div>
+                <div>
+                    <a href="/edit-blog/<%= blog._id %>" class="btn btn-warning me-2">Edit</a>
+                    <!-- Delete button within a form -->
+                    <form action="/delete-blog/<%= blog._id %>" method="POST" style="display: inline;">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
+            </li>
+            <% }) %>
+        </ul>
+        <% } else { %>
+        <p>No blogs found.</p>
+        <% } %>
+    </div>
+
+    <!-- Bootstrap JavaScript (including jQuery and Popper.js) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5+zvK+2x4fF1wkG4ZbLegM5R/2DkP5SkkFV/DOOH"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-e8Fyo90HwZNAuOuGXoTLKzXDu+Po1SfajP6HTFeg5wALqU+HxFuNuVsmYekAjX6a"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0-alpha1/js/bootstrap.min.js"
+        integrity="sha384-NBVzQC3C1z5fV5wK6v8Vjo2R3MGw8gd/qzAcsu3+F7AJkSqwG8HDN7z6Uz2MW+M4"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

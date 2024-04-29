@@ -1,0 +1,329 @@
+<%- include("partials/header"); -%>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/property.css">
+
+
+    <div class="listing-detial-stater">
+        <div class="container d-lg-flex justify-content-between py-2 py-lg-3">
+            <div class="order-lg-2 mb-3 mb-lg-0 pt-lg-2"></div>
+            <div class="order-lg-1 pr-lg-4 text-center text-lg-left">
+                <h1 class="text-light">
+                    <%=title%>
+                </h1>
+                <h6 class="text-light" style="display: flex;justify-content: left;">
+                    Published At
+                    <%=date%>
+                </h6>
+            </div>
+        </div>
+    </div>
+
+    <div class="listing-info-content">
+        <div class="container">
+            <div class="main-dis-area">
+                <div class="row justify-content-center"> <!-- Center the content horizontally -->
+                    <div class="col-lg-8 pt-2 pt-lg-4 pb-4 mb-lg-3">
+                        <div class="pt-2 pr-lg-0 padding-left-30">
+                            <div class="myflex flexslider mb-0">
+                                <div class="slider-container">
+                                    <div class="slider">
+                                        <!-- <div class="slider-images">
+                                            <img src="../images/central1-min.webp" alt="Image 1"
+                                                class="slider-image active">
+                                            <img src="../images/central2min.webp" alt="Image 2" class="slider-image">
+                                            <img src="../images/central3min.webp" alt="Image 3" class="slider-image">
+                                            <img src="../images/central4min.webp" alt="Image 4" class="slider-image">
+                                        </div> -->
+
+
+
+                                        <div class="slider-images">
+                                            
+                                                <img src="/uploads/<%= image %>" alt="Image"
+                                                    class="slider-image"
+                                                    style="max-height: 500px;">
+                        
+                                        </div>
+
+
+
+
+                                        <div class="slider-controls">
+                                            <button class="prev-button">&ltcc;</button>
+                                            <button class="next-button">&gtcc;</button>
+                                        </div>
+                                    </div>
+                                    <div class="preview-container">
+                                        <!-- <div class="preview-images">
+                                            <img src="../images/central1-min.webp" alt="Image 1"
+                                                class="preview-image active">
+                                            <img src="../images/central2min.webp" alt="Image 2" class="preview-image">
+                                            <img src="../images/central3min.webp" alt="Image 3" class="preview-image">
+                                            <img src="../images/central4min.webp" alt="Image 4" class="preview-image">
+                                        </div> -->
+
+
+
+                                   
+
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-12">
+                        <div class="custom-sidebar-padding h-100 ml-auto border-left">
+                            <div class="gform_heading">
+                                <h2 class="gform_title">
+                                    Enquiry Form
+                                </h2>
+                                <form action="/processform" method="post">
+                                    <input type="text" name="name" id="" class="name f1" placeholder="Name" required>
+
+
+                                    <input type="text" name="email" id="" class="email f1" placeholder="Email" required>
+                                    <input type="text" name="contactnumber" class="pno f1" placeholder="Phone No."
+                                        required>
+
+                                    <textarea name="message" id="" cols="30" rows="6" class="textA" required></textarea>
+
+                                    <button type="submit" class="submitf1">Submit</button><br>
+                                    <!-- <button type="submit" class="submitf2">Whatsapp</button> -->
+                                    </label>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="special-features">
+                    <div class="slide-property-first">
+                        <div class="row"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="listing-ext-content property-6">
+
+                <div class="row">
+                    <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
+                        <div class="make-me-white">
+                            <div class="widget-seprator">
+                                <div class="widget-seprator-heading">
+                                    <h2 class="sec-title"><i class="fas fa-rss"></i> <%=headings[0]%></h2>
+                                </div>
+                                <div class="post-excerpt post-desc">
+                                    <div data-elementor-type="wp-post" data-elementor-id="3496"
+                                        class="elementor elementor-3496" data-elementor-settings="[]">
+                                        <div class="elementor-section-wrap">
+                                            <section data-particle_enable="false" data-particle-mobile-disabled="false"
+                                                class="elementor-section elementor-top-section elementor-element elementor-element-629aacb9 elementor-section-boxed elementor-section-height-default elementor-section-height-default"
+                                                data-id="629aacb9" data-element_type="section">
+                                                <div class="elementor-container elementor-column-gap-default">
+                                                    <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-19602b7c"
+                                                        data-id="19602b7c" data-element_type="column">
+                                                        <div class="elementor-widget-wrap elementor-element-populated">
+                                                            <div class="elementor-element elementor-element-6c9d6c9c elementor-widget elementor-widget-text-editor"
+                                                                data-id="6c9d6c9c" data-element_type="widget"
+                                                                data-widget_type="text-editor.default">
+                                                                <div class="elementor-widget-container">
+
+                                                                    <p style="text-align: justify;"><span><span>
+                                                                                <%=content[0]%>
+                                                                            </span></span></p> <br>
+                                                                    <div class="widget-seprator-heading">
+                                                                        <h2 class="sec-title"> <%=headings[1]%></h2>
+                                                                    </div>
+                                                                    <p style="text-align: justify;"><span><span>
+                                                                        <%=content[1]%>
+                                                                    </span></span></p> <br>
+                                                                    <div class="widget-seprator-heading">
+                                                                        <h2 class="sec-title"> <%=headings[2]%></h2>
+                                                                    </div>
+
+                                                                    <p style="text-align: justify;"><span><span>
+                                                                        <%=content[2]%>
+                                                                    </span></span></p> <br>
+                                                                    <div class="widget-seprator-heading">
+                                                                        <h2 class="sec-title"> <%=headings[3]%></h2>
+                                                                    </div>
+
+                                                                    <p style="text-align: justify;"><span><span>
+                                                                        <%=content[3]%>
+                                                                    </span></span></p> <br>
+                                                                    <div class="widget-seprator-heading">
+                                                                        <h2 class="sec-title"> <%=headings[4]%></h2>
+                                                                    </div>
+
+                                                                    <p style="text-align: justify;"><span><span>
+                                                                        <%=content[4]%>
+                                                                    </span></span></p> <br>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </section>
+                                            <section data-particle_enable="false" data-particle-mobile-disabled="false"
+                                                class="elementor-section elementor-top-section elementor-element elementor-element-f8557a8 elementor-section-boxed elementor-section-height-default elementor-section-height-default"
+                                                data-id="f8557a8" data-element_type="section">
+                                                <div class="elementor-container elementor-column-gap-default">
+                                                    <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-f6abd07"
+                                                        data-id="f6abd07" data-element_type="column">
+                                                        <div class="elementor-widget-wrap elementor-element-populated">
+                                                            <div class="elementor-element elementor-element-3ca4f66 elementor-aspect-ratio-169 elementor-widget elementor-widget-video"
+                                                                data-id="3ca4f66" data-element_type="widget"
+                                                                data-settings="{&quot;youtube_url&quot;:&quot;https:\/\/www.youtube.com\/watch?v=MEnVtH3j1AI&quot;,&quot;loop&quot;:&quot;yes&quot;,&quot;video_type&quot;:&quot;youtube&quot;,&quot;controls&quot;:&quot;yes&quot;,&quot;aspect_ratio&quot;:&quot;169&quot;}"
+                                                                data-widget_type="video.default">
+                                                                <div class="elementor-widget-container">
+                                                                    <div
+                                                                        class="elementor-wrapper elementor-fit-aspect-ratio elementor-open-inline">
+                                                                        <iframe class="elementor-video" frameborder="0"
+                                                                            allowfullscreen="1"
+                                                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                                                            title="Dwarka Expressway New Projects Details Luxury Flats In Gurgaon 8888-782-782"
+                                                                            width="640" height="360"
+                                                                            src="https://www.youtube.com/embed/<%=youtube%>?controls=1&amp;rel=0&amp;playsinline=0&amp;modestbranding=0&amp;autoplay=0&amp;enablejsapi=1&amp;origin=https%3A%2F%2Fwww.urbanplus.co.in&amp;widgetid=1"
+                                                                            id="widget2"
+                                                                            data-gtm-yt-inspected-6="true"></iframe>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </section>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="socials-link">
+                                    <ul class="list-unstyled f-size-14">
+                                        <li class="list-inline-item f-size-14 "><a class="clr-fb"
+                                                href="https://www.facebook.com/PropriseHomes" target="_blank"><i
+                                                    class="fab fa-facebook-f"></i>Facebook </a></li>
+                                        <!-- <li class="list-inline-item f-size-14"><a class="clr-twitter"
+                                                    href="https://twitter.com/share?url=https://www.urbanplus.co.in/property/elan-thepresidential-dwarkaexpressway-sector106-gurugram/&amp;text=Elan+The+Presidential&amp;hashtags=Urbanplus Child"
+                                                    target="_blank"><i class="fab fa-twitter"></i> Twitter </a></li> -->
+                                        <li class="list-inline-item f-size-14"><a class="clr-linkin"
+                                                href="https://www.linkedin.com/company/14372659/admin/"
+                                                target="_blank"><i class="fab fa-linkedin-in"></i> LinkedIn </a>
+                                        </li>
+                                        <!-- <li class="list-inline-item f-size-14"><a class="clr-pinterest"
+                                                    href="https://pinterest.com/pin/create/button/?url=https://www.urbanplus.co.in/property/elan-thepresidential-dwarkaexpressway-sector106-gurugram/&amp;media=&amp;description=Elan+The+Presidential"
+                                                    target="_blank"><i class="fab fa-pinterest-p"></i>Pinterest </a> -->
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="widget-seprator clearfix">
+
+                            </div>
+                            <!--  -->
+                            <div class="widget-seprator similar-listings">
+                                <div class="widget-seprator-heading">
+                                    <h3 class="sec-title"><i class="fas fa-list-ol"></i> Similar Blogs</h3>
+                                </div>
+                                <div class="my-similar-listings">
+                                    <% for (const blog of similarBlogs) { %>
+                                        <div class="main-div margin-bottom-30">
+                                            <a href="/blogs/<%=blog._id%>">
+                                                <div class="row no-gutters">
+                                                    <div class="col-sm-12 col-md-5 col-lg-5 col-12">
+
+                                                        <div class="main-data ">
+                                                            <div class="img-data">
+                                                                <div class="my-prop-img p-relative">
+                                                                    <a href="/blogs/<%=blog._id%>"><img
+                                                                            src="/uploads/<%= blog.image %>"
+                                                                            alt="" class="img-fluid"></a>
+                                                                    <div class="img-overlay"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-7 col-lg-7 col-12">
+                                                        <div class="listing-data d-flex  h-100">
+
+                                                            <div class="heaing-d align-self-center">
+                                                                <div class="prop-cat">
+                                                                     
+                                                                        <%= blog.date %>
+                                                                   
+                                                                </div>
+                                                                <h3 class="text-capitalize mb-2">
+                                                                    <a href="/blogs/<%=blog._id%>" class="clr-black">
+                                                                        <%= blog.title %>
+                                                                    </a>
+                                                                </h3>
+
+
+                                                                <div class="home-amenties-features">
+
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                        <% } %>
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 ">
+                        <div class="single-sidebar">
+                            <!-- <div class="sidebar-widget-seprator">
+                                <div class="sidebar-widget-header">
+                                    <h4>Featured Projects</h4>
+                                </div>
+                                <div class="sidebar-widget-body">
+                                    <div class="widget-inner-container">
+                                    </div>
+                                </div>
+                            </div> -->
+                            <div class="sidebar-widget-seprator">
+                                <div class="sidebar-widget-header">
+                                    <h4>Recent Blogs</h4>
+                                </div>
+                                <div class="sidebar-widget-body">
+                                    <ul class="widget-inner-container recently-added">
+                                        <% for (const blog of recentBlogs) { %>
+                                            <li>
+                                                <div class="recently-added-img"><a href="/blogs/<%=blog._id%>">
+                                                        <img class="img-fluid" src="/uploads/<%= blog.image %>"
+                                                            alt="">
+                                                    </a>
+                                                </div>
+                                                <div class="recently-added-desc">
+                                                    <h4><a href="/blogs/<%=blog._id%>">
+                                                            <%= blog.title %>
+                                                        </a></h4>
+
+                                                </div>
+                                            </li>
+                                            <% } %>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+        <%- include("partials/footer"); -%>

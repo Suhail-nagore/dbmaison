@@ -16,6 +16,7 @@ const Post = require("./models/posts.js");
 const Form = require("./models/formdb.js");
 const About = require("./models/about.js");
 const Testi = require("./models/testimonials.js")
+const Blog = require("./models/blog.js")
 app.set("view engine", "ejs");
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -880,7 +881,178 @@ app.put('/delist-testimonial/:id', (req, res) => {
 
 
 
+app.get("/blog-list", requireAuth, function (req, res) {
+  Blog.find({}).sort({createdAt:-1})
+      .then(blogs => {
+          res.render("blog-list", { blogs: blogs });
+      })
+      .catch(err => {
+          console.error(err);
+          res.status(500).send("Internal Server Error");
+      });
+});
 
+
+app.get("/add-blog", requireAuth, function (req, res) {
+  res.render("add-blog");
+});
+
+app.post("/compose-blog", upload.single("image"), function (req, res) {
+  // Check if file was uploaded
+  if (!req.file) {
+    return res.status(400).send("Please upload an image.");
+  }
+
+  // Extract data from the request body
+  const { title, headings, content, youtube } = req.body;
+
+  // Extract filename of uploaded image
+  const imageFilename = req.file.filename;
+
+  // Create a new Blog document using the data
+  const blog = new Blog({
+    title,
+    content,
+    youtube,
+    headings,
+    image: imageFilename,
+    createdAt: new Date(),
+    updatedAt: new Date()
+  });
+
+  // Save the new blog document to the database
+  blog.save()
+    .then(() => {
+      res.redirect("/dasboard"); // Redirect to home page after successful submission
+    })
+    .catch((err) => {
+      console.error(err);
+      // Handle the error appropriately, e.g., by sending an error response
+      res.status(500).send("Internal Server Error");
+    });
+});
+
+
+app.get("/blogs", function (req, res) {
+  Blog.find({})
+    .sort({ createdAt: -1 }) // Sort by signature value in descending order
+    .then((blogs) => {
+      res.render("blogs", {
+        blogs: blogs,
+        images: blogs.image,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).send("Internal Server Error");
+    });
+});
+
+
+app.get("/blogs/:blogId", async function (req, res) {
+  try {
+    const requestedBlogId = req.params.blogId;
+    const blog = await Blog.findOne({ _id: requestedBlogId });
+    
+    if (blog) {
+      // Fetch three random blogs of the same type
+      const similarBlogs = await Blog.aggregate([
+        { $sample: { size: 3 } }
+      ]);
+
+      // Fetch three recent blogs
+      const recentBlogs = await Blog.find({}).sort({ createdAt: -1 }).limit(3);
+
+      res.render("blog", {
+        title: blog.title,
+        date: blog.createdAt.toDateString(),
+        headings:blog.headings,
+        content: blog.content,
+        image: blog.image,
+        youtube: blog.youtube,
+        similarBlogs: similarBlogs, // Pass the similar blogs array to the template
+        recentBlogs: recentBlogs // Pass the recent blogs array to the template
+      });
+    } else {
+      res.status(404).render("error", { message: "Blog not found" });
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).render("error", { message: "Internal Server Error" });
+  }
+});
+
+app.get("/edit-blog/:blogId", requireAuth, function (req, res) {
+  const blogId = req.params.blogId; // Corrected parameter name
+  // Fetch the blog by its ID
+  Blog.findOne({ _id: blogId })
+    .then((blog) => {
+      if (blog) {
+        res.render("edit-blog", { blog: blog }); // Updated view name
+      } else {
+        res.status(404).render("error", { message: "Blog not found" }); // Updated error message
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).render("error", { message: "Internal Server Error" });
+    });
+});
+
+
+app.post(
+  "/update-blog/:blogId",
+  requireAuth,
+  upload.single("image"),
+  function (req, res) {
+    const blogId = req.params.blogId;
+    const updatedData = req.body;
+
+    // Check if a new image was uploaded
+    if (req.file) {
+      updatedData.image = req.file.filename;
+    } else {
+      // No new image uploaded, keep the existing one
+      const existingImage = req.body.existingImage;
+      if (existingImage) {
+        updatedData.image = existingImage;
+      }
+    }
+
+    // Find and update the blog by its ID
+    Blog.findOneAndUpdate({ _id: blogId }, updatedData, { new: true })
+      .then((updatedBlog) => {
+        if (updatedBlog) {
+          res.redirect("/blogs/" + blogId); // Redirect to the updated blog page
+        } else {
+          res.status(404).send("error", { message: "Blog not found" });
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        res.status(500).render("error", { message: "Internal Server Error" });
+      });
+  }
+);
+
+
+app.post("/delete-blog/:blogId", requireAuth, async (req, res) => {
+  try {
+    const blogId = req.params.blogId;
+    
+    // Implement logic to verify user authentication, if required
+    
+    // Find the blog by ID and delete it
+    const deletedBlog = await Blog.findByIdAndDelete(blogId);
+    
+    if (deletedBlog) {
+      res.status(200).redirect("/blog-list");
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
+});
 
 
 
