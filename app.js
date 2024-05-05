@@ -11,6 +11,7 @@ const session = require("express-session");
 const MongoStore = require('connect-mongo');
 const fs = require("fs");
 const app = express();
+const nodemailer = require('nodemailer');
 const methodOverride = require("method-override");
 const Post = require("./models/posts.js");
 const Form = require("./models/formdb.js");
@@ -31,6 +32,16 @@ app.use(
     store: new MongoStore({ mongoUrl: process.env.MONGO_URI, }),
   })
 );
+
+const transporter = nodemailer.createTransport({
+  host: 'smtp.hostinger.com', // Hostinger SMTP server
+  port: 587, // SMTP port
+  secure: false, // false for other ports
+  auth: {
+    user: 'info@maisoninfratech.in', // your Hostinger email address
+    pass: 'Maison@123456' // your Hostinger email password
+  }
+});
 
 function requireAuth(req, res, next) {
   if (req.session.isAuthenticated) {
@@ -650,6 +661,33 @@ app.post("/delete/:projectId", requireAuth, function (req, res) {
 
 // ========================= form handling route======================================================
 
+// app.post("/processform", function (req, res) {
+//   // Access form data from the request body
+//   const { name, email, contactnumber, message } = req.body;
+
+//   // Create a new FormSubmission document with the form data
+//   const formSubmission = new Form({
+//     name,
+//     email,
+//     Number:contactnumber,
+//     message,
+//   });
+  
+
+//   // Save the form submission to the database
+//   formSubmission
+//     .save()
+//     .then(() => {
+//       // Form data saved successfully
+//       res.render("success");
+//     })
+//     .catch((error) => {
+//       // Handle any errors, e.g., by sending an error response
+//       console.error(error);
+//       res.status(500).send("Internal Server Error");
+//     });
+// });
+
 app.post("/processform", function (req, res) {
   // Access form data from the request body
   const { name, email, contactnumber, message } = req.body;
@@ -658,17 +696,31 @@ app.post("/processform", function (req, res) {
   const formSubmission = new Form({
     name,
     email,
-    Number:contactnumber,
+    contactnumber,
     message,
   });
-  
 
   // Save the form submission to the database
-  formSubmission
-    .save()
+  formSubmission.save()
     .then(() => {
-      // Form data saved successfully
-      res.render("success");
+      // Define the email content
+      const mailOptions = {
+        from: 'info@maisoninfratech.in',
+        to: 'testmail@maisoninfratech.in', // recipient's email address
+        subject: 'Form Submission from your website',
+        text: `Name: ${name}\nEmail: ${email}\nContact Number: ${contactnumber}\nMessage: ${message}`
+      };
+
+      // Send the email
+      transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+          console.error(error);
+          res.status(500).send("Internal Server Error");
+        } else {
+          // console.log('Email sent: ' + info.response);
+          res.render("success");
+        }
+      });
     })
     .catch((error) => {
       // Handle any errors, e.g., by sending an error response
