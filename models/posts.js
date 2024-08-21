@@ -12,6 +12,8 @@ const postSchema = new mongoose.Schema({
     features: [String],
     images: [String],
     signature:Number,
+    metatitle:String,
+    metades:String,
     state: {
       type: Boolean,
       default: true,

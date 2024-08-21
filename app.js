@@ -381,6 +381,8 @@ app.post("/compose", upload.array("image", 10), function (req, res) {
     mapV, // Latitude
     mapH, // Longitude
     type,
+    metatitle,
+    metades,
   } = req.body;
 
   // Store filenames of uploaded images
@@ -410,6 +412,8 @@ app.post("/compose", upload.array("image", 10), function (req, res) {
         mapV, // Latitude
         mapH, // Longitude
         type,
+        metatitle,
+        metades,
         signature: newSignature, // Assign the new signature
         images: imageFilenames, // Store filenames in the images array
       });
@@ -457,6 +461,8 @@ app.get("/posts/:postId", async function (req, res) {
         maplongi: post.mapH,
         type: post.type,
         features: post.features,
+        metatitle:post.metatitle,
+        metades: post.metades,
         similarProjects: similarProjects, // Pass the similar projects array to the template
         recentProjects: recentProjects // Pass the recent projects array to the template
       });
