@@ -1,4 +1,5 @@
 <%- include("partials/header"); -%>
+<%- include("partials/navbar"); -%>
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <style>
         /* Set fixed dimensions for slider container */
@@ -29,6 +30,45 @@
             height: auto;
             /* Ensure image height fits inside slide */
         }
+        .carousel-container {
+    position: relative;
+}
+
+.carousel-container h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    color: white;
+    text-align: center;
+    width: 80%;
+    font-size: 3rem; 
+}
+
+.carousel-inner .c-item img {
+    height: inherit;
+    max-height: 704px; /
+}
+/* Mobile Friendly Adjustments */
+@media (max-width: 768px) {
+    .carousel-container h1 {
+        font-size: 2rem; /* Smaller font size for tablets and mobile */
+        top: 40%;
+    }
+    .mobb{
+        font-size: 5px;
+    }
+  
+
+}
+
+@media (max-width: 480px) {
+    .carousel-container h1 {
+        font-size: 1.5rem; /* Even smaller font size for small mobile devices */
+    }
+}
+
     </style>
 
 
@@ -40,29 +80,32 @@
             <button type="button" data-bs-target="#hero-carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
         </div>
 
-        <div class="carousel-inner">
-            <div class="carousel-item active c-item">
-                <img src="./images/c1min.webp" class="d-block w-100 c-img" alt="Slide 1" />
-                <div class="carousel-caption d-md-block">
-                    <h5 style="color: white;">Incredible deals on prime commercial properties</h5>
-                    <!-- <p>Contact for more</p> -->
-                </div>
-            </div>
-            <div class="carousel-item c-item">
-                <img src="./images/c9min.webp" class="d-block w-100 c-img" alt="Slide 2" />
-                <div class="carousel-caption d-md-block">
-                    <h5 style="color: white;">Assured return properties at a discounted price</h5>
-                    <!-- <p>Contact for more</p> -->
-                </div>
-            </div>
-            <div class="carousel-item c-item">
-                <img src="./images/c16min.webp" class="d-block w-100 c-img" alt="Slide 3" />
-                <div class="carousel-caption d-md-block">
-                    <h5 style="color: white;">Get unbeatable deals on properties in Gurgaon!</h5>
-                    <!-- <p>Contact for more</p> -->
+        <div class="carousel-container">
+            <h1>Expert Real Estate Consultancy in Gurgaon</h1>
+            <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active c-item">
+                        <img src="./images/prime-commercial-property-deals-gurgaon.webp" class="d-block w-100 c-img" alt="Prime Commercial Property Deals in Gurgaon" />
+                        <div class="carousel-caption d-md-block">
+                            <h5 style="color: white;">Incredible deals on prime commercial properties</h5>
+                        </div>
+                    </div>
+                    <div class="carousel-item c-item">
+                        <img src="./images/assured-return-properties-discounted-prices.webp" class="d-block w-100 c-img" alt="Assured Return Properties at Discounted Prices" />
+                        <div class="carousel-caption d-md-block">
+                            <h5 style="color: white;">Assured return properties at a discounted price</h5>
+                        </div>
+                    </div>
+                    <div class="carousel-item c-item">
+                        <img src="./images/unbeatable-property-deals-gurgaon.webp" class="d-block w-100 c-img" alt="Unbeatable Property Deals in Gurgaon" />
+                        <div class="carousel-caption d-md-block">
+                            <h5 style="color: white;">Get unbeatable deals on properties in Gurgaon!</h5>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+        
         <button class="carousel-control-prev" type="button" data-bs-target="#hero-carousel" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
@@ -96,55 +139,59 @@
     <section id="partners">
         <div class="container">
             <div class="container dev">
-                <h2 class="latest" style="color: white;">Developers</h2>
+                <h2 class="latest" style="color: white;">Top Real Estate Developers</h2>
             </div>
         </div>
         <div class="partner-carousel">
             <div class="container">
                 <div class="row">
+                    <p style="color: white; text-align: center;" class="mobb">
+                        Maison Infratech proudly partners with top real estate developers like DLF, Emaar, and others to bring you the best properties in Gurgaon. Our collaboration ensures that you get exclusive access to premium projects and unparalleled investment opportunities.
+                    </p>
+                    
                     <div class="carousel-wrapper">
                         <div class="carousel1">
                             <div class="slide">
-                                <img class="part-img" src="images/dlf-india-logo.png" alt="" />
+                                <img class="part-img" src="images/dlf-india-real-estate-developer-logo.png" alt="DLF India - Leading Real Estate Developer" />
                             </div>
                             <div class="slide1">
-                                <img class="part-img" src="images/emaar-logo.png" alt="" />
+                                <img class="part-img" src="images/emaar-real-estate-developer-logo.png" alt="Emaar - Premium Real Estate Developer" />
                             </div>
                             <div class="slide1">
-                                <img class="part-img" src="images/Elan-logo.png" alt="" />
+                                <img class="part-img" src="images/Elan-real-estate-developer-logo.png" alt="Elan - Best Real Estate Developer" />
                             </div>
                             <div class="slide1">
-                                <img class="part-img" src="images/M3M-1.png" alt="" />
+                                <img class="part-img" src="images/M3M-real-estate-developer-logo.png" alt="M3M - Real Estate Developer" />
                             </div>
                             <div class="slide1">
-                                <img class="part-img" src="images/AIPL-1.png" alt="" />
+                                <img class="part-img" src="images/AIPL-real-estate-developer-logo.png" alt="AIPL - Real Estate Developer" />
                             </div>
                             <div class="slide1">
-                                <img class="part-img" src="images/Central-Park-1.png" alt="" />
+                                <img class="part-img" src="images/Central-Park-real-estate-developer-logo.png" alt="Central Park - Real Estate Developer" />
                             </div>
                             <div class="slide1">
-                                <img class="part-img" src="images/Conscient-1.png" alt="" />
+                                <img class="part-img" src="images/Conscient-real-estate-developer-logo.png" alt="Conscient - Real Estate Developer" />
                             </div>
                             <div class="slide1">
-                                <img class="part-img" src="images/Godrej-Properties-1.png" alt="" />
+                                <img class="part-img" src="images/Godrej-Properties-real-estate-developer-logo.png" alt="Godrej - Real Estate Developer" />
                             </div>
                             <div class="slide1">
-                                <img class="part-img" src="images/Omaxe-1.png" alt="" />
+                                <img class="part-img" src="images/Omaxe-real-estate-developer-logo.png" alt="Omaxe - Real Estate Developer " />
                             </div>
                             <div class="slide1">
-                                <img class="part-img" src="images/M3M-1.png" alt="" />
+                                <img class="part-img" src="images/M3M-real-estate-developer-logo.png" alt="M3M - Real Estate Developer" />
                             </div>
                             <div class="slide1">
-                                <img class="part-img" src="images/Smartworld-2.png" alt="" />
+                                <img class="part-img" src="images/Smartworld-real-estate-developer-logo.png" alt="Smartworld - Real Estate Developer" />
                             </div>
                             <div class="slide1">
-                                <img class="part-img" src="images/SS-Group-1.png" alt="" />
+                                <img class="part-img" src="images/SS-Group-real-estate-developer-logo.png" alt="SS Group - Real Estate Developer" />
                             </div>
                             <div class="slide1">
-                                <img class="part-img" src="images/Tata-Housing-1.png" alt="" />
+                                <img class="part-img" src="images/Tata-Housing-real-estate-developer-logo.png" alt="Tata - Real Estate Developer" />
                             </div>
                             <div class="slide1">
-                                <img class="part-img" src="images/Vatika-1.png" alt="" />
+                                <img class="part-img" src="images/Vatika-real-estate-developer-logo.png" alt="Vatika - Real Estate Developer" />
                             </div>
                         </div>
                     </div>
@@ -160,7 +207,11 @@
             <div class="row">
                 <div class="col text-center">
                     <div class="sec-head mx-auto">
-                        <h2 class="latest">Latest Projects</h2>
+                        <h2 class="latest">Latest Real Estate Projects in Gurgaon</h2>
+                        <p class="text-center">
+                            Explore our latest real estate projects in Gurgaon, featuring luxurious apartments, commercial spaces, and more. 
+                        </p>
+                        
                     </div>
                 </div>
             </div>
@@ -172,7 +223,7 @@
                                 <div class="main-data">
                                     <div class="img-data">
                                         <a class="clr-black" href="/posts/<%=post._id%>">
-                                            <img src="/uploads/<%= post.images[0] %>" alt="" />
+                                            <img src="/uploads/<%= post.images[0] %>" alt="<%=post.title%> - Real Estate Project in Gurgaon" />
                                         </a>
                                     </div>
                                 </div>
@@ -200,16 +251,12 @@
 
     <section id="aboutdiv">
         <div class="container ab-head">
-            <h2 class="a-head">About Maison Infra</h2>
+            <h2 class="a-head">About Maison Infratech - Leading Real Estate Advisor in Gurgaon</h2>
         </div>
         <div class="container ab-para">
             <p class="a-para">
-                MAISON INFRA is an independent real estate advisor presence across
-                Delhi-NCR. We possess huge on-field experience and knowledge of the
-                real estate sector and aspire to be your first point of connection if
-                you want to buy a property in India. Led by a group of dynamic and
-                visionary investors, Maison Infra aims to utilize its vast knowledge of
-                the real estate sector to help those looking to buy or Sell Property.
+                Maison Infratech is a premier real estate advisory firm serving Gurgaon. With extensive experience and in-depth knowledge of the real estate market, we are dedicated to helping you find the perfect property in Gurgaon. Our team of experienced and visionary professionals provides expert guidance for both buying and selling properties. Discover unparalleled service and expert advice with Maison Infratech.
+
             </p>
         </div>
         <div class="container counter">
@@ -217,7 +264,7 @@
                 <div class="row">
                     <div class="col-sm-6 col-lg-3 margin-bottom-30 counter-inner">
                         <span>
-                            <img class="img-fluid" src="images/1-1.png" alt="" />
+                            <img class="img-fluid" src="images/real-estate-properties.png" alt="Real Estate Properties" />
                         </span>
                         <div class="min-count">
                             <b>
@@ -229,7 +276,7 @@
                     </div>
                     <div class="col-sm-6 col-lg-3 margin-bottom-30 counter-inner">
                         <span>
-                            <img class="img-fluid" src="images/2-1.png" alt="" />
+                            <img class="img-fluid" src="images/real-estate_experince.png" alt="Years of Experince in Real estate" />
                         </span>
                         <div class="min-count">
                             <b>
@@ -241,7 +288,7 @@
                     </div>
                     <div class="col-sm-6 col-lg-3 margin-bottom-30 counter-inner">
                         <span>
-                            <img class="img-fluid" src="images/3-1.png" alt="" />
+                            <img class="img-fluid" src="images/real-estate-team.png" alt=" Real Estate Expert Team" />
                         </span>
                         <div class="min-count">
                             <b>
@@ -253,7 +300,7 @@
                     </div>
                     <div class="col-sm-6 col-lg-3 margin-bottom-30 counter-inner">
                         <span>
-                            <img class="img-fluid" src="images/4-1.png" alt="" />
+                            <img class="img-fluid" src="images/happy-customers.png" alt="Real Estate Happy Customers" />
                         </span>
                         <div class="min-count">
                             <b>
@@ -286,9 +333,9 @@
     </div>
 
     <section id="pro-type">
-        <div class="container">
+        
             <div class="container">
-                <div class="container p-head">
+                <div class=" p-head">
                     <h2 class="pro-head">Property Types</h2>
                 </div>
             </div>
@@ -296,21 +343,19 @@
                 <div class="property-container">
                     <div class="property">
                         <a href="/projects/commercial">
-                            <img src="images/commertialmainpag.jpg" alt="Property 1" />
-                        </a>
-                        <a href="/projects/commercial">
+                            <img src="images/commertial-properties.jpg" alt="Commercial Properties" />
+                       
                             <h3>Commercial Property</h3>
                         </a>
                     </div>
                     <div class="property">
-                        <a href="/projects/residential"><img src="images/resimainpage.webp" alt="Property 2" /></a>
-                        <a href="/projects/residential">
+                        <a href="/projects/residential"><img src="images/residential-properties.webp" alt="Residential Property - Main Image" />
                             <h3>Residential Property</h3>
                         </a>
                     </div>
                     <!-- Add more property items as needed -->
                 </div>
-            </div>
+            
         </div>
     </section>
 
@@ -318,16 +363,11 @@
 
     <section id="why">
         <div class="container why-head">
-            <div class="container why-left">
+            <div class="why-left">
                 <h3>Why Us</h3>
 
                 <p class="why-p why-left">
-                    Maison is a company that specializes in the acquisition,
-                    management and sale of high-end urban real estate properties. We
-                    believe in creating trust with our clients and being transparent
-                    with our dealings. This assures that each client has complete
-                    confidence in our abilities, and we look forward to exceeding their
-                    expectations.
+                    At Maison Infratech, we specialize in acquiring, managing, and selling premium real estate properties in Gurgaon and Delhi-NCR. Our commitment to transparency and client satisfaction sets us apart, ensuring you have complete confidence in our expertise. We strive to exceed expectations with our comprehensive real estate solutions.
                 </p>
             </div>
         </div>
@@ -341,8 +381,7 @@
                     <div class="sec-heading mx-auto">
                         <p class="testi-p">CLIENTS REVIEWS</p>
                         <h2 class="testi-h2">
-                            Satisfied Customers Are The Real Wealth Completing 10000+ Happy
-                            Customers
+                            Hear From Our Satisfied Customers: Over 10,000 Happy Clients!
                         </h2>
                     </div>
                 </div>
@@ -355,23 +394,14 @@
                                 <span class="overlay"></span>
 
                                 <div class="card-image">
-                                    <img src="images/testi1.jpeg" alt="" class="card-img" />
+                                    <img src="images/testi1.jpeg" alt="" class="Ashish Pandey testimonial photo" />
                                 </div>
                             </div>
 
                             <div class="card-content">
                                 <h2 class="name">Ashish Pandey</h2>
                                 <p class="description">
-                                    I was extremely impressed with the level of customer service provided by Maison
-                                    Infratech. From the
-                                    moment I contacted them, their agents were attentive, friendly, and always available
-                                    to
-                                    answer my
-                                    questions. They guided me in home-buying process with patience and professionalism,
-                                    making it a stress-free experience. I highly recommend Maison to anyone looking for
-                                    a
-                                    real estate firm
-                                    that truly cares about their clients.
+                                    I was extremely impressed with the customer service from Maison Infratech. Their agents were attentive, friendly, and always available. They guided me through the home-buying process with professionalism, making it a stress-free experience. Highly recommended for anyone looking for a dedicated real estate firm.
                                 </p>
 
                                 <!-- <button class="button">View More</button> -->
@@ -382,25 +412,14 @@
                                 <span class="overlay"></span>
 
                                 <div class="card-image">
-                                    <img src="images/testi2.jpeg" alt="" class="card-img" />
+                                    <img src="images/testi2.jpeg" alt="Rakesh Chawla testimonial photo" class="card-img" />
                                 </div>
                             </div>
 
                             <div class="card-content">
                                 <h2 class="name">Dr. Rakesh Chawla</h2>
                                 <p class="description">
-                                    I cannot thank the agents at Maison Infratech enough for their expertise and
-                                    dedication.
-                                    They knew the
-                                    local market inside out and provided me with valuable insights that helped me make
-                                    informed decisions.
-                                    Their attention to detail and thorough understanding of real estate transactions
-                                    were
-                                    impressive.
-                                    Thanks to their guidance, I found my dream home within weeks. Mr.Pankaj has a team
-                                    of
-                                    exceptional
-                                    agents you can trust.
+                                    Maison Infratech's expertise and dedication were remarkable. They provided valuable market insights and guided me to find my dream home quickly. Their attention to detail and understanding of transactions were impressive. Highly recommend their services for expert real estate guidance.
                                 </p>
 
                                 <!-- <button class="button">View More</button> -->
@@ -411,23 +430,14 @@
                                 <span class="overlay"></span>
 
                                 <div class="card-image">
-                                    <img src="images/testi3.jpeg" alt="" class="card-img" />
+                                    <img src="images/testi3.jpeg" alt="Abhisek Chikara testimonial photo" class="card-img" />
                                 </div>
                             </div>
 
                             <div class="card-content">
                                 <h2 class="name">Abhisek Chikara</h2>
                                 <p class="description">
-                                    Successful and Profitable Transactions: Hats off to Pankaj Ji for their outstanding
-                                    work! I listed my
-                                    property with them, and they managed to sell it within a few weeks at a price higher
-                                    than I expected.
-                                    Their negotiation skills are top-notch, and they made sure I got the best deal
-                                    possible.
-                                    I couldn't be
-                                    happier with the outcome. If you're looking for a real estate firm that delivers
-                                    results, look no
-                                    further than Maison Infratech.
+                                    Maison Infratech excelled in selling my property swiftly at a higher price than expected. Their negotiation skills were outstanding, and I am extremely satisfied with the outcome. For a results-driven real estate firm, Maison Infratech is the way to go.
                                 </p>
 
                                 <!-- <button class="button">View More</button> -->
