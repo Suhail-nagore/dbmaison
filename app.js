@@ -523,6 +523,41 @@ app.post('/listProject/:postId', async (req, res) => {
   }
 });
 
+// Search Search-bar 
+app.get('/projects/search', async (req, res) => {
+  const query = req.query.query || ''; // The search term
+  const category = req.query.category || 'all'; // The selected category (residential, commercial, or all)
+
+  try {
+      let searchCriteria = {};
+
+      // Apply category filter if not 'all'
+      if (category !== 'all') {
+          searchCriteria.type = category;
+      }
+
+      // Apply search query filter if provided
+      if (query) {
+          searchCriteria.$or = [
+              { title: { $regex: query, $options: 'i' } }, // Case-insensitive search in title
+              { content: { $regex: query, $options: 'i' } } // Case-insensitive search in content
+          ];
+      }
+
+      const posts = await Post.find(searchCriteria);
+      
+      // Determine if there are no results
+      const noResults = posts.length === 0;
+
+     // Pass a flag to the view if no results are found
+     res.render('projects', { posts, noResults });
+  } catch (error) {
+      console.error('Error fetching search results:', error);
+      res.status(500).send('Internal Server Error');
+  }
+});
+
+
 
 app.post('/delistProject/:postId', async (req, res) => {
   const postId = req.params.postId;

@@ -1,7 +1,90 @@
-<%- include("partials/header"); -%>
+<!DOCTYPE html>
+<head lang="en">
+    <meta charset="utf-8" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KS9SLJPS9N"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
+        gtag('config', 'G-KS9SLJPS9N');
+    </script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script>
+        function validateForm() {
+            var recaptchaResponse = grecaptcha.getResponse();
+            if (recaptchaResponse.length === 0) {
+                alert("Please complete the reCAPTCHA.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <script src="/js/loadmore.js"></script>
+    <link rel="icon" sizes="32x32" href="./images/favicon.png" type="image/png">
+    <link rel="icon" sizes="48x48" href="./images/favicon.png" type="image/png">
+    <link rel="icon" sizes="64x64" href="./images/favicon.png" type="image/png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+    <title>Maison Infratech - Real Estate Admin Dashboard</title>
+    <meta name="description" content="Maison Infratech's Admin Dashboard: Manage and oversee real estate operations, including residential and commercial property listings in Gurgaon.">
+    <meta name="keywords" content="real estate consultancy,real estate advisors, real estate realtor, Gurgaon real estate, property investment, buy luxury property, 3bhk flats, 2bhk flats, 4bhk flats, buy property in Gurgaon, Maison Infratech, Buy flat in gurgaon, gurgaon property prices" />
+    <link rel="canonical" href="https://maisoninfratech.in/" />
+    <meta property="og:title" content="Maison Infratech - Real Estate Admin Dashboard" />
+    <meta property="og:description" content="Maison Infratech's Admin Dashboard: Manage and oversee real estate operations, including residential and commercial property listings in Gurgaon." />
+    <meta property="og:url" content="https://maisoninfratech.in/" />
+    <meta property="og:image" content="https://maisoninfratech.in/images/maison-new-logo1.jpg" />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="alternate" hreflang="en" href="https://maisoninfratech.in/" />
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "RealEstateAgent",
+          "name": "Maison Infratech",
+          "url": "https://maisoninfratech.in/",
+          "logo": "https://maisoninfratech.in/images/maison-new-logo1.jpg",
+          "sameAs": [
+            "https://www.facebook.com/MaisonInfratechOfficial",
+            "https://www.instagram.com/maisoninfratechofficial/",
+            "https://in.linkedin.com/company/maison-infratech-pvt-ltd"
+          ],
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+91-9999156255",
+            "contactType": "Customer Service"
+          },
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Unit No. 610-617, Tower A Spaze 1 Tech Park Sohna Road Sector 49",
+            "addressLocality": "Gurgaon",
+            "addressRegion": "HR",
+            "postalCode": "122018",
+            "addressCountry": "IN"
+          }
+        }
+        </script>
+    <link rel="stylesheet" href="/css/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="/css/property.css">
+    <link rel="stylesheet" href="/css/index.css" />
+
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/intlTelInput.css">
+    <link rel="stylesheet" href="/css/intlTelInput.min.css">
+    <script src="https://kit.fontawesome.com/9c5eb2a5cc.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"></script>
+    <!-- <script src="js/loadMoreProjects.js"></script> -->
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
+</head>
+<%- include("partials/navbar"); -%>
 <div class="container">
     <h1 class="mt-5 mb-4 text-center">Edit Testimonial</h1>
     <div class="row justify-content-center">

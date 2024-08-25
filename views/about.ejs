@@ -1,4 +1,86 @@
-<%- include("partials/header"); -%>
+<!DOCTYPE html>
+<head lang="en">
+    <meta charset="utf-8" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KS9SLJPS9N"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-KS9SLJPS9N');
+    </script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script>
+        function validateForm() {
+            var recaptchaResponse = grecaptcha.getResponse();
+            if (recaptchaResponse.length === 0) {
+                alert("Please complete the reCAPTCHA.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <script src="/js/loadmore.js"></script>
+    <link rel="icon" sizes="32x32" href="./images/favicon.png" type="image/png">
+    <link rel="icon" sizes="48x48" href="./images/favicon.png" type="image/png">
+    <link rel="icon" sizes="64x64" href="./images/favicon.png" type="image/png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+    <title>About Maison Infratech - Top Real Estate Experts in Gurgaon</title>
+    <meta name="description" content="Learn about Maison Infratech, your trusted real estate experts in Gurgaon.Explore our mission, values, and how we can help you find the perfect property">
+    <meta name="keywords" content="real estate experts, Maison Infratech, Gurgaon real estate, property consultancy, real estate agents in Gurgaon, about Maison Infratech" />
+    <link rel="canonical" href="https://maisoninfratech.in/blogs" />
+    <meta property="og:title" content="About Maison Infratech - Top Real Estate Experts in Gurgaon" />
+    <meta property="og:description" content="Learn about Maison Infratech, your trusted real estate experts in Gurgaon.Explore our mission, values, and how we can help you find the perfect property." />
+    <meta property="og:url" content="https://maisoninfratech.in/blogs" />
+    <meta property="og:image" content="https://maisoninfratech.in/images/maison-new-logo1.jpg" />
+    <meta name="robots" content="index, follow" />
+    <link rel="alternate" hreflang="en" href="https://maisoninfratech.in/blogs" />
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "Maison Infratech",
+            "url": "https://maisoninfratech.in/about",
+            "logo": "https://maisoninfratech.in/images/maison-new-logo1.jpg",
+            "sameAs": [
+              "https://www.facebook.com/MaisonInfratechOfficial",
+              "https://www.instagram.com/maisoninfratechofficial/",
+              "https://in.linkedin.com/company/maison-infratech-pvt-ltd"
+            ],
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "telephone": "+91-9999156255",
+              "contactType": "Customer Service"
+            },
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Unit No. 610-617, Tower A Spaze 1 Tech Park Sohna Road Sector 49",
+              "addressLocality": "Gurgaon",
+              "addressRegion": "HR",
+              "postalCode": "122018",
+              "addressCountry": "IN"
+            }
+          }          
+        </script>
+    <link rel="stylesheet" href="/css/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="/css/property.css">
+    <link rel="stylesheet" href="/css/index.css" />
+
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/intlTelInput.css">
+    <link rel="stylesheet" href="/css/intlTelInput.min.css">
+    <script src="https://kit.fontawesome.com/9c5eb2a5cc.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"></script>
 <link rel="stylesheet" href="css/aboutus.css" />
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 <style>
@@ -26,13 +108,15 @@
         height: auto; /* Ensure image height fits inside slide */
     }
 </style>
+</head>
+<%- include("partials/navbar"); -%>
 
 <section id="img1">
     <div class="container">
         <div class="heading">
-            <h2>
-                About Us
-            </h2>
+            <h1>
+                Discover Maison Infratech
+            </h1>
         </div>
     </div>
 </section>
@@ -46,56 +130,36 @@
                         <div class="video-top">
                             <div class="about-video">
                                 <div class="video-1">
-                                    <img decoding="async" src="./images/emaar3min.webp" class="img-fluid" alt="">
+                                    <img decoding="async" src="./images/emaar3min.webp" class="img-fluid" alt="Maison Infratech Office">
                                 </div>
                                 <div class="video-2">
-                                    <img class="img-fluid" src="./images/SW-113-3min.webp" alt="">
+                                    <img class="img-fluid" src="./images/SW-113-3min.webp" alt="Maison Infratech Team">
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-9 mx-lg-auto col-xl-6">
                         <div class="about-content">
-                            <h3>Welcome To <span class="clr-theme">Maison Infratech</span></h3>
-                            <p>Welcome to Maison Infratech, your trusted partner in real estate services!
-                                At Maison Infratech, we understand the significance of finding the perfect property,
-                                whether it's a dream home or a lucrative investment opportunity. With our extensive
-                                experience and unwavering commitment to excellence, we strive to provide exceptional
-                                real estate solutions tailored to your unique needs.</p>
-                            <p>Our company is built on a foundation of professionalism, integrity, and a deep
-                                understanding of the local real estate market. We take pride in our team of
-                                dedicated and knowledgeable professionals who are passionate about helping clients
-                                achieve their real estate goals.</p>
-                            <p>Whether you are a first-time homebuyer, a seasoned investor, or looking to sell your
-                                property, our comprehensive range of services caters to every aspect of your real
-                                estate journey. From property search and evaluation to negotiation and closing, we
-                                are here to guide you every step of the way.
+                            <h2>About <span class="clr-theme">Maison Infratech</span></h2>
+                            <p>Welcome to Maison Infratech, your trusted real estate experts in Gurgaon. We specialize in finding the perfect property for you, whether it’s a dream home or a high-yield investment opportunity. With our extensive experience and commitment to excellence, we offer tailored real estate solutions to meet your specific needs.</p>
 
-                            </p>
+                            <p>At Maison Infratech, professionalism, integrity, and a deep understanding of the Gurgaon real estate market are the cornerstones of our business. Our team of dedicated real estate professionals is passionate about helping you achieve your real estate goals, whether you're buying, selling, or investing in Gurgaon.</p>
+                            
+                            <p>From first-time homebuyers to seasoned investors and those looking to sell their property, our comprehensive services cover every aspect of the real estate journey. We assist with property search, market evaluation, negotiation, and closing, ensuring a smooth and successful transaction in the vibrant Gurgaon property market.</p>
+                            
 
                         </div>
                     </div>
                 </div>
                 <!-- <div class="about-content abcont"> -->
-                <p class="ptag">What sets us apart is our personalized approach. We believe in fostering
-                    long-lasting
-                    relationships with our clients by actively listening to their needs, providing
-                    expert advice, and delivering results that exceed expectations. Your satisfaction is
-                    our utmost priority, and we go above and beyond to ensure a smooth and successful
-                    transaction.</p>
-                <p class="ptag">With our in-depth knowledge of the local market trends, cutting-edge technology, and
-                    extensive network of industry professionals, we have the resources and expertise to
-                    deliver optimal outcomes. Our commitment to staying up-to-date with the latest
-                    industry developments enables us to provide strategic insights and opportunities
-                    that give you a competitive advantage.</p>
-                <p class="ptag">Explore our user-friendly website, which showcases an extensive listing of
-                    properties, comprehensive market analysis, and valuable resources to assist you in
-                    making informed decisions. Our dedicated team is readily available to answer your
-                    inquiries, provide expert guidance, and schedule property viewings.</p>
-                <p class="ptag">Thank you for choosing Maison Infratech as your trusted real estate partner.
-                    Experience the difference of working with a company that values your vision,
-                    understands your aspirations, and is committed to turning your real estate dreams
-                    into reality.</p>
+                    <p class="ptag">What sets us apart at Maison Infratech is our personalized approach to real estate in Gurgaon. We focus on building long-term relationships with our clients by actively listening to their needs, offering expert advice, and delivering exceptional results. Your satisfaction is our priority, and we ensure a seamless and successful property transaction experience.</p>
+
+                    <p class="ptag">With our deep knowledge of Gurgaon real estate market trends, advanced technology, and a vast network of industry professionals, we provide optimal outcomes for property buyers and investors. Our commitment to staying updated with the latest market developments allows us to offer strategic insights and opportunities that give you a competitive edge in the Gurgaon property market.</p>
+                    
+                    <p class="ptag">Explore our user-friendly website for an extensive listing of residential and commercial properties in Gurgaon, detailed market analysis, and valuable resources to help you make informed real estate decisions. Our dedicated team is always available to answer your inquiries, provide expert guidance, and arrange property viewings.</p>
+                    
+                    <p class="ptag">Thank you for choosing Maison Infratech as your go-to real estate partner in Gurgaon. Discover the difference of working with a company that values your vision, understands your property aspirations, and is dedicated to turning your real estate dreams into reality.</p>
+                    
                 <!-- </div> -->
                 <div class="container abcon">
                     <div class="cal-action">
@@ -144,7 +208,7 @@
                     <div class="row">
                         <div class="col-sm-6 col-lg-3 margin-bottom-30 counter-inner">
                             <span>
-                                <img class="img-fluid" src="images/1-1.png" alt="" />
+                                <img class="img-fluid" src="images/real-estate-properties.png" alt="Real Estate Properties" />
                             </span>
                             <div class="min-count">
                                 <b>
@@ -156,7 +220,7 @@
                         </div>
                         <div class="col-sm-6 col-lg-3 margin-bottom-30 counter-inner">
                             <span>
-                                <img class="img-fluid" src="images/2-1.png" alt="" />
+                                <img class="img-fluid" src="images/real-estate_experince.png" alt="Years of Experince in Real estate" />
                             </span>
                             <div class="min-count">
                                 <b>
@@ -168,7 +232,7 @@
                         </div>
                         <div class="col-sm-6 col-lg-3 margin-bottom-30 counter-inner">
                             <span>
-                                <img class="img-fluid" src="images/3-1.png" alt="" />
+                                <img class="img-fluid" src="images/real-estate-team.png" alt=" Real Estate Expert Team" />
                             </span>
                             <div class="min-count">
                                 <b>
@@ -180,7 +244,7 @@
                         </div>
                         <div class="col-sm-6 col-lg-3 margin-bottom-30 counter-inner">
                             <span>
-                                <img class="img-fluid" src="images/4-1.png" alt="" />
+                                <img class="img-fluid" src="images/happy-customers.png" alt="Real Estate Happy Customers" />
                             </span>
                             <div class="min-count">
                                 <b>
