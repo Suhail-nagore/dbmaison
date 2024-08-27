@@ -38,8 +38,8 @@ const transporter = nodemailer.createTransport({
   port: 587, // SMTP port
   secure: false, // false for other ports
   auth: {
-    user: 'info@maisoninfratech.in', // your Hostinger email address
-    pass: 'Maison@123456' // your Hostinger email password
+    user: 'maison@maisoninfratech.in', // your Hostinger email address
+    pass: 'Maison@2231' // your Hostinger email password
   }
 });
 
@@ -746,7 +746,7 @@ app.post("/processform", function (req, res) {
     .then(() => {
       // Define the email content
       const mailOptions = {
-        from: 'info@maisoninfratech.in',
+        from: 'maison@maisoninfratech.in',
         to: 'testmail@maisoninfratech.in', // recipient's email address
         subject: 'Form Submission from your website',
         text: `Name: ${name}\nEmail: ${email}\nContact Number: ${contactnumber}\nMessage: ${message}`
